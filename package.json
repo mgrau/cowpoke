@@ -1,0 +1,22 @@
+{
+  "name": "cowpoke",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Grau",
+  "license": "ISC",
+  "dependencies": {
+    "boardgame.io": "^0.29.4",
+    "parcel": "^1.11.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  }
+}
