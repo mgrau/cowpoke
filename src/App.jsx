@@ -1,8 +1,7 @@
 import { Client } from "boardgame.io/react";
-import TicTacToe from "./game";
-import TicTacToeBoard from "./board";
-import TicTacToeAI from "./ai";
+import GreatWesternTrail from "./game/game";
+import TicTacToeBoard from "./board/board";
 
-const App = Client({ game: TicTacToe, board: TicTacToeBoard });
+const App = Client({ game: GreatWesternTrail, board: TicTacToeBoard });
 
 export default App;

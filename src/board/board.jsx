@@ -40,7 +40,7 @@ export default class TicTacToeBoard extends React.Component {
         const id = 3 * i + j;
         cells.push(
           <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
-            {this.props.G.cells[id]}
+            {i},{j}
           </td>
         );
       }
