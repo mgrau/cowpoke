@@ -21,12 +21,18 @@ class Trail {
     return this.trail.filter(sp => sp.prev.includes(space.name));
   }
 
+  isAdjacent(start, end) {
+    return this.getNext(this.get(start))
+      .map(space => space.name)
+      .includes(end);
+  }
+
   add(newSpace) {
     this.trail.push(newSpace);
   }
 }
 
-const trail = new Trail(new Space("start"));
+const trail = new Trail(new Space("start", { build: false }));
 trail.add(new Space("A", "start"));
 trail.add(new Space("A1", "A"));
 trail.add(new Space("A2", "A1"));
