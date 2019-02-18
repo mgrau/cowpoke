@@ -17,14 +17,14 @@ class Trail {
     return this.trail.find(space => space.name === name);
   }
 
-  getNext(space) {
-    return this.trail.filter(sp => sp.prev.includes(space.name));
+  getNext(name) {
+    return this.trail
+      .filter(sp => sp.prev.includes(name))
+      .map(space => space.name);
   }
 
   isAdjacent(start, end) {
-    return this.getNext(this.get(start))
-      .map(space => space.name)
-      .includes(end);
+    return this.getNext(start).includes(end);
   }
 
   add(newSpace) {
@@ -89,5 +89,5 @@ trail.add(new Space("G", ["F1", "F2"]));
 trail.add(new Space("G1", "G"));
 trail.add(new Space("G2", "G"));
 trail.add(new Space("KansasCity", ["G1", "G2"], false));
-
+trail.get("KansasCity").tile = "KansasCity";
 export default trail;

@@ -2,7 +2,7 @@ import { Game } from "boardgame.io/core";
 import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
-import { move, stop } from "./moves";
+import { move, stop, kansas_city } from "./moves";
 import {
   neutralA,
   neutralB,
@@ -23,6 +23,7 @@ const Cowpoke = Game({
     trail.addBuilding("E", neutralE);
     trail.addBuilding("F", neutralF);
     trail.addBuilding("G", neutralG);
+
     return {
       trail: trail,
       cowmarket: [],
@@ -32,7 +33,7 @@ const Cowpoke = Game({
     };
   },
   playerSetup: playerID => new Player(playerID),
-  moves: { move, stop },
+  moves: { move, stop, kansas_city },
   flow: {
     endTurn: false,
     endPhase: false,
@@ -49,6 +50,14 @@ const Cowpoke = Game({
       },
       ActionPhase: {
         allowedMoves: ["stop"],
+        next: "MovePhase",
+        onPhaseEnd: (G, ctx) => {
+          ctx.events.endTurn();
+          return G;
+        }
+      },
+      KansasCity: {
+        allowedMoves: ["kansas_city"],
         next: "MovePhase",
         onPhaseEnd: (G, ctx) => {
           ctx.events.endTurn();

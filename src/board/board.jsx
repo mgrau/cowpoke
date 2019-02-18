@@ -25,11 +25,25 @@ export default class CowpokeBoard extends React.Component {
       )
       .flat();
     return (
-      <div>
+      <div
+        tabIndex="0"
+        onKeyDown={e => {
+          if (e.keyCode === 32) {
+            const currentPlayer = this.props.ctx.currentPlayer;
+            const location = this.props.G.players[currentPlayer].location;
+            this.props.moves.move(this.props.G.trail.getNext(location)[0]);
+          } else if (e.keyCode === 69) {
+            this.props.moves.stop();
+          } else {
+            console.log(e.keyCode);
+          }
+        }}
+      >
         <div>{lines}</div>
         <div id="board">{spaces}</div>
 
         <div>Remaining moves: {this.props.G.movesRemaining}</div>
+        <div>Current Phase: {this.props.ctx.phase}</div>
         <div
           style={{ border: "1px solid", width: "50px", height: "50px" }}
           onClick={() => this.props.moves.stop()}
