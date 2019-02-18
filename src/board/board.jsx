@@ -7,23 +7,7 @@ export default class CowpokeBoard extends React.Component {
     // this.props.events.endTurn();
   }
 
-  isActive(id) {
-    if (!this.props.isActive) return false;
-    if (this.props.G.cells[id] !== null) return false;
-    return true;
-  }
-
   render() {
-    let winner = "";
-    if (this.props.ctx.gameover) {
-      winner =
-        this.props.ctx.gameover.winner !== undefined ? (
-          <div id="winner">Winner : {this.props.ctx.gameover.winner}</div>
-        ) : (
-          <div id="winner">Draw!</div>
-        );
-    }
-
     const cellStyle = {
       border: "1px solid #555",
       width: "50px",
@@ -33,12 +17,13 @@ export default class CowpokeBoard extends React.Component {
     };
 
     let tbody = [];
-
+    const trail = this.props.G.trail.trail;
     for (let i = 0; i < 7; i++) {
       let cells = [];
       for (let j = 0; j < 7; j++) {
         const index = 48 - (j + 7 * i);
-        const cellName = this.props.G.trail.trail[index].name;
+        const cellName = trail[index].name;
+        const tileName = trail[index].tile.name;
         const players = Object.values(this.props.G.players)
           .filter(player => player.location == cellName)
           .map(player => "P" + player.playerID);
@@ -49,6 +34,7 @@ export default class CowpokeBoard extends React.Component {
             onClick={() => this.onClick(cellName)}
           >
             <div>{cellName}</div>
+            <div>{tileName}</div>
             <div>{players}</div>
           </td>
         );
@@ -61,7 +47,13 @@ export default class CowpokeBoard extends React.Component {
         <table id="board">
           <tbody>{tbody}</tbody>
         </table>
-        {winner}
+        <div>Remaining moves: {this.props.G.movesRemaining}</div>
+        <div
+          style={{ border: "1px solid", width: "50px", height: "50px" }}
+          onClick={() => this.props.events.endPhase()}
+        >
+          End Phase
+        </div>
       </div>
     );
   }

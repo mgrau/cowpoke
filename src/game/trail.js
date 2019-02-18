@@ -30,6 +30,14 @@ class Trail {
   add(newSpace) {
     this.trail.push(newSpace);
   }
+
+  isEmpty(space) {
+    return Object.entries(this.get(space).tile).length === 0;
+  }
+
+  addBuilding(space, Building) {
+    this.get(space).tile = Building;
+  }
 }
 
 const trail = new Trail(new Space("start", { build: false }));

@@ -3,16 +3,34 @@ import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
 import { move } from "./moves";
+import {
+  neutralA,
+  neutralB,
+  neutralC,
+  neutralD,
+  neutralE,
+  neutralF,
+  neutralG
+} from "./buildings";
 
 const Cowpoke = Game({
   name: "Great Western Trail",
-  setup: () => ({
-    trail: trail,
-    cowmarket: [],
-    cowDeck: [],
-    objectives: [],
-    objectiveDeck: []
-  }),
+  setup: ctx => {
+    trail.addBuilding("A", neutralA);
+    trail.addBuilding("B", neutralB);
+    trail.addBuilding("C", neutralC);
+    trail.addBuilding("D", neutralD);
+    trail.addBuilding("E", neutralE);
+    trail.addBuilding("F", neutralF);
+    trail.addBuilding("G", neutralG);
+    return {
+      trail: trail,
+      cowmarket: [],
+      cowDeck: [],
+      objectives: [],
+      objectiveDeck: []
+    };
+  },
   playerSetup: playerID => new Player(playerID),
   moves: { move },
   flow: {

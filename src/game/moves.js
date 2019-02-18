@@ -3,7 +3,7 @@ export function move(G, ctx, destination) {
   if (G.movesRemaining > 0) {
     if (G.trail.isAdjacent(currentLocation, destination)) {
       G.players[ctx.currentPlayer].location = destination;
-      G.movesRemaining--;
+      if (!G.trail.isEmpty(destination)) G.movesRemaining--;
     }
   }
 }
