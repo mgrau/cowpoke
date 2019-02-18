@@ -2,7 +2,7 @@ import { Game } from "boardgame.io/core";
 import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
-import { move } from "./moves";
+import { move, stop } from "./moves";
 import {
   neutralA,
   neutralB,
@@ -32,9 +32,10 @@ const Cowpoke = Game({
     };
   },
   playerSetup: playerID => new Player(playerID),
-  moves: { move },
+  moves: { move, stop },
   flow: {
     endTurn: false,
+    endPhase: false,
     startingPhase: "MovePhase",
 
     phases: {
@@ -43,11 +44,11 @@ const Cowpoke = Game({
           G.movesRemaining = G.players[ctx.currentPlayer].moves;
           return G;
         },
-        allowedMoves: ["move"],
+        allowedMoves: ["move", "stop"],
         next: "ActionPhase"
       },
       ActionPhase: {
-        allowedMoves: [""],
+        allowedMoves: ["stop"],
         next: "MovePhase",
         onPhaseEnd: (G, ctx) => {
           ctx.events.endTurn();

@@ -7,3 +7,16 @@ export function move(G, ctx, destination) {
     }
   }
 }
+
+export function stop(G, ctx) {
+  if (G.movesRemaining < G.players[ctx.currentPlayer].moves) {
+    if (!G.trail.isEmpty(G.players[ctx.currentPlayer].location)) {
+      console.log("ok ending phase");
+      ctx.events.endPhase();
+    } else {
+      console.log("can not stop here");
+    }
+  } else {
+    console.log("have not moved yet");
+  }
+}

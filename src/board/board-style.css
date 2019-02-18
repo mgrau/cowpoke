@@ -1,8 +1,8 @@
 #board {
   width: 70%;
   display: grid;
-  grid-template-columns: repeat(14, 5vw);
-  grid-template-rows: repeat(14, 5vw);
+  grid-template-columns: repeat(14, 5vh);
+  grid-template-rows: repeat(14, 5vh);
   grid-gap: 10px;
   background-color: #fff;
   color: #444;
