@@ -5,7 +5,8 @@ import CowpokeBoard from "./board/board";
 const App = Client({
   numPlayers: 3,
   game: Cowpoke,
-  board: CowpokeBoard
+  board: CowpokeBoard,
+  debug: true
 });
 
 export default App;
