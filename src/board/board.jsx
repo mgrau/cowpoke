@@ -20,6 +20,7 @@ export default class CowpokeBoard extends React.Component {
             borderColor="#999"
             borderWidth={5}
             key={"line" + space.name + prevSpace}
+            delay={1}
           />
         ))
       )
@@ -34,7 +35,7 @@ export default class CowpokeBoard extends React.Component {
             this.props.moves.move(this.props.G.trail.getNext(location)[0]);
           } else if (e.keyCode === 69) {
             this.props.moves.stop();
-          } 
+          }
         }}
       >
         <div>{lines}</div>

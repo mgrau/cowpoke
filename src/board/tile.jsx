@@ -5,9 +5,12 @@ export default class Tile extends React.Component {
     this.props.moves.move(this.props.name);
   }
   render() {
+    console.log(this.props.woods);
     return (
       <div
-        className={"space " + this.props.name}
+        className={
+          "space " + (this.props.woods ? "woods " : "") + this.props.name
+        }
         onClick={() => this.onClick()}
       >
         <div>

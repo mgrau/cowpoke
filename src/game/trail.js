@@ -3,6 +3,7 @@ class Space {
     this.prev = Array.isArray(prev) ? prev : [prev];
     this.name = name;
     this.build = build;
+    this.woods = woods;
     this.tile = {};
   }
 }
@@ -60,8 +61,8 @@ trail.add(new Space("drought3", "drought2", false));
 trail.add(new Space("drought4", "drought3", false));
 trail.add(new Space("droughtRisk1", "drought4"));
 trail.add(new Space("C", ["B3", "droughtRisk1"]));
-trail.add(new Space("C1", "C", { woods: true }));
-trail.add(new Space("C2", "C1", { woods: true }));
+trail.add(new Space("C1", "C", true, true));
+trail.add(new Space("C2", "C1", true, true));
 trail.add(new Space("C3", "C"));
 trail.add(new Space("D", "C3"));
 trail.add(new Space("teepee1", "C3", false));

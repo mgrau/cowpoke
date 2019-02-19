@@ -18,6 +18,10 @@
   text-align: center;
 }
 
+.woods {
+  border: 5px solid rgb(119, 160, 134);
+}
+
 .cattleman {
   height: 25px;
   width: 25px;
