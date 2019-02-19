@@ -1,4 +1,7 @@
 # TODO
 
-- fix rendering of graph lines (they only present on a redraw)
+- player view
+- tile actions view
+- small tiles
+- labor market
 - break out css into separate style sheets for different components
