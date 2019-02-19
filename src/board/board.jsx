@@ -21,6 +21,7 @@ export default class CowpokeBoard extends React.Component {
             borderWidth={5}
             key={"line" + space.name + prevSpace}
             delay={1}
+            zIndex={-1}
           />
         ))
       )
