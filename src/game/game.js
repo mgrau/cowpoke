@@ -53,7 +53,6 @@ const Cowpoke = Game({
       MovePhase: {
         onPhaseBegin: (G, ctx) => {
           G.movesRemaining = G.player.moves(ctx);
-          console.log(G.movesRemaining);
           return G;
         },
         onPhaseEnd: (G, ctx) => {

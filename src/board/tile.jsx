@@ -5,7 +5,6 @@ export default class Tile extends React.Component {
     this.props.moves.move(this.props.name);
   }
   render() {
-    console.log(this.props.woods);
     return (
       <div
         className={
