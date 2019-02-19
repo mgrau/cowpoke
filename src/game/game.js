@@ -2,7 +2,8 @@ import { Game } from "boardgame.io/core";
 import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
-import { move, stop, kansas_city } from "./moves";
+import { move, stop, pass, kansas_city } from "./moves";
+import { neutralA1, neutralA2, neutralA3 } from "./neutral_moves";
 import {
   neutralA,
   neutralB,
@@ -29,20 +30,34 @@ const Cowpoke = Game({
       cowmarket: [],
       cowDeck: [],
       objectives: [],
-      objectiveDeck: []
+      objectiveDeck: [],
+      movesRemaining: 0,
+      actionsPerformed: []
     };
   },
   playerSetup: playerID => new Player(playerID),
-  moves: { move, stop, kansas_city },
+  moves: { move, stop, pass, kansas_city, neutralA1, neutralA2, neutralA3 },
   flow: {
     endTurn: false,
     endPhase: false,
     startingPhase: "MovePhase",
 
     phases: {
+      PostSetup: {
+        onPhaseBegin: (G, ctx) => {
+          Object.values(G.players).forEach(player => player.draw(ctx));
+          return G;
+        },
+        endPhaseIf: () => ({ next: "MovePhase" })
+      },
       MovePhase: {
         onPhaseBegin: (G, ctx) => {
-          G.movesRemaining = G.players[ctx.currentPlayer].moves;
+          G.movesRemaining = G.player.moves(ctx);
+          console.log(G.movesRemaining);
+          return G;
+        },
+        onPhaseEnd: (G, ctx) => {
+          G.actionsPerformed = [];
           return G;
         },
         allowedMoves: ["move", "stop"],
@@ -55,6 +70,9 @@ const Cowpoke = Game({
           ctx.events.endTurn();
           return G;
         }
+      },
+      neutralA: {
+        allowedMoves: ["pass", "neutralA1", "neutralA2", "neutralA3"]
       },
       KansasCity: {
         allowedMoves: ["kansas_city"],

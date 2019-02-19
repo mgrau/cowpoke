@@ -1,12 +1,4 @@
-export default class Card {
-  constructor(name, value, points) {
-    this.name = name;
-    this.value = value;
-    this.points = points;
-  }
-}
-
-export class Jersey extends Card {
+class Jersey {
   constructor() {
     this.name = "Jersey";
     this.value = 1;
@@ -14,7 +6,7 @@ export class Jersey extends Card {
   }
 }
 
-export class Guernsey extends Card {
+export class Guernsey {
   constructor() {
     this.name = "Guernsey";
     this.value = 2;
@@ -22,7 +14,7 @@ export class Guernsey extends Card {
   }
 }
 
-export class DutchBelt extends Card {
+class DutchBelt {
   constructor() {
     this.name = "Dutch Belt";
     this.value = 2;
@@ -30,7 +22,7 @@ export class DutchBelt extends Card {
   }
 }
 
-export class BlackAngus extends Card {
+class BlackAngus {
   constructor() {
     this.name = "Black Angus";
     this.value = 2;
@@ -38,7 +30,7 @@ export class BlackAngus extends Card {
   }
 }
 
-export class Holstein extends Card {
+class Holstein {
   constructor() {
     this.name = "Holstein";
     this.value = 3;
@@ -46,7 +38,7 @@ export class Holstein extends Card {
   }
 }
 
-export class BrownSwiss extends Card {
+class BrownSwiss {
   constructor() {
     this.name = "Brown Swiss";
     this.value = 3;
@@ -54,7 +46,7 @@ export class BrownSwiss extends Card {
   }
 }
 
-export class Aryshire extends Card {
+class Aryshire {
   constructor() {
     this.name = "Aryshire";
     this.value = 3;
@@ -62,7 +54,7 @@ export class Aryshire extends Card {
   }
 }
 
-export class WestHighland extends Card {
+class WestHighland {
   constructor(points) {
     this.name = "West Highland";
     this.value = 4;
@@ -70,10 +62,41 @@ export class WestHighland extends Card {
   }
 }
 
-export class TexasLonghorn extends Card {
+class TexasLonghorn {
   constructor(points) {
     this.name = "Texas Longhorn";
     this.value = 5;
     this.points = points;
+  }
+}
+
+export class StartingDeck {
+  constructor() {
+    this.deck = [];
+    this.discard = [];
+    this.hand = [];
+    this.deck.push(new Jersey());
+    this.deck.push(new Jersey());
+    this.deck.push(new Jersey());
+    this.deck.push(new Jersey());
+    this.deck.push(new Jersey());
+    this.deck.push(new Guernsey());
+    this.deck.push(new Guernsey());
+    this.deck.push(new Guernsey());
+    this.deck.push(new DutchBelt());
+    this.deck.push(new DutchBelt());
+    this.deck.push(new DutchBelt());
+    this.deck.push(new BlackAngus());
+    this.deck.push(new BlackAngus());
+    this.deck.push(new BlackAngus());
+  }
+
+  draw(ctx) {
+    if (this.deck.length == 0) {
+      this.deck = this.discard;
+      this.discard = [];
+    }
+    this.deck = ctx.random.Shuffle(this.deck);
+    this.hand.push(this.deck.pop());
   }
 }

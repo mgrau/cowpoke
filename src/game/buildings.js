@@ -5,12 +5,12 @@ class Building {
   }
 }
 
-const neutralA = new Building("A");
-const neutralB = new Building("B");
-const neutralC = new Building("C");
-const neutralD = new Building("D");
-const neutralE = new Building("E");
-const neutralF = new Building("F");
-const neutralG = new Building("G");
+const neutralA = new Building("neutralA");
+const neutralB = new Building("neutralB");
+const neutralC = new Building("neutralC");
+const neutralD = new Building("neutralD");
+const neutralE = new Building("neutralE");
+const neutralF = new Building("neutralF");
+const neutralG = new Building("neutralG");
 
 export { neutralA, neutralB, neutralC, neutralD, neutralE, neutralF, neutralG };

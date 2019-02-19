@@ -9,7 +9,6 @@ class Space {
 
 class Trail {
   constructor(start) {
-    this.start = start;
     this.trail = [start];
   }
 
@@ -89,5 +88,5 @@ trail.add(new Space("G", ["F1", "F2"]));
 trail.add(new Space("G1", "G"));
 trail.add(new Space("G2", "G"));
 trail.add(new Space("KansasCity", ["G1", "G2"], false));
-trail.get("KansasCity").tile = "KansasCity";
+trail.get("KansasCity").tile = { name: "KansasCity" };
 export default trail;

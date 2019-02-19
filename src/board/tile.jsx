@@ -15,7 +15,8 @@ export default class Tile extends React.Component {
             .filter(player => player.location === this.props.name)
             .map(player => (
               <span
-                class="cattleman"
+                className="cattleman"
+                key={player.playerID}
                 style={{ backgroundColor: player.color }}
               />
             ))}

@@ -17,8 +17,8 @@ export default class CowpokeBoard extends React.Component {
           <LineTo
             from={space.name}
             to={prevSpace}
-            borderColor="black"
-            borderWidth={3}
+            borderColor="#999"
+            borderWidth={5}
             key={"line" + space.name + prevSpace}
           />
         ))
@@ -34,9 +34,7 @@ export default class CowpokeBoard extends React.Component {
             this.props.moves.move(this.props.G.trail.getNext(location)[0]);
           } else if (e.keyCode === 69) {
             this.props.moves.stop();
-          } else {
-            console.log(e.keyCode);
-          }
+          } 
         }}
       >
         <div>{lines}</div>
