@@ -100,3 +100,45 @@ export class StartingDeck {
     this.hand.push(this.deck.pop());
   }
 }
+
+export const market_cattle = [];
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+market_cattle.push(new Holstein());
+
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+market_cattle.push(new BrownSwiss());
+
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+market_cattle.push(new Aryshire());
+
+market_cattle.push(new WestHighland(3));
+market_cattle.push(new WestHighland(3));
+market_cattle.push(new WestHighland(3));
+market_cattle.push(new WestHighland(4));
+market_cattle.push(new WestHighland(4));
+market_cattle.push(new WestHighland(4));
+market_cattle.push(new WestHighland(5));
+market_cattle.push(new WestHighland(5));
+market_cattle.push(new WestHighland(5));
+
+market_cattle.push(new TexasLonghorn(5));
+market_cattle.push(new TexasLonghorn(5));
+market_cattle.push(new TexasLonghorn(6));
+market_cattle.push(new TexasLonghorn(6));
+market_cattle.push(new TexasLonghorn(7));
+market_cattle.push(new TexasLonghorn(7));

@@ -1,5 +1,6 @@
 class Building {
   constructor(name, actions = []) {
+    this.tile = "neutral";
     this.name = name;
     this.actions = actions;
   }

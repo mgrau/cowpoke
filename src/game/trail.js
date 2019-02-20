@@ -38,6 +38,32 @@ class Trail {
   addBuilding(space, Building) {
     this.get(space).tile = Building;
   }
+
+  addSmallTile(tile) {
+    if (tile.tile == "hazard") {
+      for (var i = 0; i < 4; i++) {
+        const space = tile.type + (i + 1);
+        if (this.isEmpty(space)) {
+          this.get(space).tile = tile;
+          console.log("placing hazard in " + space);
+          return;
+        }
+      }
+    } else if (tile.tile == "teepee") {
+      const teepees = this.trail
+        .filter(space => space.name.match("teepee[-0-9]"))
+        .map(space => space.name);
+      for (var i = 0; i < teepees.length; i++) {
+        if (this.isEmpty(teepees[i])) {
+          this.get(teepees[i]).tile = tile;
+          console.log("placing teepee in " + teepees[i]);
+          return;
+        }
+      }
+    } else {
+      console.log(tile.tile);
+    }
+  }
 }
 
 const trail = new Trail(new Space("start", [], false));
@@ -65,13 +91,16 @@ trail.add(new Space("C1", "C", true, true));
 trail.add(new Space("C2", "C1", true, true));
 trail.add(new Space("C3", "C"));
 trail.add(new Space("D", "C3"));
+trail.add(new Space("teepee-3", "", false));
+trail.add(new Space("teepee-2", "", false));
+trail.add(new Space("teepee-1", "", false));
 trail.add(new Space("teepee1", "C3", false));
 trail.add(new Space("teepee2", "teepee1", false));
-trail.add(new Space("teepee3", "teepee2", false));
-trail.add(new Space("teepee4", "teepee3", false));
-trail.add(new Space("teepee5", "teepee4", false));
-trail.add(new Space("teepee6", "teepee5", false));
-trail.add(new Space("teepeeRisk1", "teepee6"));
+trail.add(new Space("teepee4", "teepee2", false));
+trail.add(new Space("teepee6", "teepee4", false));
+trail.add(new Space("teepee8", "teepee6", false));
+trail.add(new Space("teepee10", "teepee8", false));
+trail.add(new Space("teepeeRisk1", "teepee10"));
 trail.add(new Space("teepeeRisk2", "teepeeRisk1"));
 trail.add(new Space("E", ["C2", "D", "teepeeRisk2"]));
 trail.add(new Space("E1", "E", true, true));

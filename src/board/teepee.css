@@ -1,0 +1,18 @@
+.teepee {
+  border-radius: 10px;
+  height: calc(100% - 20px);
+  padding: 10px;
+}
+
+.teepee.green {
+  background-color: rgb(19, 49, 23);
+}
+
+.teepee.blue {
+  background-color: rgb(50, 68, 129);
+}
+
+.teepee > div {
+  color: white;
+  font-size: 1.25em;
+}

@@ -4,6 +4,7 @@ import Tile from "./tile";
 import LineTo from "react-lineto";
 
 import "./board-style.css";
+import "./trail.css";
 
 export default class CowpokeBoard extends React.Component {
   render() {

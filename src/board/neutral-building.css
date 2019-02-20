@@ -1,0 +1,27 @@
+.neutral {
+  background-color: rgb(47, 50, 51);
+  color: #fff;
+  border-radius: 10px;
+  height: calc(100% - 14px);
+  padding: 7px;
+}
+
+.neutral > div {
+  background-color: rgb(135, 143, 146);
+  height: 100%;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* grid-gap: 5px; */
+}
+
+.neutral .body {
+  grid-column: 1 / 4;
+  grid-row: 1;
+}
+
+.neutral > div > div {
+  border: 1px solid;
+  overflow: hidden;
+}

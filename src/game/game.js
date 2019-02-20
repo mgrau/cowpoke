@@ -2,6 +2,7 @@ import { Game } from "boardgame.io/core";
 import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
+import Foresight from "./foresight";
 import { move, stop, pass, kansas_city } from "./moves";
 import { neutralA1, neutralA2, neutralA3 } from "./neutral_moves";
 import {
@@ -14,6 +15,8 @@ import {
   neutralG
 } from "./buildings";
 
+import { market_cattle } from "./cows";
+
 const Cowpoke = Game({
   name: "Great Western Trail",
   setup: ctx => {
@@ -25,12 +28,24 @@ const Cowpoke = Game({
     trail.addBuilding("F", neutralF);
     trail.addBuilding("G", neutralG);
 
+    const foresight = new Foresight(ctx);
+    for (var i = 0; i < 7; i++) {
+      trail.addSmallTile(foresight.pile1.pop());
+    }
+
+    const cowMarket = [];
+    const cowDeck = ctx.random.Shuffle(market_cattle);
+    for (var i = 0; i < 1 + 3 * ctx.numPlayers; i++) {
+      cowMarket.push(cowDeck.pop());
+    }
+
     return {
       trail: trail,
-      cowmarket: [],
-      cowDeck: [],
+      foresight: foresight,
+      cowDeck: cowDeck,
+      cowMarket: cowMarket,
+      objectiveDeck: ctx.random.Shuffle([]),
       objectives: [],
-      objectiveDeck: [],
       movesRemaining: 0,
       actionsPerformed: []
     };

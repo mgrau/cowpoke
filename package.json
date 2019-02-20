@@ -10,6 +10,9 @@
   "author": "Matt Grau",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "boardgame.io": "^0.29.4",
     "parcel": "^1.11.0",
     "react": "^16.8.2",
