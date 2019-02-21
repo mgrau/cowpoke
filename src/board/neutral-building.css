@@ -10,18 +10,24 @@
   background-color: rgb(135, 143, 146);
   height: 100%;
   border-radius: 5px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  /* grid-gap: 5px; */
-}
-
-.neutral .body {
-  grid-column: 1 / 4;
-  grid-row: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .neutral > div > div {
-  border: 1px solid;
+}
+
+.neutral .body {
+  flex-grow: 1;
+}
+.neutral .actions {
+  flex-grow: 1;
+  display: flex;
+}
+
+.neutral > div > div > div {
+  flex-grow: 1;
+  border: 1px dashed;
   overflow: hidden;
+  /* flex-grow: 1; */
 }

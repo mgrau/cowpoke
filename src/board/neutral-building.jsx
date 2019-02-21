@@ -6,13 +6,14 @@ import "./neutral-building.css";
 
 export default class NeutralBuilding extends React.Component {
   render() {
+    const actions = this.props.actions.map(action => (
+      <div className={action} onClick={() => this.props.moves[action]()} />
+    ));
     return (
       <div className={"neutral"}>
         <div>
           <div className={"body"}>{this.props.name}</div>
-          <div>action1</div>
-          <div>action2</div>
-          <div>action3</div>
+          <div className={"actions"}>{actions}</div>
         </div>
       </div>
     );

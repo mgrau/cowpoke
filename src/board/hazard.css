@@ -2,8 +2,8 @@
   background-color: #ddd;
   color: #fff;
   border-radius: 10px;
-  height: calc(100% - 14px);
-  padding: 7px;
+  height: calc(100% - 24%);
+  padding: 12%;
 }
 
 .hazard.flood {
@@ -19,7 +19,7 @@
 }
 
 .hazard > div {
-  font-size: 1.5em;
+  font-size: 1.5vh;
   height: 100%;
   border-radius: 5px;
   color: white;

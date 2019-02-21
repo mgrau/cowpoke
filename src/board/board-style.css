@@ -1,12 +1,4 @@
-#board {
-  /* width: 50%; */
-  display: grid;
-  grid-template-columns: repeat(14, 5vh);
-  grid-template-rows: repeat(14, 5vh);
-  grid-gap: 10px;
-  color: #444;
-  font-family: arial;
-}
+
 
 .space {
   background-color: #ddd;
