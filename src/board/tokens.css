@@ -1,0 +1,23 @@
+.tokens {
+  height: 100%;
+  text-align: left;
+}
+
+.cattleman:hover {
+  opacity: 0.25;
+}
+
+.tokens > div {
+  height: 100%;
+  padding-top: 10%;
+  padding-left: 10%;
+}
+
+.cattleman {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 1px black solid;
+  display: inline-block;
+  margin-bottom: -15px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import Hazard from "./hazard";
 import Teepee from "./teepee";
 import NeutralBuilding from "./neutral-building";
+import Tokens from "./tokens";
 
 export default class Tile extends React.Component {
   onClick() {
@@ -23,18 +24,8 @@ export default class Tile extends React.Component {
         }
         onClick={() => this.onClick()}
       >
+        <Tokens players={this.props.G.players} location={this.props.name} />
         {tile}
-        <div>
-          {Object.values(this.props.G.players)
-            .filter(player => player.location === this.props.name)
-            .map(player => (
-              <span
-                className="cattleman"
-                key={player.playerID}
-                style={{ backgroundColor: player.color }}
-              />
-            ))}
-        </div>
       </div>
     );
   }
