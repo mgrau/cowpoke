@@ -1,17 +1,26 @@
+#board {
+  display: grid;
+  grid-template-columns: repeat(14, 4vh);
+  grid-template-rows: repeat(14, 4vh);
+  grid-gap: 1vh;
+  color: #444;
+  font-family: arial;
+}
+
 .space {
   background-color: #ddd;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 1vh;
   text-align: center;
   z-index: 0;
 }
 
 .woods {
-  border: 4px solid rgb(119, 160, 134);
+  border: 0.3vh solid rgb(119, 160, 134);
   position: relative;
-  top: -4px;
-  left: -4px;
-  height: calc(100%);
+  top: -0.3vh;
+  left: -0.3vh;
+  height: 100%;
   width: 100%;
 }
 

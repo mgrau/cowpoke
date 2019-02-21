@@ -4,7 +4,23 @@ import trail from "./trail";
 import Player from "./player";
 import Foresight from "./foresight";
 import { move, stop, pass, kansas_city } from "./moves";
-import { neutralA1, neutralA2, neutralA3 } from "./neutral_moves";
+import {
+  neutralA1,
+  neutralA2,
+  neutralA3,
+  neutralB1,
+  neutralB2,
+  neutralC1,
+  neutralC2,
+  neutralD1,
+  neutralD2,
+  neutralE1,
+  neutralE2,
+  neutralF1,
+  neutralF2,
+  neutralG1,
+  neutralG2
+} from "./neutral_moves";
 import {
   neutralA,
   neutralB,
@@ -51,11 +67,31 @@ const Cowpoke = Game({
     };
   },
   playerSetup: playerID => new Player(playerID),
-  moves: { move, stop, pass, kansas_city, neutralA1, neutralA2, neutralA3 },
+  moves: {
+    move,
+    stop,
+    pass,
+    kansas_city,
+    neutralA1,
+    neutralA2,
+    neutralA3,
+    neutralB1,
+    neutralB2,
+    neutralC1,
+    neutralC2,
+    neutralD1,
+    neutralD2,
+    neutralE1,
+    neutralE2,
+    neutralF1,
+    neutralF2,
+    neutralG1,
+    neutralG2
+  },
   flow: {
     endTurn: false,
     endPhase: false,
-    startingPhase: "MovePhase",
+    startingPhase: "PostSetup",
 
     phases: {
       PostSetup: {
@@ -87,6 +123,24 @@ const Cowpoke = Game({
       },
       neutralA: {
         allowedMoves: ["pass", "neutralA1", "neutralA2", "neutralA3"]
+      },
+      neutralB: {
+        allowedMoves: ["pass", "neutralB1", "neutralB2"]
+      },
+      neutralC: {
+        allowedMoves: ["pass", "neutralC1", "neutralC2"]
+      },
+      neutralD: {
+        allowedMoves: ["pass", "neutralD1", "neutralD2"]
+      },
+      neutralE: {
+        allowedMoves: ["pass", "neutralE1", "neutralE2"]
+      },
+      neutralF: {
+        allowedMoves: ["pass", "neutralF1", "neutralF2"]
+      },
+      neutralG: {
+        allowedMoves: ["pass", "neutralG1", "neutralG2"]
       },
       KansasCity: {
         allowedMoves: ["kansas_city"],

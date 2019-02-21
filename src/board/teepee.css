@@ -1,10 +1,9 @@
 .teepee {
-  border-radius: 10px;
-  height: calc(100% - 20px);
-  padding: 10px;
+  border-radius: 1vh;
+  height: calc(100% - 0.6vh);
+  padding: 0.3vh;
   position: relative;
   top: -100%;
-  z-index: -1;
 }
 
 .teepee.green {
@@ -17,5 +16,5 @@
 
 .teepee > div {
   color: white;
-  font-size: 1.5vh;
+  font-size: 1.3vh;
 }

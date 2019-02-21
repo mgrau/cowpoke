@@ -46,10 +46,16 @@ export default class CowpokeBoard extends React.Component {
         <div>Remaining moves: {this.props.G.movesRemaining}</div>
         <div>Current Phase: {this.props.ctx.phase}</div>
         <div
-          style={{ border: "1px solid", width: "50px", height: "50px" }}
+          style={{ border: "1px solid", width: "100px", height: "50px" }}
           onClick={() => this.props.moves.stop()}
         >
-          End Phase
+          Stop
+        </div>
+        <div
+          style={{ border: "1px solid", width: "100px", height: "50px" }}
+          onClick={() => this.props.moves.pass()}
+        >
+          Pass
         </div>
       </div>
     );

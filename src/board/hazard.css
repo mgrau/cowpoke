@@ -1,12 +1,11 @@
 .hazard {
   background-color: #ddd;
   color: #fff;
-  border-radius: 10px;
-  height: calc(100% - 14px);
-  padding: 7px;
+  border-radius: 1vh;
+  height: calc(100% - 0.8vh);
+  padding: 0.4vh;
   position: relative;
   top: -100%;
-  z-index: -1;
 }
 
 .hazard.flood {
@@ -22,11 +21,17 @@
 }
 
 .hazard > div {
-  font-size: 1.5vh;
-  height: 100%;
-  border-radius: 5px;
+  height: calc(100% - 0.4vh);
+  border-radius: 0.5vh;
+  padding: 0.2vh;
+  background-color: rgb(177, 177, 177);
+}
+
+.hazard > div > span {
+  /* padding-top: 2px; */
+  display: block;
+  font-size: 1.3vh;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
-  background-color: rgb(177, 177, 177);
 }

@@ -34,6 +34,24 @@ export function stop(G, ctx) {
         case "neutralA":
           ctx.events.endPhase({ next: "neutralA" });
           break;
+        case "neutralB":
+          ctx.events.endPhase({ next: "neutralB" });
+          break;
+        case "neutralC":
+          ctx.events.endPhase({ next: "neutralC" });
+          break;
+        case "neutralD":
+          ctx.events.endPhase({ next: "neutralD" });
+          break;
+        case "neutralE":
+          ctx.events.endPhase({ next: "neutralE" });
+          break;
+        case "neutralF":
+          ctx.events.endPhase({ next: "neutralF" });
+          break;
+        case "neutralG":
+          ctx.events.endPhase({ next: "neutralG" });
+          break;
         default:
           ctx.events.endPhase();
       }

@@ -1,12 +1,3 @@
-#board {
-  display: grid;
-  grid-template-columns: repeat(14, 5vh);
-  grid-template-rows: repeat(14, 5vh);
-  grid-gap: 10px;
-  color: #444;
-  font-family: arial;
-}
-
 .start {
   grid-column: 12;
   grid-row: 13;

@@ -9,8 +9,10 @@ export default class Hazard extends React.Component {
     return (
       <div className={"hazard " + this.props.type}>
         <div>
-          <FontAwesomeIcon icon={faHandPaper} color={this.props.hand} />
-          <div>{this.props.points}</div>
+          <span>
+            <FontAwesomeIcon icon={faHandPaper} color={this.props.hand} />
+          </span>
+          <span>{this.props.points}</span>
         </div>
       </div>
     );
