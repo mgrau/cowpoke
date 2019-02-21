@@ -6,8 +6,17 @@ import "./neutral-building.css";
 
 export default class NeutralBuilding extends React.Component {
   render() {
-    const actions = this.props.actions.map(action => (
-      <div className={action} onClick={() => this.props.moves[action]()} />
+    const actions = this.props.actions.map((action, index) => (
+      <div
+        className={action}
+        key={index}
+        onClick={() => {
+          console.log(action);
+          this.props.moves[action]();
+        }}
+      >
+        {index + 1}
+      </div>
     ));
     return (
       <div className={"neutral"}>

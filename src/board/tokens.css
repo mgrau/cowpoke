@@ -20,4 +20,6 @@
   border: 1px black solid;
   display: inline-block;
   margin-bottom: -15px;
+  position: relative;
+  z-index: 1;
 }
