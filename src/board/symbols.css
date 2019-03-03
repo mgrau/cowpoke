@@ -1,0 +1,206 @@
+.separator {
+  color: black;
+  font-weight: bold;
+  font-size: 125%;
+  font-family: Varela;
+}
+
+.or {
+  font-size: 75%;
+  color: black;
+  font-weight: bold;
+}
+
+.money {
+  /* font-size: 3vh; */
+}
+
+.money .coin {
+  color: rgb(207, 162, 94);
+}
+
+.money .fa-layers-text {
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.money .negative {
+  color: rgb(196, 60, 43);
+}
+
+.points {
+  font-size: 100%;
+}
+
+.points .shield {
+  color: rgb(9, 71, 185);
+}
+
+.points .negative {
+  color: rgb(196, 60, 43);
+}
+
+.points .fa-layers-text {
+  font-size: 50%;
+  /* color: rgb(255, 255, 255); */
+  color: white;
+  /* text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
+}
+
+.card {
+  font-size: 150%;
+}
+
+.card .background {
+  font-size: 50%;
+  color: white;
+}
+
+.card .fa-layers-text {
+  font-size: 50%;
+}
+
+.card .Jersey {
+  color: rgb(107, 106, 121);
+}
+
+.card .Guernsey {
+  color: rgb(180, 172, 171);
+}
+
+.card .DutchBelt {
+  color: rgb(14, 112, 38);
+}
+
+.card .BlackAngus {
+  color: rgb(0, 0, 0);
+}
+
+.card .Holstein {
+  color: rgb(199, 187, 26);
+}
+
+.card .BrownSwiss {
+  color: rgb(182, 59, 21);
+}
+
+.card .Aryshire {
+  color: rgb(21, 64, 182);
+}
+
+.card .WestHighland {
+  color: rgb(87, 50, 33);
+}
+
+.card .TexasLonghorn {
+  color: rgb(105, 15, 189);
+}
+
+.worker {
+  color: rgb(97, 97, 97);
+  font-size: 100%;
+}
+
+.worker .cowboy {
+  color: rgb(143, 31, 31);
+}
+
+.worker .craftsman {
+  color: rgb(201, 112, 10);
+}
+.worker .engineer {
+  color: rgb(113, 5, 201);
+}
+
+.building {
+  color: rgb(57, 63, 75);
+  font-size: 150%;
+}
+
+.train {
+  font-size: 125%;
+  color: rgb(50, 50, 58);
+}
+
+.train .train-forward {
+  color: rgb(13, 104, 48);
+}
+
+.train .train-backwards {
+  color: rgb(219, 48, 26);
+}
+
+.train .background {
+  font-size: 50%;
+}
+
+.train .fa-layers-text {
+  font-size: 40%;
+}
+
+.certificate {
+  color: rgb(53, 63, 97);
+}
+
+.certificate .fa-layers-text {
+  font-size: 75%;
+}
+
+.certificate .certificate-advance {
+  color: rgb(13, 104, 48);
+}
+
+.objective {
+  color: black;
+  font-size: 125%;
+}
+
+.auxillary {
+  color: rgb(63, 62, 66);
+  font-size: 125%;
+}
+
+.symbol-teepee {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(31, 187, 39),
+    rgb(60, 77, 235)
+  );
+  font-size: 75%;
+  border-radius: 0.25vh;
+  padding: 0.25vh;
+}
+
+.cow {
+  font-size: 150%;
+  color: black;
+}
+
+.symbol-hazard {
+  border-radius: 0.25vh;
+  padding: 0.5vh;
+  margin: 0.25vh;
+  background-color: rgb(139, 125, 102);
+}
+
+.pair span {
+  margin: -0.35vh;
+  color: black;
+}
+
+.pair .pair-card {
+  font-size: 115%;
+  background-image: linear-gradient(
+    to right,
+    rgb(107, 106, 121),
+    rgb(180, 172, 171),
+    rgb(14, 112, 38),
+    rgb(0, 0, 0),
+    rgb(182, 59, 21),
+    rgb(199, 187, 26),
+    rgb(21, 64, 182),
+    rgb(87, 50, 33),
+    rgb(105, 15, 189)
+  );
+  border-radius: 0.25vh;
+}

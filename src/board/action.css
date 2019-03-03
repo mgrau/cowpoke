@@ -1,5 +1,28 @@
 .action {
-  margin: 1px;
+  margin: 0.15vh;
   border-radius: 5px;
-  background-color: #ddd;
+  background-color: rgb(202, 200, 200);
+  font-size: 1.5vh;
+}
+
+.action > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.action > div > div {
+}
+
+.action .row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }

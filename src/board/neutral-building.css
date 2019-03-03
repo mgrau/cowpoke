@@ -1,5 +1,5 @@
 .neutral {
-  background-color: rgb(47, 50, 51);
+  background-color: rgb(133, 106, 80);
   color: #fff;
   border-radius: 1vh;
   height: calc(100% - 1vh);
@@ -9,19 +9,20 @@
 }
 
 .neutral > div {
-  background-color: rgb(135, 143, 146);
+  background-color: rgb(63, 63, 63);
   height: 100%;
   border-radius: 0.5vh;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .neutral .body {
-  flex-grow: 1;
+  height: 25%;
 }
 .neutral .actions {
-  flex-grow: 1;
+  height: 75%;
   display: flex;
+  text-align: left;
 }
 
 .neutral > div > div > div {

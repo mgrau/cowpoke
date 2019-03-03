@@ -4,6 +4,7 @@ import Teepee from "./teepee";
 import NeutralBuilding from "./neutral-building";
 import Tokens from "./tokens";
 
+import "./tile.css";
 export default class Tile extends React.Component {
   onClick() {
     this.props.moves.move(this.props.name);

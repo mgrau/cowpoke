@@ -1,15 +1,23 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
-  faHome,
-  faUser,
-  faHippo,
-  faTrain,
-  faCogs
-} from "@fortawesome/free-solid-svg-icons";
+  Separator,
+  Or,
+  Card,
+  Money,
+  Worker,
+  Building,
+  Train,
+  Certificate,
+  Objective,
+  Auxillary,
+  Teepee,
+  Cow,
+  Hazard,
+  Pair
+} from "./symbols";
 
 import "./action.css";
-import { NONAME } from "dns";
 
 export default class Action extends React.Component {
   render() {
@@ -32,256 +40,120 @@ function get_content(action) {
   if (action === "neutralA1") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "1.5vh",
-            backgroundColor: "white",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          2
-        </div>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "yellow",
-            padding: "2px"
-          }}
-        >
-          2
-        </span>
+        <Card cow="Guernsey" />
+        <Money $={2} />
       </div>
     );
   } else if (action === "neutralA2") {
     return (
       <div>
-        <div
-          style={{
-            paddingTop: "25%",
-            color: "black",
-            fontSize: "2vh"
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} />
-        </div>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "grey",
-            padding: "2px"
-          }}
-        >
-          0
-        </span>
+        <Worker />
+        <Money $={0} />
       </div>
     );
   } else if (action === "neutralA3") {
     return (
       <div>
-        <div
-          style={{
-            paddingTop: "25%",
-            color: "black",
-            fontSize: "2vh"
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} />
-        </div>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "red",
-            padding: "2px"
-          }}
-        >
-          -2
-        </span>
+        <Worker />
+        <Money $={-2} />
       </div>
     );
   } else if (action === "neutralB1") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "1.5vh",
-            backgroundColor: "green",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          2
-        </div>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "yellow",
-            padding: "2px"
-          }}
-        >
-          2
-        </span>
+        <Card cow="DutchBelt" />
+        <Money $={2} />
       </div>
     );
   } else if (action === "neutralB2") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "2vh",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faHome} />
+        <Building />
+        <div className="row">
+          <Worker type="craftsman" />
+          <Separator />
+          <Money $={-2} />
         </div>
-
-        <FontAwesomeIcon icon={faUser} color={"orange"} />
-        <span style={{ color: "black", fontWeight: "bold" }}>:</span>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "yellow",
-            padding: "2px"
-          }}
-        >
-          2
-        </span>
+      </div>
+    );
+  } else if (action === "neutralC1") {
+    return (
+      <div>
+        <Certificate spaces={1} />
+        <Or />
+        <Objective />
       </div>
     );
   } else if (action === "neutralC2") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} color={"purple"} />
-          <span style={{ color: "black", fontWeight: "bold" }}>:</span>
-          <span
-            style={{
-              color: "black",
-              fontSize: "2vh",
-              margin: "5px",
-              marginTop: "25%"
-            }}
-          >
-            <FontAwesomeIcon icon={faTrain} />
+        <div className="row">
+          <Worker type="engineer" />
+          <Separator />
+        </div>
+        <Train spaces={1} />
+      </div>
+    );
+  } else if (action === "neutralD1") {
+    return (
+      <div>
+        <Teepee />
+        <Or />
+        <div className="row">
+          <span style={{ marginRight: "-0.35vh" }}>
+            <Money $={-2} />
           </span>
+          <Train spaces={2} />
         </div>
       </div>
     );
   } else if (action === "neutralD2") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "2.5vh",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faCogs} />
-        </div>
+        <Auxillary />
       </div>
     );
   } else if (action === "neutralE1") {
     return (
       <div>
-        <div
-          style={{
-            color: "white",
-            fontSize: "1.5vh",
-            backgroundColor: "black",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          2
-        </div>
-        <span
-          style={{
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: "50%",
-            backgroundColor: "yellow",
-            padding: "2px"
-          }}
-        >
-          2
-        </span>
+        <Card cow="BlackAngus" />
+        <Money $={2} />
       </div>
     );
   } else if (action === "neutralE2") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "2.5vh",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faHippo} />
-        </div>
+        <Cow />
+      </div>
+    );
+  } else if (action === "neutralF1") {
+    return (
+      <div>
+        <Pair />
+        <Money $={4} />
+      </div>
+    );
+  } else if (action === "neutralF2") {
+    return (
+      <div>
+        <Hazard />
+        <Money $={-7} />
       </div>
     );
   } else if (action === "neutralG1") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faUser} color={"purple"} />
-          <span style={{ color: "black", fontWeight: "bold" }}>:</span>
-          <span
-            style={{
-              color: "black",
-              fontSize: "2vh",
-              margin: "5px",
-              marginTop: "25%"
-            }}
-          >
-            <FontAwesomeIcon icon={faTrain} />
-          </span>
+        <div className="row">
+          <Worker type="engineer" />
+          <Separator />
         </div>
+        <Train spaces={1} />
       </div>
     );
   } else if (action === "neutralG2") {
     return (
       <div>
-        <div
-          style={{
-            color: "black",
-            fontSize: "2.5vh",
-            margin: "5px",
-            marginTop: "25%"
-          }}
-        >
-          <FontAwesomeIcon icon={faCogs} />
-        </div>
+        <Auxillary />
       </div>
     );
   } else {
