@@ -60,6 +60,7 @@ export function stop(G, ctx) {
 }
 
 export function pass(G, ctx) {
+  G.player.draw(ctx);
   ctx.events.endPhase({ next: "MovePhase" });
   ctx.events.endTurn();
 }
