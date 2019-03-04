@@ -68,6 +68,7 @@ const Cowpoke = Game({
   },
   playerSetup: playerID => new Player(playerID),
   moves: {
+    start: function(G, ctx) {},
     move,
     stop,
     pass,
@@ -99,7 +100,8 @@ const Cowpoke = Game({
           Object.values(G.players).forEach(player => player.draw(ctx));
           return G;
         },
-        endPhaseIf: () => ({ next: "MovePhase" })
+        endPhaseIf: () => ({ next: "MovePhase" }),
+        allowedMoves: ["start"]
       },
       MovePhase: {
         onPhaseBegin: (G, ctx) => {

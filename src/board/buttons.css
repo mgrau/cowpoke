@@ -1,0 +1,37 @@
+.button {
+  width: 5vh;
+  height: 5vh;
+  display: inline-block;
+  text-align: center;
+  margin: 0.5vh;
+  border-radius: 0.5vh;
+  border: 0.5vh solid rgb(110, 110, 110);
+  font-size: 2vh;
+}
+
+.start-button {
+  background-color: rgb(0, 107, 75);
+  color: white;
+}
+
+.start-button:hover {
+  background-color: rgb(74, 167, 147);
+}
+
+.stop-button {
+  background-color: rgb(75, 0, 0);
+  color: white;
+}
+
+.stop-button:hover {
+  background-color: rgb(167, 74, 74);
+}
+
+.pass-button {
+  background-color: rgb(5, 10, 77);
+  color: white;
+}
+
+.pass-button:hover {
+  background-color: rgb(74, 111, 167);
+}
