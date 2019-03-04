@@ -1,0 +1,27 @@
+@import url("./colors.css");
+
+.player {
+  border: 0.5vh solid;
+  margin: 1vh;
+  width: 50%;
+}
+
+.player0 {
+  border-color: var(--player0-color);
+}
+
+.player1 {
+  border-color: var(--player1-color);
+}
+
+.player2 {
+  border-color: var(--player2-color);
+}
+
+.player3 {
+  border-color: var(--player3-color);
+}
+
+.player-hand {
+  display: flex;
+}

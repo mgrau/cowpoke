@@ -11,9 +11,8 @@ export default class Tokens extends React.Component {
             .filter(player => player.location === this.props.location)
             .map(player => (
               <span
-                className="cattleman"
+                className={"cattleman cattleman-player-" + player.playerID}
                 key={player.playerID}
-                style={{ backgroundColor: player.color }}
               />
             ))}
         </div>

@@ -99,7 +99,7 @@ export class Card extends React.Component {
     }
 
     return (
-      <div className="card">
+      <div className="symbol-card">
         <span className="fa-layers fa-fw">
           <FontAwesomeIcon
             icon={faMoneyBill}

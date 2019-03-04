@@ -1,0 +1,18 @@
+:root {
+  --player0-color: rgb(66, 138, 255);
+  --player1-color: rgb(163, 0, 0);
+  --player2-color: rgb(255, 229, 0);
+  --player3-color: rgb(255, 255, 255);
+
+  --jersey-color: rgb(107, 106, 121);
+  --guernsey-color: rgb(228, 227, 227);
+  --dutch-belt-color: rgb(14, 112, 38);
+  --black-angus-color: rgb(0, 0, 0);
+  --holstein-color: rgb(199, 187, 26);
+  --brown-swiss-color: rgb(182, 59, 21);
+  --aryshire-color: rgb(21, 64, 182);
+  --west-highland-color: rgb(87, 50, 33);
+  --texas-longhorn-color: rgb(105, 15, 189);
+
+  --card-background: rgb(194, 188, 188);
+}

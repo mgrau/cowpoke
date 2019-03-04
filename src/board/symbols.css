@@ -1,3 +1,5 @@
+@import url("./colors.css");
+
 .separator {
   color: black;
   font-weight: bold;
@@ -47,53 +49,54 @@
   /* text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; */
 }
 
-.card {
+.symbol-card {
   font-size: 150%;
 }
 
-.card .background {
-  font-size: 50%;
+.symbol-card .background {
+  font-size: 48%;
   color: white;
 }
 
-.card .fa-layers-text {
+.symbol-card .fa-layers-text {
   font-size: 50%;
+  font-weight: bold;
 }
 
-.card .Jersey {
-  color: rgb(107, 106, 121);
+.symbol-card .Jersey {
+  color: var(--jersey-color);
 }
 
-.card .Guernsey {
-  color: rgb(180, 172, 171);
+.symbol-card .Guernsey {
+  color: var(--guernsey-color);
 }
 
-.card .DutchBelt {
-  color: rgb(14, 112, 38);
+.symbol-card .DutchBelt {
+  color: var(--dutch-belt-color);
 }
 
-.card .BlackAngus {
-  color: rgb(0, 0, 0);
+.symbol-card .BlackAngus {
+  color: var(--black-angus-color);
 }
 
-.card .Holstein {
-  color: rgb(199, 187, 26);
+.symbol-card .Holstein {
+  color: var(--holstein-color);
 }
 
-.card .BrownSwiss {
-  color: rgb(182, 59, 21);
+.symbol-card .BrownSwiss {
+  color: car(--brown-swiss-color);
 }
 
-.card .Aryshire {
-  color: rgb(21, 64, 182);
+.symbol-card .Aryshire {
+  color: var(--aryshire-color);
 }
 
-.card .WestHighland {
-  color: rgb(87, 50, 33);
+.symbol-card .WestHighland {
+  color: var(--west-highland-color);
 }
 
-.card .TexasLonghorn {
-  color: rgb(105, 15, 189);
+.symbol-card .TexasLonghorn {
+  color: var(--texas-longhorn-color);
 }
 
 .worker {

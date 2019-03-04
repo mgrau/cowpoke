@@ -1,3 +1,5 @@
+@import url("./colors.css");
+
 .tokens {
   height: 100%;
   text-align: left;
@@ -23,4 +25,20 @@
   margin-bottom: -0.75vh;
   position: relative;
   z-index: 1;
+}
+
+.cattleman-player-0 {
+  background-color: var(--player0-color);
+}
+
+.cattleman-player-1 {
+  background-color: var(--player1-color);
+}
+
+.cattleman-player-2 {
+  background-color: var(--player2-color);
+}
+
+.cattleman-player-3 {
+  background-color: var(--player3-color);
 }

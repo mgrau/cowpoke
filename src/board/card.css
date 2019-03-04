@@ -1,0 +1,32 @@
+@import url("./colors.css");
+
+.card {
+  border: 0.5vh solid;
+  width: 5vh;
+  height: 7vh;
+  margin: 0.25vh;
+  text-align: center;
+  background-color: var(--card-background);
+  border-radius: 0.5vh;
+  font-weight: bold;
+}
+
+.card.Jersey {
+  border-color: var(--jersey-color);
+  color: var(--jersey-color);
+}
+
+.card.Guernsey {
+  border-color: var(--guernsey-color);
+  color: var(--guernsey-color);
+}
+
+.card.DutchBelt {
+  border-color: var(--dutch-belt-color);
+  color: var(--dutch-belt-color);
+}
+
+.card.BlackAngus {
+  border-color: var(--black-angus-color);
+  color: var(--black-angus-color);
+}

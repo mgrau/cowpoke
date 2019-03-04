@@ -1,5 +1,6 @@
 import React from "react";
 import Tile from "./tile";
+import Player from "./player";
 import { Start, Stop, Pass } from "./buttons";
 
 import LineTo from "react-lineto";
@@ -31,14 +32,22 @@ export default class CowpokeBoard extends React.Component {
 
     let buttons = [];
     if (this.props.ctx.allowedMoves.includes("start")) {
-      buttons.push(<Start onClick={() => this.props.moves.start()} />);
+      buttons.push(
+        <Start key="start" onClick={() => this.props.moves.start()} />
+      );
     }
     if (this.props.ctx.allowedMoves.includes("stop")) {
-      buttons.push(<Stop onClick={() => this.props.moves.stop()} />);
+      buttons.push(<Stop key="stop" onClick={() => this.props.moves.stop()} />);
     }
     if (this.props.ctx.allowedMoves.includes("pass")) {
-      buttons.push(<Pass onClick={() => this.props.moves.pass()} />);
+      buttons.push(<Pass key="pass" onClick={() => this.props.moves.pass()} />);
     }
+
+    const players = Object.values(this.props.G.players).map((player, index) => (
+      <Player key={index} {...player} />
+    ));
+
+    // const players = this.G.players.maps(player => <Player player={player} />);
     return (
       <div
       // tabIndex="0"
@@ -59,6 +68,8 @@ export default class CowpokeBoard extends React.Component {
         <div>Current Phase: {this.props.ctx.phase}</div>
 
         {buttons}
+
+        {players}
       </div>
     );
   }
