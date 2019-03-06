@@ -1,3 +1,11 @@
+#trail {
+  display: grid;
+  grid-template-columns: repeat(12, 4vh);
+  grid-template-rows: repeat(14, 4vh);
+  grid-gap: 1vh;
+  text-align: center;
+}
+
 .start {
   grid-column: 12;
   grid-row: 13;

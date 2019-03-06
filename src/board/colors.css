@@ -15,4 +15,10 @@
   --texas-longhorn-color: rgb(105, 15, 189);
 
   --card-background: rgb(194, 188, 188);
+
+  --cowboy-color: rgb(143, 31, 31);
+  --craftsman-color: rgb(201, 112, 10);
+  --engineer-color: rgb(113, 5, 201);
+
+  --empty-space: #ddd;
 }

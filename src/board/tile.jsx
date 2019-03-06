@@ -1,7 +1,7 @@
 import React from "react";
 import Hazard from "./hazard";
 import Teepee from "./teepee";
-import NeutralBuilding from "./neutral-building";
+import NeutralBuilding from "./neutral_building";
 import Tokens from "./tokens";
 
 import "./tile.css";
@@ -16,7 +16,14 @@ export default class Tile extends React.Component {
     } else if (this.props.tile.tile === "teepee") {
       tile = <Teepee {...this.props.tile} />;
     } else if (this.props.tile.tile === "neutral") {
-      tile = <NeutralBuilding {...this.props.tile} moves={this.props.moves} />;
+      tile = (
+        <NeutralBuilding
+          {...this.props.tile}
+          moves={this.props.moves}
+          G={this.props.G}
+          ctx={this.props.ctx}
+        />
+      );
     }
     return (
       <div

@@ -21,10 +21,15 @@ import "./action.css";
 
 export default class Action extends React.Component {
   render() {
+    const active =
+      this.props.ctx.allowedMoves.includes(this.props.action) &&
+      !this.props.G.actionsPerformed.includes(this.props.action)
+        ? "active"
+        : "";
     const content = get_content(this.props.action);
     return (
       <div
-        className={"action " + this.props.action}
+        className={"action " + active + " " + this.props.action}
         onClick={() => {
           console.log(this.props.action);
           this.props.moves[this.props.action]();

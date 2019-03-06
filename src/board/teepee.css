@@ -1,5 +1,5 @@
 .teepee {
-  border-radius: 1vh;
+  border-radius: 0.75vh;
   height: calc(100% - 0.6vh);
   padding: 0.3vh;
   position: relative;

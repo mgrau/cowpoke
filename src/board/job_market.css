@@ -1,0 +1,29 @@
+@import url("./colors.css");
+
+#labor {
+  display: grid;
+  grid-template-columns: 4vh 4vh 4vh;
+  grid-template-rows: repeat(12, 4vh);
+  grid-gap: 0.5vh;
+}
+
+#labor > div {
+  border-radius: 0.75vh;
+  background-color: var(--empty-space);
+  color: white;
+  text-align: center;
+  font-size: 2.5vh;
+  padding: 0.5vh;
+}
+
+#labor .cowboy {
+  background-color: var(--cowboy-color);
+}
+
+#labor .craftsman {
+  background-color: var(--craftsman-color);
+}
+
+#labor .engineer {
+  background-color: var(--engineer-color);
+}

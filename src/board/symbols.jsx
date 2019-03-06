@@ -120,12 +120,8 @@ export class Card extends React.Component {
 export class Worker extends React.Component {
   render() {
     return (
-      <div className="worker">
-        <FontAwesomeIcon
-          icon={faUser}
-          className="background"
-          className={this.props.type}
-        />
+      <div className={"worker " + this.props.type}>
+        <FontAwesomeIcon icon={faUser} />
       </div>
     );
   }

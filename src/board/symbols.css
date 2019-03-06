@@ -13,10 +13,6 @@
   font-weight: bold;
 }
 
-.money {
-  /* font-size: 3vh; */
-}
-
 .money .coin {
   color: rgb(207, 162, 94);
 }
@@ -100,19 +96,24 @@
 }
 
 .worker {
-  color: rgb(97, 97, 97);
+  color: rgb(73, 73, 73);
   font-size: 100%;
+  padding: 0.2vh;
+  border-radius: 0.25vh;
 }
 
-.worker .cowboy {
-  color: rgb(143, 31, 31);
+.worker.cowboy {
+  color: white;
+  background-color: var(--cowboy-color);
 }
 
-.worker .craftsman {
-  color: rgb(201, 112, 10);
+.worker.craftsman {
+  color: white;
+  background-color: var(--craftsman-color);
 }
-.worker .engineer {
-  color: rgb(113, 5, 201);
+.worker.engineer {
+  color: white;
+  background-color: var(--engineer-color);
 }
 
 .building {

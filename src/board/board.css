@@ -1,9 +1,12 @@
 #board {
+  width: 50%;
   display: grid;
-  grid-template-columns: repeat(14, 4vh);
-  grid-template-rows: repeat(14, 4vh);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1vh;
-  color: #444;
   font-family: arial;
-  text-align: center;
+}
+
+#board > div {
+  border: 1px solid black;
+  padding: 0.5vh;
 }

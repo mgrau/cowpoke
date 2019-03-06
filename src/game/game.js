@@ -3,6 +3,7 @@ import { PluginPlayer } from "boardgame.io/plugins";
 import trail from "./trail";
 import Player from "./player";
 import Foresight from "./foresight";
+import JobMarket from "./job_market";
 import { move, stop, pass, kansas_city } from "./moves";
 import {
   neutralA1,
@@ -49,6 +50,11 @@ const Cowpoke = Game({
       trail.addSmallTile(foresight.pile1.pop());
     }
 
+    const jobMarket = new JobMarket(ctx);
+    for (var i = 0; i < 2 * ctx.numPlayers - 1; i++) {
+      jobMarket.addWorker(foresight.pile2.pop());
+    }
+
     const cowMarket = [];
     const cowDeck = ctx.random.Shuffle(market_cattle);
     for (var i = 0; i < 1 + 3 * ctx.numPlayers; i++) {
@@ -58,6 +64,7 @@ const Cowpoke = Game({
     return {
       trail: trail,
       foresight: foresight,
+      jobMarket: jobMarket,
       cowDeck: cowDeck,
       cowMarket: cowMarket,
       objectiveDeck: ctx.random.Shuffle([]),
