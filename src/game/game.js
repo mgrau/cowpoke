@@ -4,7 +4,7 @@ import trail from "./trail";
 import Player from "./player";
 import Foresight from "./foresight";
 import JobMarket from "./job_market";
-import { move, stop, pass, kansas_city } from "./moves";
+import { move, stop, pass, hire, kansas_city } from "./moves";
 import {
   neutralA1,
   neutralA2,
@@ -79,6 +79,7 @@ const Cowpoke = Game({
     move,
     stop,
     pass,
+    hire,
     kansas_city,
     neutralA1,
     neutralA2,
@@ -121,6 +122,9 @@ const Cowpoke = Game({
         },
         allowedMoves: ["move", "stop"],
         next: "ActionPhase"
+      },
+      HirePhase: {
+        allowedMoves: ["hire"]
       },
       ActionPhase: {
         allowedMoves: ["stop"],

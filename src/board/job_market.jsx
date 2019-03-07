@@ -9,7 +9,7 @@ export default class JobMarket extends React.Component {
     const row = Math.floor(index / numPlayers);
     const col = index - row * numPlayers;
 
-    console.log({ row: row, col: col });
+    this.props.moves.hire(row, col);
   }
   render() {
     const market = this.props.G.jobMarket.market.map((worker, index) => {

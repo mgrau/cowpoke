@@ -4,7 +4,7 @@ export default class Player {
   constructor(playerID) {
     this.playerID = playerID;
     this.name = "";
-    this.money = 6;
+    this.money = 6 + parseInt(playerID);
     this.deck = new StartingDeck();
     this.cowboys = 1;
     this.craftsmen = 1;
@@ -35,5 +35,48 @@ export default class Player {
 
   handIncludes(name) {
     return this.deck.hand.map(cow => cow.name).includes(name);
+  }
+
+  pay_toll(ctx, hand) {
+    if (hand == undefined) {
+      return;
+    }
+    console.log(hand.includes("bla"));
+    if (hand.includes("black")) {
+      if (ctx.numPlayers == 3) {
+        this.money -= 1;
+      } else {
+        this.money -= 2;
+      }
+    }
+
+    if (hand.includes("green")) {
+      if (ctx.numPlayers == 4) {
+        this.money -= 1;
+      } else {
+        this.money -= 2;
+      }
+    }
+
+    this.money = this.money < 0 ? 0 : this.money;
+  }
+
+  hire(G, row, col) {
+    const cost = G.jobMarket.cost[row] - G.hireCostModifier;
+    if (this.money >= cost) {
+      const worker = G.jobMarket.hire(row, col);
+      if (worker != null) {
+        this.money -= cost;
+        if (worker.type == "cowboy") {
+          this.cowboys += 1;
+        }
+        if (worker.type == "craftsman") {
+          this.craftsmen += 1;
+        }
+        if (worker.type == "engineer") {
+          this.engineers += 1;
+        }
+      }
+    }
   }
 }

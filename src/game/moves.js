@@ -12,6 +12,8 @@ export function move(G, ctx, destination) {
     } else {
       G.player.location = destination;
       if (!G.trail.isEmpty(destination)) G.movesRemaining--;
+
+      G.player.pay_toll(ctx, G.trail.get(destination).tile.hand);
     }
   }
 }
@@ -63,6 +65,11 @@ export function pass(G, ctx) {
   G.player.draw(ctx);
   ctx.events.endPhase({ next: "MovePhase" });
   ctx.events.endTurn();
+}
+
+export function hire(G, ctx, row, col) {
+  G.player.hire(G, row, col);
+  ctx.events.endPhase();
 }
 
 export function kansas_city(G, ctx) {

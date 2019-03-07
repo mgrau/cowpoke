@@ -7,12 +7,13 @@ export default class JobMarket {
     this.row = 0;
     this.col = 0;
     this.market = Array(this.numPlayers * 12).fill(null);
+    this.cost = [6, 6, 7, 5, 7, 9, 6, 8, 10, 6, 5, 4];
   }
 
   addWorker(worker) {
     this.market[this.col + this.row * this.numPlayers] = worker;
     this.col++;
-    if (this.row >= this.numPlayers) {
+    if (this.col >= this.numPlayers) {
       this.col = 0;
       this.row++;
 
@@ -27,7 +28,7 @@ export default class JobMarket {
       console.log("can't hire from this row yet!");
       return null;
     }
-    worker = this.market[col + row * this.numPlayers];
+    const worker = this.market[col + row * this.numPlayers];
     this.market[col + row * this.numPlayers] = null;
     return worker;
   }

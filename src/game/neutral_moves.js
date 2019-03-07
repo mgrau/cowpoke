@@ -21,7 +21,8 @@ export function neutralA2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // hire
+    G.hireCostModifier = 0;
+    ctx.events.endPhase({ next: "HirePhase" });
     G.actionsPerformed.push("neutralA2");
   }
 }
@@ -31,7 +32,8 @@ export function neutralA3(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // hire -2
+    G.hireCostModifier = -2;
+    ctx.events.endPhase({ next: "HirePhase" });
     G.actionsPerformed.push("neutralA3");
   }
 }
