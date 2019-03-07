@@ -69,6 +69,7 @@ export function neutralC1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    //gain a certificate or get an objective
     G.actionsPerformed.push("neutralC1");
   }
 }
@@ -78,6 +79,7 @@ export function neutralC2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    // move train
     G.actionsPerformed.push("neutralC2");
   }
 }
@@ -87,6 +89,7 @@ export function neutralD1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    // take teepee or pay to move train
     G.actionsPerformed.push("neutralD1");
   }
 }
@@ -96,6 +99,7 @@ export function neutralD2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    //double auxillary
     G.actionsPerformed.push("neutralD2");
   }
 }
@@ -121,6 +125,7 @@ export function neutralE2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    // cow market
     G.actionsPerformed.push("neutralE2");
   }
 }
@@ -130,6 +135,7 @@ export function neutralF1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    // discard pair
     G.actionsPerformed.push("neutralF1");
   }
 }
@@ -139,6 +145,7 @@ export function neutralF2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    // pay 7 to take an obstacle
     G.actionsPerformed.push("neutralF2");
   }
 }
