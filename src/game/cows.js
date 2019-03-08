@@ -1,144 +1,140 @@
-class Jersey {
-  constructor() {
-    this.name = "Jersey";
-    this.value = 1;
-    this.points = 0;
-  }
+function Jersey() {
+  return {
+    name: "Jersey",
+    value: 1,
+    points: 0
+  };
 }
 
-export class Guernsey {
-  constructor() {
-    this.name = "Guernsey";
-    this.value = 2;
-    this.points = 0;
-  }
+function Guernsey() {
+  return {
+    name: "Guernsey",
+    value: 2,
+    points: 0
+  };
 }
 
-class DutchBelt {
-  constructor() {
-    this.name = "Dutch Belt";
-    this.value = 2;
-    this.points = 0;
-  }
+function DutchBelt() {
+  return {
+    name: "Dutch Belt",
+    value: 2,
+    points: 0
+  };
 }
 
-class BlackAngus {
-  constructor() {
-    this.name = "Black Angus";
-    this.value = 2;
-    this.points = 0;
-  }
+function BlackAngus() {
+  return {
+    name: "Black Angus",
+    value: 2,
+    points: 0
+  };
 }
 
-class Holstein {
-  constructor() {
-    this.name = "Holstein";
-    this.value = 3;
-    this.points = 1;
-  }
+function Holstein() {
+  return {
+    name: "Holstein",
+    value: 3,
+    points: 1
+  };
 }
 
-class BrownSwiss {
-  constructor() {
-    this.name = "Brown Swiss";
-    this.value = 3;
-    this.points = 2;
-  }
+function BrownSwiss() {
+  return {
+    name: "Brown Swiss",
+    value: 3,
+    points: 2
+  };
 }
 
-class Aryshire {
-  constructor() {
-    this.name = "Aryshire";
-    this.value = 3;
-    this.points = 3;
-  }
+function Aryshire() {
+  return {
+    name: "Aryshire",
+    value: 3,
+    points: 3
+  };
 }
 
-class WestHighland {
-  constructor(points) {
-    this.name = "West Highland";
-    this.value = 4;
-    this.points = points;
-  }
+function WestHighland(points) {
+  return {
+    name: "West Highland",
+    value: 4,
+    points: points
+  };
 }
 
-class TexasLonghorn {
-  constructor(points) {
-    this.name = "Texas Longhorn";
-    this.value = 5;
-    this.points = points;
-  }
+function TexasLonghorn(points) {
+  return {
+    name: "Texas Longhorn",
+    value: 5,
+    points: points
+  };
 }
 
-export class StartingDeck {
-  constructor() {
-    this.deck = [];
-    this.discard = [];
-    this.hand = [];
-    this.deck.push(new Jersey());
-    this.deck.push(new Jersey());
-    this.deck.push(new Jersey());
-    this.deck.push(new Jersey());
-    this.deck.push(new Jersey());
-    this.deck.push(new Guernsey());
-    this.deck.push(new Guernsey());
-    this.deck.push(new Guernsey());
-    this.deck.push(new DutchBelt());
-    this.deck.push(new DutchBelt());
-    this.deck.push(new DutchBelt());
-    this.deck.push(new BlackAngus());
-    this.deck.push(new BlackAngus());
-    this.deck.push(new BlackAngus());
-  }
-
-  draw(ctx) {
-    if (this.deck.length == 0) {
-      this.deck = this.discard;
-      this.discard = [];
-    }
-    this.deck = ctx.random.Shuffle(this.deck);
-    this.hand.push(this.deck.pop());
-  }
+export function StartingDeck() {
+  let deck = [];
+  deck.push(Jersey());
+  deck.push(Jersey());
+  deck.push(Jersey());
+  deck.push(Jersey());
+  deck.push(Jersey());
+  deck.push(Guernsey());
+  deck.push(Guernsey());
+  deck.push(Guernsey());
+  deck.push(DutchBelt());
+  deck.push(DutchBelt());
+  deck.push(DutchBelt());
+  deck.push(BlackAngus());
+  deck.push(BlackAngus());
+  deck.push(BlackAngus());
+  return {
+    deck: deck,
+    discard: [],
+    hand: []
+  };
 }
 
-export const market_cattle = [];
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
-market_cattle.push(new Holstein());
+export default function MarketCattle() {
+  let market_cattle = [];
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
+  market_cattle.push(Holstein());
 
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
-market_cattle.push(new BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
+  market_cattle.push(BrownSwiss());
 
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
-market_cattle.push(new Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
+  market_cattle.push(Aryshire());
 
-market_cattle.push(new WestHighland(3));
-market_cattle.push(new WestHighland(3));
-market_cattle.push(new WestHighland(3));
-market_cattle.push(new WestHighland(4));
-market_cattle.push(new WestHighland(4));
-market_cattle.push(new WestHighland(4));
-market_cattle.push(new WestHighland(5));
-market_cattle.push(new WestHighland(5));
-market_cattle.push(new WestHighland(5));
+  market_cattle.push(WestHighland(3));
+  market_cattle.push(WestHighland(3));
+  market_cattle.push(WestHighland(3));
+  market_cattle.push(WestHighland(4));
+  market_cattle.push(WestHighland(4));
+  market_cattle.push(WestHighland(4));
+  market_cattle.push(WestHighland(5));
+  market_cattle.push(WestHighland(5));
+  market_cattle.push(WestHighland(5));
 
-market_cattle.push(new TexasLonghorn(5));
-market_cattle.push(new TexasLonghorn(5));
-market_cattle.push(new TexasLonghorn(6));
-market_cattle.push(new TexasLonghorn(6));
-market_cattle.push(new TexasLonghorn(7));
-market_cattle.push(new TexasLonghorn(7));
+  market_cattle.push(TexasLonghorn(5));
+  market_cattle.push(TexasLonghorn(5));
+  market_cattle.push(TexasLonghorn(6));
+  market_cattle.push(TexasLonghorn(6));
+  market_cattle.push(TexasLonghorn(7));
+  market_cattle.push(TexasLonghorn(7));
+
+  return market_cattle;
+}

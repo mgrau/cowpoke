@@ -1,122 +1,106 @@
-class Space {
-  constructor(name, prev = [], build = true, woods = false) {
-    this.prev = Array.isArray(prev) ? prev : [prev];
-    this.name = name;
-    this.build = build;
-    this.woods = woods;
-    this.tile = {};
-  }
+function Space(name, prev = [], build = true, woods = false) {
+  return {
+    prev: Array.isArray(prev) ? prev : [prev],
+    name: name,
+    build: build,
+    woods: woods,
+    tile: null
+  };
 }
 
-class Trail {
-  constructor(start) {
-    this.trail = [start];
-  }
+function getNext(trail, name) {
+  return Object.keys(trail).filter(sp => trail[sp].prev.includes(name));
+}
 
-  get(name) {
-    return this.trail.find(space => space.name === name);
-  }
+// function isEmpty(space) {
+//   return Object.entries(space.tile).length === 0;
+// }
 
-  getNext(name) {
-    return this.trail
-      .filter(sp => sp.prev.includes(name))
-      .map(space => space.name);
-  }
+export function isAdjacent(trail, start, end) {
+  return getNext(trail, start).includes(end);
+}
 
-  isAdjacent(start, end) {
-    return this.getNext(start).includes(end);
-  }
-
-  add(newSpace) {
-    this.trail.push(newSpace);
-  }
-
-  isEmpty(space) {
-    return Object.entries(this.get(space).tile).length === 0;
-  }
-
-  addBuilding(space, Building) {
-    this.get(space).tile = Building;
-  }
-
-  addSmallTile(tile) {
-    if (tile.tile == "hazard") {
-      for (var i = 0; i < 4; i++) {
-        const space = tile.type + (i + 1);
-        if (this.isEmpty(space)) {
-          this.get(space).tile = tile;
-          console.log("placing hazard in " + space);
-          return;
-        }
+export function addSmallTile(trail, tile) {
+  if (tile.tile == "hazard") {
+    for (var i = 0; i < 4; i++) {
+      const space = tile.type + (i + 1);
+      if (trail[space].tile == null) {
+        trail[space].tile = tile;
+        console.log("placing hazard in " + space);
+        return;
       }
-    } else if (tile.tile == "teepee") {
-      const teepees = this.trail
-        .filter(space => space.name.match("teepee[-0-9]"))
-        .map(space => space.name);
-      for (var i = 0; i < teepees.length; i++) {
-        if (this.isEmpty(teepees[i])) {
-          this.get(teepees[i]).tile = tile;
-          console.log("placing teepee in " + teepees[i]);
-          return;
-        }
-      }
-    } else {
-      console.log(tile.tile);
     }
+  } else if (tile.tile == "teepee") {
+    const teepees = Object.keys(trail).filter(name =>
+      /teepee[-0-9]/.test(name)
+    );
+    for (var i = 0; i < teepees.length; i++) {
+      if (trail[teepees[i]].tile == null) {
+        trail[teepees[i]].tile = tile;
+        console.log("placing teepee in " + teepees[i]);
+        return;
+      }
+    }
+  } else {
+    console.log(tile.tile);
   }
 }
 
-const trail = new Trail(new Space("start", [], false));
-trail.add(new Space("A", "start"));
-trail.add(new Space("A1", "A"));
-trail.add(new Space("A2", "A1"));
-trail.add(new Space("A3", "A2"));
-trail.add(new Space("flood1", "A", false));
-trail.add(new Space("flood2", "flood1", false));
-trail.add(new Space("flood3", "flood2", false));
-trail.add(new Space("flood4", "flood3", false));
-trail.add(new Space("floodRisk1", "flood4"));
-trail.add(new Space("floodRisk2", "floodRisk1", true, true));
-trail.add(new Space("B", ["A3", "floodRisk2"]));
-trail.add(new Space("B1", "B", true, true));
-trail.add(new Space("B2", "B1"));
-trail.add(new Space("B3", "B2"));
-trail.add(new Space("drought1", "B", false));
-trail.add(new Space("drought2", "drought1", false));
-trail.add(new Space("drought3", "drought2", false));
-trail.add(new Space("drought4", "drought3", false));
-trail.add(new Space("droughtRisk1", "drought4"));
-trail.add(new Space("C", ["B3", "droughtRisk1"]));
-trail.add(new Space("C1", "C", true, true));
-trail.add(new Space("C2", "C1", true, true));
-trail.add(new Space("C3", "C"));
-trail.add(new Space("D", "C3"));
-trail.add(new Space("teepee-3", "", false));
-trail.add(new Space("teepee-2", "", false));
-trail.add(new Space("teepee-1", "", false));
-trail.add(new Space("teepee1", "C3", false));
-trail.add(new Space("teepee2", "teepee1", false));
-trail.add(new Space("teepee4", "teepee2", false));
-trail.add(new Space("teepee6", "teepee4", false));
-trail.add(new Space("teepee8", "teepee6", false));
-trail.add(new Space("teepee10", "teepee8", false));
-trail.add(new Space("teepeeRisk1", "teepee10"));
-trail.add(new Space("teepeeRisk2", "teepeeRisk1"));
-trail.add(new Space("E", ["C2", "D", "teepeeRisk2"]));
-trail.add(new Space("E1", "E", true, true));
-trail.add(new Space("E2", "E1", true, true));
-trail.add(new Space("rockfall1", "E", false));
-trail.add(new Space("rockfall2", "rockfall1", false));
-trail.add(new Space("rockfall3", "rockfall2", false));
-trail.add(new Space("rockfall4", "rockfall3", false));
-trail.add(new Space("rockfallRisk1", "rockfall4"));
-trail.add(new Space("rockfallRisk2", "rockfallRisk1", true, true));
-trail.add(new Space("F", ["E2", "rockfallRisk2"]));
-trail.add(new Space("F1", "F"));
-trail.add(new Space("F2", "F", true, true));
-trail.add(new Space("G", ["F1", "F2"]));
-trail.add(new Space("G1", "G"));
-trail.add(new Space("G2", "G"));
-trail.add(new Space("KansasCity", ["G1", "G2"], false));
-trail.get("KansasCity").tile = { name: "KansasCity" };
-export default trail;
+export default function MakeTrail() {
+  let trail = {
+    start: Space("start", [], false),
+    A: Space("A", "start"),
+    A1: Space("A1", "A"),
+    A2: Space("A2", "A1"),
+    A3: Space("A3", "A2"),
+    flood1: Space("flood1", "A", false),
+    flood2: Space("flood2", "flood1", false),
+    flood3: Space("flood3", "flood2", false),
+    flood4: Space("flood4", "flood3", false),
+    floodRisk1: Space("floodRisk1", "flood4"),
+    floodRisk2: Space("floodRisk2", "floodRisk1", true, true),
+    B: Space("B", ["A3", "floodRisk2"]),
+    B1: Space("B1", "B", true, true),
+    B2: Space("B2", "B1"),
+    B3: Space("B3", "B2"),
+    drought1: Space("drought1", "B", false),
+    drought2: Space("drought2", "drought1", false),
+    drought3: Space("drought3", "drought2", false),
+    drought4: Space("drought4", "drought3", false),
+    droughtRisk1: Space("droughtRisk1", "drought4"),
+    C: Space("C", ["B3", "droughtRisk1"]),
+    C1: Space("C1", "C", true, true),
+    C2: Space("C2", "C1", true, true),
+    C3: Space("C3", "C"),
+    D: Space("D", "C3"),
+    "teepee-3": Space("teepee-3", "", false),
+    "teepee-2": Space("teepee-2", "", false),
+    "teepee-1": Space("teepee-1", "", false),
+    teepee1: Space("teepee1", "C3", false),
+    teepee2: Space("teepee2", "teepee1", false),
+    teepee4: Space("teepee4", "teepee2", false),
+    teepee6: Space("teepee6", "teepee4", false),
+    teepee8: Space("teepee8", "teepee6", false),
+    teepee10: Space("teepee10", "teepee8", false),
+    teepeeRisk1: Space("teepeeRisk1", "teepee10"),
+    teepeeRisk2: Space("teepeeRisk2", "teepeeRisk1"),
+    E: Space("E", ["C2", "D", "teepeeRisk2"]),
+    E1: Space("E1", "E", true, true),
+    E2: Space("E2", "E1", true, true),
+    rockfall1: Space("rockfall1", "E", false),
+    rockfall2: Space("rockfall2", "rockfall1", false),
+    rockfall3: Space("rockfall3", "rockfall2", false),
+    rockfall4: Space("rockfall4", "rockfall3", false),
+    rockfallRisk1: Space("rockfallRisk1", "rockfall4"),
+    rockfallRisk2: Space("rockfallRisk2", "rockfallRisk1", true, true),
+    F: Space("F", ["E2", "rockfallRisk2"]),
+    F1: Space("F1", "F"),
+    F2: Space("F2", "F", true, true),
+    G: Space("G", ["F1", "F2"]),
+    G1: Space("G1", "G"),
+    G2: Space("G2", "G"),
+    KansasCity: Space("KansasCity", ["G1", "G2"], false)
+  };
+  trail["KansasCity"].tile = { name: "KansasCity" };
+  return trail;
+}

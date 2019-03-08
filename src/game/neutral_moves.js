@@ -1,16 +1,17 @@
 import { INVALID_MOVE } from "boardgame.io/core";
+import { handIncludes, discard } from "./player";
 
 export function neutralA1(G, ctx) {
   if (G.actionsPerformed.includes("neutralA1")) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    if (!G.player.handIncludes("Guernsey")) {
+    if (!handIncludes(G.player, "Guernsey")) {
       console.log("no Guernsey in hand");
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      G.player.discard("Guernsey");
+      discard(G.player, "Guernsey");
       G.actionsPerformed.push("neutralA1");
     }
   }
@@ -43,12 +44,12 @@ export function neutralB1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    if (!G.player.handIncludes("Dutch Belt")) {
+    if (!handIncludes(G.player, "Dutch Belt")) {
       console.log("no Dutch Belt in hand");
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      G.player.discard("Dutch Belt");
+      discard(G.player, "Dutch Belt");
       G.actionsPerformed.push("neutralB1");
     }
   }
@@ -109,12 +110,12 @@ export function neutralE1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    if (!G.player.handIncludes("Black Angus")) {
+    if (!handIncludes(G.player, "Black Angus")) {
       console.log("no Black Angus in hand");
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      G.player.discard("Black Angus");
+      discard(G.player, "Black Angus");
       G.actionsPerformed.push("neutralE1");
     }
   }

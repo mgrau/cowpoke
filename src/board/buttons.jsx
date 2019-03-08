@@ -31,3 +31,23 @@ export class Pass extends React.Component {
     );
   }
 }
+
+export class Undo extends React.Component {
+  render() {
+    return (
+      <div className="button pass-button" onClick={this.props.undo}>
+        Undo
+      </div>
+    );
+  }
+}
+
+export class Redo extends React.Component {
+  render() {
+    return (
+      <div className="button pass-button" onClick={this.props.redo}>
+        Redo
+      </div>
+    );
+  }
+}

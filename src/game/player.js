@@ -1,82 +1,27 @@
 import { StartingDeck } from "./cows";
 
-export default class Player {
-  constructor(playerID) {
-    this.playerID = playerID;
-    this.name = "";
-    this.money = 6 + parseInt(playerID);
-    this.deck = new StartingDeck();
-    this.cowboys = 1;
-    this.craftsmen = 1;
-    this.engineers = 1;
-    this.location = "start";
-    this.engine = 0;
-    this.certificates = 0;
-  }
+export default function Player(playerID) {
+  return {
+    playerID: playerID,
+    name: "",
+    money: 6 + parseInt(playerID),
+    stepLimit: 3,
+    handSize: 4,
+    cards: StartingDeck(),
+    cowboys: 1,
+    craftsmen: 1,
+    engineers: 1,
+    location: "start",
+    engine: 0,
+    certificates: 0
+  };
+}
 
-  moves(ctx) {
-    return 3;
-  }
+export function discard(player, name) {
+  const index = player.cards.hand.findIndex(cow => cow.name == name);
+  player.cards.discard.push(player.cards.hand.splice(index, 1));
+}
 
-  hand_size() {
-    return 4;
-  }
-
-  draw(ctx) {
-    while (this.deck.hand.length < this.hand_size()) {
-      this.deck.draw(ctx);
-    }
-  }
-
-  discard(name) {
-    const index = this.deck.hand.findIndex(cow => cow.name == name);
-    this.deck.discard.push(this.deck.hand.splice(index, 1));
-  }
-
-  handIncludes(name) {
-    return this.deck.hand.map(cow => cow.name).includes(name);
-  }
-
-  pay_toll(ctx, hand) {
-    if (hand == undefined) {
-      return;
-    }
-    console.log(hand.includes("bla"));
-    if (hand.includes("black")) {
-      if (ctx.numPlayers == 3) {
-        this.money -= 1;
-      } else {
-        this.money -= 2;
-      }
-    }
-
-    if (hand.includes("green")) {
-      if (ctx.numPlayers == 4) {
-        this.money -= 1;
-      } else {
-        this.money -= 2;
-      }
-    }
-
-    this.money = this.money < 0 ? 0 : this.money;
-  }
-
-  hire(G, row, col) {
-    const cost = G.jobMarket.cost[row] - G.hireCostModifier;
-    if (this.money >= cost) {
-      const worker = G.jobMarket.hire(row, col);
-      if (worker != null) {
-        this.money -= cost;
-        if (worker.type == "cowboy") {
-          this.cowboys += 1;
-        }
-        if (worker.type == "craftsman") {
-          this.craftsmen += 1;
-        }
-        if (worker.type == "engineer") {
-          this.engineers += 1;
-        }
-      }
-    }
-  }
+export function handIncludes(player, name) {
+  return player.cards.hand.map(cow => cow.name).includes(name);
 }

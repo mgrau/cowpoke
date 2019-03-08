@@ -17,7 +17,7 @@ export default class Player extends React.Component {
           <div>Craftsmen: {this.props.craftsmen}</div>
           <div>Engineers: {this.props.engineers}</div>
         </div>
-        <Hand hand={this.props.deck.hand} />
+        <Hand hand={this.props.cards.hand} />
       </div>
     );
   }

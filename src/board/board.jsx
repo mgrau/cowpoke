@@ -2,7 +2,7 @@ import React from "react";
 import Trail from "./trail";
 import Player from "./player";
 import JobMarket from "./job_market";
-import { Start, Stop, Pass } from "./buttons";
+import { Start, Stop, Pass, Undo } from "./buttons";
 
 import "./board.css";
 
@@ -20,6 +20,7 @@ export default class CowpokeBoard extends React.Component {
     if (this.props.ctx.allowedMoves.includes("pass")) {
       buttons.push(<Pass key="pass" onClick={() => this.props.moves.pass()} />);
     }
+    buttons.push(<Undo key="undo" undo={this.props.undo} />);
 
     const players = Object.values(this.props.G.players).map((player, index) => (
       <Player key={index} {...player} />

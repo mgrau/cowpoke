@@ -1,9 +1,9 @@
 import { Game } from "boardgame.io/core";
 import { PluginPlayer } from "boardgame.io/plugins";
-import trail from "./trail";
-import Player from "./player";
+import Trail, { addSmallTile } from "./trail";
+import Player, { draw } from "./player";
 import Foresight from "./foresight";
-import JobMarket from "./job_market";
+import JobMarket, { addWorker } from "./job_market";
 import { move, stop, pass, hire, kansas_city } from "./moves";
 import {
   neutralA1,
@@ -32,46 +32,46 @@ import {
   neutralG
 } from "./buildings";
 
-import { market_cattle } from "./cows";
+import MarketCattle from "./cows";
 
 const Cowpoke = Game({
   name: "Great Western Trail",
   setup: ctx => {
-    trail.addBuilding("A", neutralA);
-    trail.addBuilding("B", neutralB);
-    trail.addBuilding("C", neutralC);
-    trail.addBuilding("D", neutralD);
-    trail.addBuilding("E", neutralE);
-    trail.addBuilding("F", neutralF);
-    trail.addBuilding("G", neutralG);
-
-    const foresight = new Foresight(ctx);
-    for (var i = 0; i < 7; i++) {
-      trail.addSmallTile(foresight.pile1.pop());
-    }
-
-    const jobMarket = new JobMarket(ctx);
-    for (var i = 0; i < 2 * ctx.numPlayers - 1; i++) {
-      jobMarket.addWorker(foresight.pile2.pop());
-    }
-
-    const cowMarket = [];
-    const cowDeck = ctx.random.Shuffle(market_cattle);
-    for (var i = 0; i < 1 + 3 * ctx.numPlayers; i++) {
-      cowMarket.push(cowDeck.pop());
-    }
-
-    return {
-      trail: trail,
-      foresight: foresight,
-      jobMarket: jobMarket,
-      cowDeck: cowDeck,
-      cowMarket: cowMarket,
+    const G = {
+      trail: Trail(),
+      foresight: new Foresight(ctx),
+      jobMarket: new JobMarket(ctx),
+      cowDeck: MarketCattle(),
+      cowMarket: [],
       objectiveDeck: ctx.random.Shuffle([]),
       objectives: [],
       movesRemaining: 0,
       actionsPerformed: []
     };
+
+    G.trail["A"].tile = neutralA;
+    G.trail["B"].tile = neutralB;
+    G.trail["C"].tile = neutralC;
+    G.trail["D"].tile = neutralD;
+    G.trail["E"].tile = neutralE;
+    G.trail["F"].tile = neutralF;
+    G.trail["G"].tile = neutralG;
+
+    for (var i = 0; i < 7; i++) {
+      addSmallTile(G.trail, G.foresight.pile1.pop());
+    }
+
+    for (var i = 0; i < 2 * ctx.numPlayers - 1; i++) {
+      addWorker(G.jobMarket, G.foresight.pile2.pop());
+    }
+
+    for (var i = 0; i < 1 + 3 * ctx.numPlayers; i++) {
+      G.cowMarket.push(G.cowDeck.pop());
+    }
+
+    ctx.random.Shuffle(G.cowDeck);
+
+    return G;
   },
   playerSetup: playerID => new Player(playerID),
   moves: {
@@ -105,7 +105,17 @@ const Cowpoke = Game({
     phases: {
       PostSetup: {
         onPhaseBegin: (G, ctx) => {
-          Object.values(G.players).forEach(player => player.draw(ctx));
+          for (var i = 0; i < ctx.numPlayers; i++) {
+            G.players[i].cards.deck = ctx.random.Shuffle(
+              G.players[i].cards.deck
+            );
+            while (G.players[i].cards.hand.length < G.players[i].handSize) {
+              G.players[i].cards.hand.push(G.players[i].cards.deck.pop());
+            }
+          }
+
+          G.player = G.players[0];
+
           return G;
         },
         endPhaseIf: () => ({ next: "MovePhase" }),
@@ -113,7 +123,7 @@ const Cowpoke = Game({
       },
       MovePhase: {
         onPhaseBegin: (G, ctx) => {
-          G.movesRemaining = G.player.moves(ctx);
+          G.movesRemaining = G.player.stepLimit;
           return G;
         },
         onPhaseEnd: (G, ctx) => {
