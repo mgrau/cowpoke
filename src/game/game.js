@@ -1,10 +1,10 @@
 import { Game } from "boardgame.io/core";
-import { PluginPlayer } from "boardgame.io/plugins";
+import PluginPlayer from "./plugins/plugin-player";
 import Trail, { addSmallTile } from "./trail";
 import Player, { draw } from "./player";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
-import { move, stop, pass, hire, kansas_city } from "./moves";
+import { move, stop, pass, hire, moveEngine, kansas_city } from "./moves";
 import {
   neutralA1,
   neutralA2,
@@ -41,7 +41,7 @@ const Cowpoke = Game({
       trail: Trail(),
       foresight: new Foresight(ctx),
       jobMarket: new JobMarket(ctx),
-      cowDeck: MarketCattle(),
+      cowDeck: MarketCattle(ctx),
       cowMarket: [],
       objectiveDeck: ctx.random.Shuffle([]),
       objectives: [],
@@ -69,17 +69,16 @@ const Cowpoke = Game({
       G.cowMarket.push(G.cowDeck.pop());
     }
 
-    ctx.random.Shuffle(G.cowDeck);
-
     return G;
   },
-  playerSetup: playerID => new Player(playerID),
+  playerSetup: (ctx, playerID) => new Player(ctx, playerID),
   moves: {
     start: function(G, ctx) {},
     move,
     stop,
     pass,
     hire,
+    moveEngine,
     kansas_city,
     neutralA1,
     neutralA2,
@@ -100,27 +99,10 @@ const Cowpoke = Game({
   flow: {
     endTurn: false,
     endPhase: false,
-    startingPhase: "PostSetup",
+    // startingPhase: "PostSetup",
+    startingPhase: "MovePhase",
 
     phases: {
-      PostSetup: {
-        onPhaseBegin: (G, ctx) => {
-          for (var i = 0; i < ctx.numPlayers; i++) {
-            G.players[i].cards.deck = ctx.random.Shuffle(
-              G.players[i].cards.deck
-            );
-            while (G.players[i].cards.hand.length < G.players[i].handSize) {
-              G.players[i].cards.hand.push(G.players[i].cards.deck.pop());
-            }
-          }
-
-          G.player = G.players[0];
-
-          return G;
-        },
-        endPhaseIf: () => ({ next: "MovePhase" }),
-        allowedMoves: ["start"]
-      },
       MovePhase: {
         onPhaseBegin: (G, ctx) => {
           G.movesRemaining = G.player.stepLimit;
@@ -135,6 +117,9 @@ const Cowpoke = Game({
       },
       HirePhase: {
         allowedMoves: ["hire"]
+      },
+      EnginePhase: {
+        allowedMoves: ["moveEngine"]
       },
       ActionPhase: {
         allowedMoves: ["stop"],

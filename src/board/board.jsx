@@ -2,6 +2,7 @@ import React from "react";
 import Trail from "./trail";
 import Player from "./player";
 import JobMarket from "./job_market";
+import Trains from "./trains";
 import { Start, Stop, Pass, Undo } from "./buttons";
 
 import "./board.css";
@@ -28,6 +29,7 @@ export default class CowpokeBoard extends React.Component {
 
     return (
       <div id="board">
+        <Trains G={this.props.G} moves={this.props.moves} />
         <JobMarket G={this.props.G} moves={this.props.moves} />
         <Trail G={this.props.G} ctx={this.props.ctx} moves={this.props.moves} />
         <div>{players}</div>

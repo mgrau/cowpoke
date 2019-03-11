@@ -26,7 +26,7 @@ export default class Action extends React.Component {
       !this.props.G.actionsPerformed.includes(this.props.action)
         ? "active"
         : "";
-    const content = get_content(this.props.action);
+    const content = get_content(this.props.action, this.props.moves);
     return (
       <div
         className={"action " + active + " " + this.props.action}
@@ -41,7 +41,7 @@ export default class Action extends React.Component {
   }
 }
 
-function get_content(action) {
+function get_content(action, moves) {
   if (action === "neutralA1") {
     return (
       <div>
@@ -84,9 +84,14 @@ function get_content(action) {
   } else if (action === "neutralC1") {
     return (
       <div>
-        <Certificate spaces={1} />
+        <div onClick={() => moves["neutralC1"](true)}>
+          <Certificate spaces={1} />
+        </div>
+
         <Or />
-        <Objective />
+        <div onClick={() => moves["neutralC1"](false)}>
+          <Objective />
+        </div>
       </div>
     );
   } else if (action === "neutralC2") {
@@ -102,13 +107,18 @@ function get_content(action) {
   } else if (action === "neutralD1") {
     return (
       <div>
-        <Teepee />
+        <div onClick={() => moves["neutralD1"](true)}>
+          <Teepee />
+        </div>
+
         <Or />
-        <div className="row">
-          <span style={{ marginRight: "-0.35vh" }}>
-            <Money $={-2} />
-          </span>
-          <Train spaces={2} />
+        <div onClick={() => moves["neutralD1"](false)}>
+          <div className="row">
+            <span style={{ marginRight: "-0.35vh" }}>
+              <Money $={-2} />
+            </span>
+            <Train spaces={2} />
+          </div>
         </div>
       </div>
     );

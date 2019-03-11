@@ -1,0 +1,33 @@
+@import url("./colors.css");
+
+#trains {
+  grid-column: 1 /4;
+  /* grid-row: "3"; */
+}
+
+.train-space {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 0.1vh;
+  width: 1.5vh;
+  height: 1.5vh;
+  text-align: center;
+  border-radius: 0.25vh;
+  font-size: 1vh;
+}
+
+.train-player-0 {
+  background-color: var(--player0-color);
+}
+
+.train-player-1 {
+  background-color: var(--player1-color);
+}
+
+.train-player-2 {
+  background-color: var(--player2-color);
+}
+
+.train-player-3 {
+  background-color: var(--player3-color);
+}

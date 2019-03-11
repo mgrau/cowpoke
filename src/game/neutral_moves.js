@@ -1,5 +1,5 @@
 import { INVALID_MOVE } from "boardgame.io/core";
-import { handIncludes, discard } from "./player";
+import { handIncludes, discard, gainCertificate } from "./player";
 
 export function neutralA1(G, ctx) {
   if (G.actionsPerformed.includes("neutralA1")) {
@@ -65,12 +65,21 @@ export function neutralB2(G, ctx) {
   }
 }
 
-export function neutralC1(G, ctx) {
+export function neutralC1(G, ctx, certificate) {
   if (G.actionsPerformed.includes("neutralC1")) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    //gain a certificate or get an objective
+    console.log(certificate);
+    if (certificate == null) {
+      console.log("please choose an action;");
+      return;
+    }
+    if (certificate) {
+      gainCertificate(G.player);
+    } else {
+      // gainObjective
+    }
     G.actionsPerformed.push("neutralC1");
   }
 }
@@ -80,17 +89,27 @@ export function neutralC2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // move train
+    G.engineSpaces = G.player.engineers;
+    ctx.events.endPhase({ next: "EnginePhase" });
     G.actionsPerformed.push("neutralC2");
   }
 }
 
-export function neutralD1(G, ctx) {
+export function neutralD1(G, ctx, teepee) {
   if (G.actionsPerformed.includes("neutralD1")) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // take teepee or pay to move train
+    if (teepee == null) {
+      return;
+    }
+    if (teepee) {
+      // gain a teepee
+    } else {
+      G.player.money -= 2;
+      G.engineSpaces = 2;
+      ctx.events.endPhase({ next: "EnginePhase" });
+    }
     G.actionsPerformed.push("neutralD1");
   }
 }
@@ -156,6 +175,8 @@ export function neutralG1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    G.engineSpaces = G.player.engineers;
+    ctx.events.endPhase({ next: "EnginePhase" });
     G.actionsPerformed.push("neutralG1");
   }
 }

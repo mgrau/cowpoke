@@ -21,7 +21,7 @@ export function move(G, ctx, destination) {
 }
 
 export function stop(G, ctx) {
-  if (G.movesRemaining == G.player.moves) {
+  if (G.movesRemaining == G.player.stepLimit) {
     console.log("have not moved yet");
     // return INVALID_MOVE;
   } else {
@@ -87,6 +87,27 @@ export function hire(G, ctx, row, col) {
     }
   }
   ctx.events.endPhase();
+}
+
+export function moveEngine(G, ctx, destination) {
+  let distance = destination - G.player.engine;
+  for (var i = 0; i < ctx.numPlayers; i++) {
+    if (G.players[i].playerID != ctx.currentPlayer) {
+      if (G.players[i].engine == destination) {
+        return;
+      }
+      if (
+        G.players[i].engine > G.player.engine &&
+        G.players[i].engine < destination
+      ) {
+        distance--;
+      }
+    }
+  }
+  if (distance <= G.engineSpaces) {
+    G.player.engine = destination;
+    ctx.events.endPhase();
+  }
 }
 
 export function kansas_city(G, ctx) {
