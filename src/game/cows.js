@@ -70,71 +70,76 @@ function TexasLonghorn(points) {
   };
 }
 
-export function StartingDeck() {
-  let deck = [];
-  deck.push(Jersey());
-  deck.push(Jersey());
-  deck.push(Jersey());
-  deck.push(Jersey());
-  deck.push(Jersey());
-  deck.push(Guernsey());
-  deck.push(Guernsey());
-  deck.push(Guernsey());
-  deck.push(DutchBelt());
-  deck.push(DutchBelt());
-  deck.push(DutchBelt());
-  deck.push(BlackAngus());
-  deck.push(BlackAngus());
-  deck.push(BlackAngus());
+export function StartingDeck(ctx) {
+  let deck = ctx.random.Shuffle([
+    Jersey(),
+    Jersey(),
+    Jersey(),
+    Jersey(),
+    Jersey(),
+    Guernsey(),
+    Guernsey(),
+    Guernsey(),
+    DutchBelt(),
+    DutchBelt(),
+    DutchBelt(),
+    BlackAngus(),
+    BlackAngus(),
+    BlackAngus()
+  ]);
+  let hand = [];
+  hand.push(deck.pop());
+  hand.push(deck.pop());
+  hand.push(deck.pop());
+  hand.push(deck.pop());
   return {
     deck: deck,
     discard: [],
-    hand: []
+    hand: hand
   };
 }
 
-export default function MarketCattle() {
-  let market_cattle = [];
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
-  market_cattle.push(Holstein());
+export default function MarketCattle(ctx) {
+  return ctx.random.Shuffle([
+    Holstein(),
+    Holstein(),
+    Holstein(),
+    Holstein(),
+    Holstein(),
+    Holstein(),
+    Holstein(),
 
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
-  market_cattle.push(BrownSwiss());
+    BrownSwiss(),
+    BrownSwiss(),
+    BrownSwiss(),
+    BrownSwiss(),
+    BrownSwiss(),
+    BrownSwiss(),
+    BrownSwiss(),
 
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
-  market_cattle.push(Aryshire());
+    Aryshire(),
+    Aryshire(),
+    Aryshire(),
+    Aryshire(),
+    Aryshire(),
+    Aryshire(),
+    Aryshire(),
 
-  market_cattle.push(WestHighland(3));
-  market_cattle.push(WestHighland(3));
-  market_cattle.push(WestHighland(3));
-  market_cattle.push(WestHighland(4));
-  market_cattle.push(WestHighland(4));
-  market_cattle.push(WestHighland(4));
-  market_cattle.push(WestHighland(5));
-  market_cattle.push(WestHighland(5));
-  market_cattle.push(WestHighland(5));
+    WestHighland(3),
+    WestHighland(3),
+    WestHighland(3),
+    WestHighland(4),
+    WestHighland(4),
+    WestHighland(4),
+    WestHighland(5),
+    WestHighland(5),
+    WestHighland(5),
 
-  market_cattle.push(TexasLonghorn(5));
-  market_cattle.push(TexasLonghorn(5));
-  market_cattle.push(TexasLonghorn(6));
-  market_cattle.push(TexasLonghorn(6));
-  market_cattle.push(TexasLonghorn(7));
-  market_cattle.push(TexasLonghorn(7));
-
-  return market_cattle;
+    TexasLonghorn(5),
+    TexasLonghorn(5),
+    TexasLonghorn(6),
+    TexasLonghorn(6),
+    TexasLonghorn(7),
+    TexasLonghorn(7)
+  ]);
 }
