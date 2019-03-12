@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./card";
-import { Worker } from "./symbols";
+import { Worker, Separator, Money } from "./symbols";
 
 import "./cow_market.css";
 
@@ -42,31 +42,51 @@ export default class CowMarket extends React.Component {
   render() {
     let actions = [
       <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
-        cowDraw
+        <Worker type="cowboy" />
+        <Separator />
+        <span style={{ fontSize: "75%" }}>draw 2</span>
       </div>,
-      <div key="3:6" onClick={() => this.preBuy(3, 6)}>
-        3:6
+      <div key="3:6" onClick={() => this.preBuy(3, 6)} className="cow3">
+        <Worker type="cowboy" />
+        <Separator />
+        <Money $={6} />
       </div>,
-      <div key="3:3" onClick={() => this.preBuy(3, 3)}>
-        3:3
+      <div key="3:3" onClick={() => this.preBuy(3, 3)} className="cow3">
+        2<Worker type="cowboy" />
+        <Separator />
+        <Money $={3} />
       </div>,
-      <div key="3:5" onClick={() => this.preBuy(3, 5, true)}>
-        3:5
+      <div key="3:5" onClick={() => this.preBuy(3, 5, true)} className="cow3">
+        3<Worker type="cowboy" />
+        <Separator />
+        <Money $={5} />
+        <span style={{ fontSize: "75%" }}>buy 2</span>
       </div>,
-      <div key="4:12" onClick={() => this.preBuy(4, 12)}>
-        4:12
+      <div key="4:12" onClick={() => this.preBuy(4, 12)} className="cow4">
+        <Worker type="cowboy" />
+        <Separator />
+        <Money $={12} />
       </div>,
-      <div key="4:6" onClick={() => this.preBuy(4, 6)}>
-        4:6
+      <div key="4:6" onClick={() => this.preBuy(4, 6)} className="cow4">
+        3<Worker type="cowboy" />
+        <Separator />
+        <Money $={6} />
       </div>,
-      <div key="4:8" onClick={() => this.preBuy(4, 8, true)}>
-        4:8
+      <div key="4:8" onClick={() => this.preBuy(4, 8, true)} className="cow4">
+        5<Worker type="cowboy" />
+        <Separator />
+        <Money $={8} />
+        <span style={{ fontSize: "75%" }}>buy 2</span>
       </div>,
-      <div key="5:12" onClick={() => this.preBuy(5, 12)}>
-        5:12
+      <div key="5:12" onClick={() => this.preBuy(5, 12)} className="cow5">
+        2<Worker type="cowboy" />
+        <Separator />
+        <Money $={12} />
       </div>,
-      <div key="5:6" onClick={() => this.preBuy(5, 6)}>
-        5:6
+      <div key="5:6" onClick={() => this.preBuy(5, 6)} className="cow5">
+        4<Worker type="cowboy" />
+        <Separator />
+        <Money $={6} />
       </div>
     ];
     if (this.props.ctx.phase === "CowPhase") {

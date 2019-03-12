@@ -3,11 +3,18 @@
 }
 
 #cow-market-actions > div {
-  border: 1px solid black;
-  width: 5vh;
+  width: 4.5vh;
   height: 3vh;
   margin: 0.25vh;
   border-radius: 0.25vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  border: 1px solid black;
 }
 
 #cow-market-cowboys {
@@ -16,4 +23,24 @@
 
 #cow-market-cowboys > div {
   margin: 0.25vh;
+}
+
+.cow3 {
+  border: 0.25vh solid grey;
+  background: linear-gradient(
+      180deg,
+      rgb(221, 220, 163) 33%,
+      rgba(0, 0, 0, 0) 33%
+    ),
+    linear-gradient(180deg, rgb(212, 164, 164) 66%, rgb(168, 168, 223) 66%);
+}
+
+.cow4 {
+  border: 0.25vh solid var(--west-highland-color);
+  background-color: rgb(236, 215, 201);
+}
+
+.cow5 {
+  border: 0.25vh solid var(--texas-longhorn-color);
+  background-color: rgb(235, 201, 236);
 }

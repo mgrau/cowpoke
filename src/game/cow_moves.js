@@ -63,7 +63,10 @@ export function cowPass(G, ctx) {
 function wrangleCows(G, cowboys, cows) {
   if (G.availableCowboys >= cowboys) {
     G.availableCowboys -= cowboys;
-    const cow = cows.map(cowIndex => G.cowMarket.splice(cowIndex, 1));
+    const cow = cows
+      .sort()
+      .reverse()
+      .map(cowIndex => G.cowMarket.splice(cowIndex, 1));
     G.player.cards.discard = [...G.player.cards.discard, ...cow];
   }
 }
