@@ -1,13 +1,13 @@
 @import url("./colors.css");
 
-#labor {
+#job-market {
   display: grid;
   grid-template-columns: 4vh 4vh 4vh;
   grid-template-rows: repeat(12, 4vh);
   grid-gap: 0.5vh;
 }
 
-#labor > div {
+#job-market > div {
   border-radius: 0.75vh;
   background-color: var(--empty-space);
   color: white;
@@ -16,14 +16,14 @@
   padding: 0.5vh;
 }
 
-#labor .cowboy {
+#job-market .cowboy {
   background-color: var(--cowboy-color);
 }
 
-#labor .craftsman {
+#job-market .craftsman {
   background-color: var(--craftsman-color);
 }
 
-#labor .engineer {
+#job-market .engineer {
   background-color: var(--engineer-color);
 }

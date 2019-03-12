@@ -1,11 +1,14 @@
 # TODO
+
 - player view
-  - money
   - aux actions
   - deck
-  - employees
-- railroad
+- better railroad view
+  - include stations
+  - don't overlap at zero
+  - tracks?
 - auxillary actions
+- cow market action
 - player buildings
 
 - add visual indicator of dollar value to teepee spaces

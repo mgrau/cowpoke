@@ -145,7 +145,8 @@ export function neutralE2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // cow market
+    G.availableCowboys = G.player.cowboys;
+    ctx.events.endPhase({ next: "CowPhase" });
     G.actionsPerformed.push("neutralE2");
   }
 }

@@ -1,14 +1,16 @@
 @import url("./colors.css");
 
 .card {
-  border: 0.5vh solid;
-  width: 5vh;
-  height: 7vh;
-  margin: 0.25vh;
+  border: 0.25vh solid;
+  width: 2vh;
+  height: 3vh;
+  display: inline-block;
+  margin: 0.1vh;
   text-align: center;
   background-color: var(--card-background);
   border-radius: 0.5vh;
   font-weight: bold;
+  font-size: 1.25vh;
 }
 
 .card.Jersey {
@@ -19,6 +21,7 @@
 .card.Guernsey {
   border-color: var(--guernsey-color);
   color: var(--guernsey-color);
+  background-color: rgb(66, 66, 66);
 }
 
 .card.DutchBelt {
@@ -29,4 +32,29 @@
 .card.BlackAngus {
   border-color: var(--black-angus-color);
   color: var(--black-angus-color);
+}
+
+.card.Holstein {
+  border-color: var(--holstein-color);
+  color: var(--holstein-color);
+}
+
+.card.BrownSwiss {
+  border-color: var(--brown-swiss-color);
+  color: var(--brown-swiss-color);
+}
+
+.card.Aryshire {
+  border-color: var(--aryshire-color);
+  color: var(--aryshire-color);
+}
+
+.card.WestHighland {
+  border-color: var(--west-highland-color);
+  color: var(--west-highland-color);
+}
+
+.card.TexasLonghorn {
+  border-color: var(--texas-longhorn-color);
+  color: var(--texas-longhorn-color);
 }

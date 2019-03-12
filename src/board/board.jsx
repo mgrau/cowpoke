@@ -1,8 +1,9 @@
 import React from "react";
+import Trains from "./trains";
+import JobMarket from "./job_market";
 import Trail from "./trail";
 import Player from "./player";
-import JobMarket from "./job_market";
-import Trains from "./trains";
+import CowMarket from "./cow_market";
 import { Start, Stop, Pass, Undo } from "./buttons";
 
 import "./board.css";
@@ -27,16 +28,26 @@ export default class CowpokeBoard extends React.Component {
       <Player key={index} {...player} />
     ));
 
+    const player = this.props.G.players[this.props.ctx.currentPlayer];
+
     return (
       <div id="board">
         <Trains G={this.props.G} moves={this.props.moves} />
         <JobMarket G={this.props.G} moves={this.props.moves} />
-        <Trail G={this.props.G} ctx={this.props.ctx} moves={this.props.moves} />
-        <div>{players}</div>
-        <div style={{ gridColumn: "1/3", gridRow: "3" }}>
+        <Trail
+          G={this.props.G}
+          ctx={this.props.ctx}
+          moves={this.props.moves}
+          id="board-trail"
+        />
+        <div id="board-players">{players}</div>
+        <CowMarket G={this.props.G} moves={this.props.moves} />
+        <div id="board-info">
+          <div className={"current-player-" + player.playerID}>
+            Current Player: {player.name}
+          </div>
           <div>Remaining moves: {this.props.G.movesRemaining}</div>
           <div>Current Phase: {this.props.ctx.phase}</div>
-
           {buttons}
         </div>
       </div>

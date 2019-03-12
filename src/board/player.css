@@ -2,8 +2,9 @@
 
 .player {
   border: 0.5vh solid;
-  margin: 1vh;
-  width: 50%;
+  margin: 0.5vh;
+  padding: 0.25vh;
+  width: 20vh;
 }
 
 .player0 {
@@ -22,6 +23,18 @@
   border-color: var(--player3-color);
 }
 
+.player-header {
+  display: flex;
+}
+
 .player-hand {
   display: flex;
+}
+
+.player-workers > div {
+  display: flex;
+}
+
+.player-workers > div > div {
+  margin: 0.1vh;
 }

@@ -1,10 +1,5 @@
 @import url("./colors.css");
 
-#trains {
-  grid-column: 1 /4;
-  /* grid-row: "3"; */
-}
-
 .train-space {
   border: 1px solid black;
   display: inline-block;

@@ -1,33 +1,37 @@
 import React from "react";
 import Card from "./card";
+import { Money, Worker } from "./symbols";
 import "./player.css";
 
 export default class Player extends React.Component {
   render() {
-    return (
-      <div className={"player " + ("player" + this.props.playerID)}>
-        <div>
-          <span>
-            {this.props.playerID} : {this.props.name}
-          </span>
-          <span>$={this.props.money}</span>
-        </div>
-        <div>
-          <div>Cowboys: {this.props.cowboys}</div>
-          <div>Craftsmen: {this.props.craftsmen}</div>
-          <div>Engineers: {this.props.engineers}</div>
-        </div>
-        <Hand hand={this.props.cards.hand} />
-      </div>
-    );
-  }
-}
-
-class Hand extends React.Component {
-  render() {
-    const hand = this.props.hand.map((card, index) => (
+    const hand = this.props.cards.hand.map((card, index) => (
       <Card key={index} {...card} />
     ));
-    return <div className="player-hand">{hand}</div>;
+    const cowboys = Array(this.props.cowboys)
+      .fill()
+      .map((cowboy, index) => <Worker key={index} type="cowboy" />);
+    const craftsmen = Array(this.props.craftsmen)
+      .fill()
+      .map((craftsman, index) => <Worker key={index} type="craftsman" />);
+    const engineers = Array(this.props.engineers)
+      .fill()
+      .map((engineer, index) => <Worker key={index} type="engineer" />);
+    return (
+      <div className={"player " + ("player" + this.props.playerID)}>
+        <div className="player-header">
+          <span>Player {this.props.playerID}</span>
+          <span>
+            <Money $={this.props.money} />
+          </span>
+        </div>
+        <div className="player-workers">
+          <div className="player-cowboys">{cowboys}</div>
+          <div className="player-craftsmen">{craftsmen}</div>
+          <div className="player-engineers">{engineers}</div>
+        </div>
+        <div className="player-hand">{hand}</div>
+      </div>
+    );
   }
 }

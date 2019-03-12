@@ -5,6 +5,7 @@ import Player, { draw } from "./player";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import { move, stop, pass, hire, moveEngine, kansas_city } from "./moves";
+import { cowDraw, cowBuy } from "./cow_moves";
 import {
   neutralA1,
   neutralA2,
@@ -79,6 +80,8 @@ const Cowpoke = Game({
     pass,
     hire,
     moveEngine,
+    cowDraw,
+    cowBuy,
     kansas_city,
     neutralA1,
     neutralA2,
@@ -120,6 +123,9 @@ const Cowpoke = Game({
       },
       EnginePhase: {
         allowedMoves: ["moveEngine"]
+      },
+      CowPhase: {
+        allowedMoves: ["cowDraw", "cowBuy"]
       },
       ActionPhase: {
         allowedMoves: ["stop"],

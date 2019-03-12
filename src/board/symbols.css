@@ -97,9 +97,10 @@
 
 .worker {
   color: rgb(73, 73, 73);
-  font-size: 100%;
-  padding: 0.2vh;
+  font-size: 80%;
+  padding: 0.3vh;
   border-radius: 0.25vh;
+  width: 1vh;
 }
 
 .worker.cowboy {

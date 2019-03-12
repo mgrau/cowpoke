@@ -27,6 +27,6 @@ export default class JobMarket extends React.Component {
         );
       }
     });
-    return <div id="labor">{market}</div>;
+    return <div id="job-market">{market}</div>;
   }
 }
