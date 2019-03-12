@@ -41,7 +41,7 @@ export default class CowpokeBoard extends React.Component {
           id="board-trail"
         />
         <div id="board-players">{players}</div>
-        <CowMarket G={this.props.G} moves={this.props.moves} />
+        <CowMarket {...this.props} />
         <div id="board-info">
           <div className={"current-player-" + player.playerID}>
             Current Player: {player.name}

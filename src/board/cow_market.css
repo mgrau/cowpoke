@@ -4,8 +4,16 @@
 
 #cow-market-actions > div {
   border: 1px solid black;
-  width: 6vh;
+  width: 5vh;
   height: 3vh;
   margin: 0.25vh;
   border-radius: 0.25vh;
+}
+
+#cow-market-cowboys {
+  display: flex;
+}
+
+#cow-market-cowboys > div {
+  margin: 0.25vh;
 }

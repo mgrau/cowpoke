@@ -5,7 +5,7 @@ import Player, { draw } from "./player";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import { move, stop, pass, hire, moveEngine, kansas_city } from "./moves";
-import { cowDraw, cowBuy } from "./cow_moves";
+import { cowDraw, cowBuy, cowPass } from "./cow_moves";
 import {
   neutralA1,
   neutralA2,
@@ -40,8 +40,8 @@ const Cowpoke = Game({
   setup: ctx => {
     const G = {
       trail: Trail(),
-      foresight: new Foresight(ctx),
-      jobMarket: new JobMarket(ctx),
+      foresight: Foresight(ctx),
+      jobMarket: JobMarket(ctx),
       cowDeck: MarketCattle(ctx),
       cowMarket: [],
       objectiveDeck: ctx.random.Shuffle([]),
@@ -82,6 +82,7 @@ const Cowpoke = Game({
     moveEngine,
     cowDraw,
     cowBuy,
+    cowPass,
     kansas_city,
     neutralA1,
     neutralA2,
@@ -125,7 +126,7 @@ const Cowpoke = Game({
         allowedMoves: ["moveEngine"]
       },
       CowPhase: {
-        allowedMoves: ["cowDraw", "cowBuy"]
+        allowedMoves: ["cowDraw", "cowBuy", "cowPass"]
       },
       ActionPhase: {
         allowedMoves: ["stop"],

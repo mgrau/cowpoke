@@ -1,19 +1,69 @@
 export function cowDraw(G, ctx) {
-  console.log(G.availableCowboys);
   if (G.availableCowboys >= 1) {
     G.availableCowboys--;
-    if (G.cowDeck.length > 0) {
-      //   G.cowMarket.push(G.cowDeck.pop());
-      G.cowMarket = [G.cowMarket, G.cowDeck.slice(0, -1)];
-      console.log(G.cowMarket);
-      //   console.log("looks good");
+    for (var i = 0; i < 2; i++) {
+      if (G.cowDeck.length > 0) {
+        G.cowMarket = [...G.cowMarket, G.cowDeck.pop()];
+      }
     }
-    // if (G.cowDeck.length > 0) {
-    //   G.cowMarket.push(G.cowDeck.pop());
-    // }
   } else {
     console.log("no more cowboys left");
   }
 }
 
-export function cowBuy(G, ctx, value, price, cow) {}
+export function cowBuy(G, ctx, value, price, cows) {
+  console.log({ value });
+  if (!Array.isArray(cows)) {
+    cows = [cows];
+  }
+  console.log({ cows });
+
+  console.log(cows.map(index => G.cowMarket[index].value));
+  console.log(
+    cows
+      .map(index => G.cowMarket[index].value)
+      .every(cowValue => cowValue == value)
+  );
+  if (
+    !cows
+      .map(index => G.cowMarket[index].value)
+      .every(cowValue => cowValue == value)
+  ) {
+    console.log("wrong value cow");
+  } else {
+    if (price > G.player.money) {
+      console.log("not enough money");
+    } else {
+      if (value == 3 && price == 6 && cows.length == 1) {
+        wrangleCows(G, 1, cows);
+      } else if (value == 3 && price == 3 && cows.length == 1) {
+        wrangleCows(G, 2, cows);
+      } else if (value == 3 && price == 5 && cows.length == 2) {
+        wrangleCows(G, 3, cows);
+      } else if (value == 4 && price == 12 && cows.length == 1) {
+        wrangleCows(G, 1, cows);
+      } else if (value == 4 && price == 6 && cows.length == 1) {
+        wrangleCows(G, 3, cows);
+      } else if (value == 4 && price == 8 && cows.length == 2) {
+        wrangleCows(G, 5, cows);
+      } else if (value == 5 && price == 12 && cows.length == 1) {
+        wrangleCows(G, 2, cows);
+      } else if (value == 5 && price == 6 && cows.length == 1) {
+        wrangleCows(G, 4, cows);
+      }
+      G.player.money -= price;
+    }
+  }
+}
+
+export function cowPass(G, ctx) {
+  ctx.events.endPhase();
+}
+
+function wrangleCows(G, cowboys, cows) {
+  if (G.availableCowboys >= cowboys) {
+    G.availableCowboys -= cowboys;
+    const cow = cows.map(cowIndex => G.cowMarket.splice(cowIndex, 1));
+    G.player.cards.discard = [...G.player.cards.discard, ...cow];
+  }
+}
