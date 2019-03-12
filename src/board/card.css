@@ -21,7 +21,7 @@
 .card.Guernsey {
   border-color: var(--guernsey-color);
   color: var(--guernsey-color);
-  background-color: rgb(66, 66, 66);
+  background-color: rgb(145, 145, 145);
 }
 
 .card.DutchBelt {
