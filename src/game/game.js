@@ -126,7 +126,8 @@ const Cowpoke = Game({
         allowedMoves: ["moveEngine"]
       },
       CowPhase: {
-        allowedMoves: ["cowDraw", "cowBuy", "cowPass"]
+        allowedMoves: ["cowDraw", "cowBuy", "cowPass"],
+        endPhaseIf: G => G.availableCowboys <= 0
       },
       ActionPhase: {
         allowedMoves: ["stop"],
