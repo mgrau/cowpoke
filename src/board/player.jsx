@@ -8,6 +8,14 @@ export default class Player extends React.Component {
     const hand = this.props.cards.hand.map((card, index) => (
       <Card key={index} {...card} />
     ));
+
+    const discard =
+      this.props.cards.discard.length > 0 ? (
+        <Card {...this.props.cards.discard[0]} />
+      ) : (
+        ""
+      );
+
     const cowboys = Array(this.props.cowboys)
       .fill()
       .map((cowboy, index) => <Worker key={index} type="cowboy" />);
@@ -31,6 +39,7 @@ export default class Player extends React.Component {
           <div className="player-engineers">{engineers}</div>
         </div>
         <div className="player-hand">{hand}</div>
+        <div className="player-discard">{discard}</div>
       </div>
     );
   }

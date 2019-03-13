@@ -4,8 +4,14 @@ import Trail, { addSmallTile } from "./trail";
 import Player, { draw } from "./player";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
-import { move, stop, pass, hire, moveEngine, kansas_city } from "./moves";
+import { move, stop, pass, hire, moveEngine } from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
+import {
+  kansasCity1,
+  kansasCity2,
+  kansasCity3,
+  kansasCityShip
+} from "./kansas_city";
 import {
   neutralA1,
   neutralA2,
@@ -83,7 +89,10 @@ const Cowpoke = Game({
     cowDraw,
     cowBuy,
     cowPass,
-    kansas_city,
+    kansasCity1,
+    kansasCity2,
+    kansasCity3,
+    kansasCityShip,
     neutralA1,
     neutralA2,
     neutralA3,
@@ -159,7 +168,12 @@ const Cowpoke = Game({
         allowedMoves: ["pass", "neutralG1", "neutralG2"]
       },
       KansasCity: {
-        allowedMoves: ["kansas_city"],
+        allowedMoves: [
+          "kansasCity1",
+          "kansasCity2",
+          "kansasCity3",
+          "kansasCityShip"
+        ],
         next: "MovePhase",
         onPhaseEnd: (G, ctx) => {
           ctx.events.endTurn();

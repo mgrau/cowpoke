@@ -113,6 +113,9 @@ export default function Foresight(ctx) {
   pile3 = ctx.random.Shuffle(pile3);
 
   return {
+    foresight1: [pile1.pop(), pile1.pop()],
+    foresight2: [pile2.pop(), pile2.pop()],
+    foresight3: [pile3.pop(), pile3.pop()],
     pile1: pile1,
     pile2: pile2,
     pile3: pile3

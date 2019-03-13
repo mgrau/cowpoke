@@ -12,10 +12,6 @@ function getNext(trail, name) {
   return Object.keys(trail).filter(sp => trail[sp].prev.includes(name));
 }
 
-// function isEmpty(space) {
-//   return Object.entries(space.tile).length === 0;
-// }
-
 export function isAdjacent(trail, start, end) {
   return getNext(trail, start).includes(end);
 }

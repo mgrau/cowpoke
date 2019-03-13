@@ -4,16 +4,14 @@ export default function Player(ctx, playerID) {
   return {
     playerID: playerID,
     name: "",
-    money: 100,
-    // money: 6 + parseInt(playerID),
+    money: 6 + parseInt(playerID),
     stepLimit: ctx.numPlayers >= 4 ? 4 : 3,
     handSize: 4,
     cards: StartingDeck(ctx),
-    cowboys: 3,
-    craftsmen: 4,
-    engineers: 5,
-    // location: "start",
-    location: "C",
+    cowboys: 1,
+    craftsmen: 1,
+    engineers: 1,
+    location: "start",
     engine: 0,
     certificates: 0,
     auxMoneyToken: true,
@@ -33,10 +31,13 @@ export default function Player(ctx, playerID) {
   };
 }
 
-export function discard(player, name) {
-  const index = player.cards.hand.findIndex(cow => cow.name == name);
-  player.cards.discard.push(player.cards.hand.splice(index, 1));
+export function discard(G, name) {
+  const index = G.player.cards.hand.findIndex(cow => cow.name == name);
+  const card = G.player.cards.hand[index];
+  G.player.cards.discard = [card, ...G.player.cards.discard];
+  G.player.cards.hand.splice(index, 1);
 }
+
 export function handIncludes(player, name) {
   return player.cards.hand.map(cow => cow.name).includes(name);
 }

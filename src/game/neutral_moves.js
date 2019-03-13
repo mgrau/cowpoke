@@ -11,8 +11,8 @@ export function neutralA1(G, ctx) {
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      discard(G.player, "Guernsey");
-      G.actionsPerformed.push("neutralA1");
+      discard(G, "Guernsey");
+      G.actionsPerformed = [...G.actionsPerformed, "neutralA1"];
     }
   }
 }
@@ -24,7 +24,7 @@ export function neutralA2(G, ctx) {
   } else {
     G.hireCostModifier = 0;
     ctx.events.endPhase({ next: "HirePhase" });
-    G.actionsPerformed.push("neutralA2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralA2"];
   }
 }
 
@@ -35,7 +35,7 @@ export function neutralA3(G, ctx) {
   } else {
     G.hireCostModifier = -2;
     ctx.events.endPhase({ next: "HirePhase" });
-    G.actionsPerformed.push("neutralA3");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralA3"];
   }
 }
 
@@ -49,8 +49,8 @@ export function neutralB1(G, ctx) {
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      discard(G.player, "Dutch Belt");
-      G.actionsPerformed.push("neutralB1");
+      discard(G, "Dutch Belt");
+      G.actionsPerformed = [...G.actionsPerformed, "neutralB1"];
     }
   }
 }
@@ -61,7 +61,7 @@ export function neutralB2(G, ctx) {
     // return INVALID_MOVE
   } else {
     // build
-    G.actionsPerformed.push("neutralB2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralB2"];
   }
 }
 
@@ -80,7 +80,7 @@ export function neutralC1(G, ctx, certificate) {
     } else {
       // gainObjective
     }
-    G.actionsPerformed.push("neutralC1");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralC1"];
   }
 }
 
@@ -91,7 +91,7 @@ export function neutralC2(G, ctx) {
   } else {
     G.engineSpaces = G.player.engineers;
     ctx.events.endPhase({ next: "EnginePhase" });
-    G.actionsPerformed.push("neutralC2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralC2"];
   }
 }
 
@@ -110,7 +110,7 @@ export function neutralD1(G, ctx, teepee) {
       G.engineSpaces = 2;
       ctx.events.endPhase({ next: "EnginePhase" });
     }
-    G.actionsPerformed.push("neutralD1");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralD1"];
   }
 }
 
@@ -120,7 +120,7 @@ export function neutralD2(G, ctx) {
     // return INVALID_MOVE
   } else {
     //double auxillary
-    G.actionsPerformed.push("neutralD2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralD2"];
   }
 }
 
@@ -134,8 +134,8 @@ export function neutralE1(G, ctx) {
       // return INVALID_MOVE
     } else {
       G.player.money += 2;
-      discard(G.player, "Black Angus");
-      G.actionsPerformed.push("neutralE1");
+      discard(G, "Black Angus");
+      G.actionsPerformed = [...G.actionsPerformed, "neutralE1"];
     }
   }
 }
@@ -147,7 +147,7 @@ export function neutralE2(G, ctx) {
   } else {
     G.availableCowboys = G.player.cowboys;
     ctx.events.endPhase({ next: "CowPhase" });
-    G.actionsPerformed.push("neutralE2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralE2"];
   }
 }
 
@@ -157,7 +157,7 @@ export function neutralF1(G, ctx) {
     // return INVALID_MOVE
   } else {
     // discard pair
-    G.actionsPerformed.push("neutralF1");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralF1"];
   }
 }
 
@@ -167,7 +167,7 @@ export function neutralF2(G, ctx) {
     // return INVALID_MOVE
   } else {
     // pay 7 to take an obstacle
-    G.actionsPerformed.push("neutralF2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralF2"];
   }
 }
 
@@ -178,7 +178,7 @@ export function neutralG1(G, ctx) {
   } else {
     G.engineSpaces = G.player.engineers;
     ctx.events.endPhase({ next: "EnginePhase" });
-    G.actionsPerformed.push("neutralG1");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralG1"];
   }
 }
 
@@ -187,6 +187,6 @@ export function neutralG2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    G.actionsPerformed.push("neutralG2");
+    G.actionsPerformed = [...G.actionsPerformed, "neutralG2"];
   }
 }

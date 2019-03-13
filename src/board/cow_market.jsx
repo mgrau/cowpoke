@@ -40,58 +40,12 @@ export default class CowMarket extends React.Component {
   }
 
   render() {
-    let actions = [
-      <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
-        <Worker type="cowboy" />
-        <Separator />
-        <span style={{ fontSize: "75%" }}>draw 2</span>
-      </div>,
-      <div key="3:6" onClick={() => this.preBuy(3, 6)} className="cow3">
-        <Worker type="cowboy" />
-        <Separator />
-        <Money $={6} />
-      </div>,
-      <div key="3:3" onClick={() => this.preBuy(3, 3)} className="cow3">
-        2<Worker type="cowboy" />
-        <Separator />
-        <Money $={3} />
-      </div>,
-      <div key="3:5" onClick={() => this.preBuy(3, 5, true)} className="cow3">
-        3<Worker type="cowboy" />
-        <Separator />
-        <Money $={5} />
-        <span style={{ fontSize: "75%" }}>buy 2</span>
-      </div>,
-      <div key="4:12" onClick={() => this.preBuy(4, 12)} className="cow4">
-        <Worker type="cowboy" />
-        <Separator />
-        <Money $={12} />
-      </div>,
-      <div key="4:6" onClick={() => this.preBuy(4, 6)} className="cow4">
-        3<Worker type="cowboy" />
-        <Separator />
-        <Money $={6} />
-      </div>,
-      <div key="4:8" onClick={() => this.preBuy(4, 8, true)} className="cow4">
-        5<Worker type="cowboy" />
-        <Separator />
-        <Money $={8} />
-        <span style={{ fontSize: "75%" }}>buy 2</span>
-      </div>,
-      <div key="5:12" onClick={() => this.preBuy(5, 12)} className="cow5">
-        2<Worker type="cowboy" />
-        <Separator />
-        <Money $={12} />
-      </div>,
-      <div key="5:6" onClick={() => this.preBuy(5, 6)} className="cow5">
-        4<Worker type="cowboy" />
-        <Separator />
-        <Money $={6} />
-      </div>
-    ];
-    if (this.props.ctx.phase === "CowPhase") {
-      actions.push(<div onClick={() => this.props.moves.cowPass()}>Done</div>);
-    }
+    const pass =
+      this.props.ctx.phase === "CowPhase" ? (
+        <div onClick={() => this.props.moves.cowPass()}>Done</div>
+      ) : (
+        ""
+      );
     const market = this.props.G.cowMarket
       .sort(cowCompare)
       .map((card, index) => (
@@ -108,7 +62,72 @@ export default class CowMarket extends React.Component {
         : "";
     return (
       <div id="cow-market">
-        <div id="cow-market-actions">{actions}</div>
+        <div id="cow-market-actions">
+          <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
+            <Worker type="cowboy" />
+            <Separator />
+            <span style={{ fontSize: "75%" }}>draw 2</span>
+          </div>
+
+          <div key="3:6" onClick={() => this.preBuy(3, 6)} className="cow3">
+            <Worker type="cowboy" />
+            <Separator />
+            <Money $={6} />
+          </div>
+
+          <div key="3:3" onClick={() => this.preBuy(3, 3)} className="cow3">
+            2<Worker type="cowboy" />
+            <Separator />
+            <Money $={3} />
+          </div>
+
+          <div
+            key="3:5"
+            onClick={() => this.preBuy(3, 5, true)}
+            className="cow3"
+          >
+            3<Worker type="cowboy" />
+            <Separator />
+            <Money $={5} />
+            <span style={{ fontSize: "75%" }}>buy 2</span>
+          </div>
+
+          <div key="4:12" onClick={() => this.preBuy(4, 12)} className="cow4">
+            <Worker type="cowboy" />
+            <Separator />
+            <Money $={12} />
+          </div>
+
+          <div key="4:6" onClick={() => this.preBuy(4, 6)} className="cow4">
+            3<Worker type="cowboy" />
+            <Separator />
+            <Money $={6} />
+          </div>
+
+          <div
+            key="4:8"
+            onClick={() => this.preBuy(4, 8, true)}
+            className="cow4"
+          >
+            5<Worker type="cowboy" />
+            <Separator />
+            <Money $={8} />
+            <span style={{ fontSize: "75%" }}>buy 2</span>
+          </div>
+
+          <div key="5:12" onClick={() => this.preBuy(5, 12)} className="cow5">
+            2<Worker type="cowboy" />
+            <Separator />
+            <Money $={12} />
+          </div>
+
+          <div key="5:6" onClick={() => this.preBuy(5, 6)} className="cow5">
+            4<Worker type="cowboy" />
+            <Separator />
+            <Money $={6} />
+          </div>
+          {pass}
+        </div>
         <div id="cow-market-cows">{market}</div>
         <div id="cow-market-cowboys">{cowboys}</div>
       </div>

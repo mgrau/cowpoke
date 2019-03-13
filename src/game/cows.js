@@ -71,7 +71,7 @@ function TexasLonghorn(points) {
 }
 
 export function StartingDeck(ctx) {
-  let deck = ctx.random.Shuffle([
+  const deck = ctx.random.Shuffle([
     Jersey(),
     Jersey(),
     Jersey(),
@@ -87,11 +87,7 @@ export function StartingDeck(ctx) {
     BlackAngus(),
     BlackAngus()
   ]);
-  let hand = [];
-  hand.push(deck.pop());
-  hand.push(deck.pop());
-  hand.push(deck.pop());
-  hand.push(deck.pop());
+  const hand = [deck.pop(), deck.pop(), deck.pop(), deck.pop()];
   return {
     deck: deck,
     discard: [],

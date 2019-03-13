@@ -110,11 +110,6 @@ export function moveEngine(G, ctx, destination) {
   }
 }
 
-export function kansas_city(G, ctx) {
-  G.player.location = "start";
-  ctx.events.endPhase();
-}
-
 function pay_toll(G, ctx) {
   if (G.trail[G.player.location].trail == null) {
     return;
@@ -150,6 +145,6 @@ function draw(G, ctx) {
       G.player.cards.discard = [];
     }
     G.player.cards.deck = ctx.random.Shuffle(G.player.cards.deck);
-    G.player.cards.hand.push(G.player.cards.deck.pop());
+    G.player.cards.hand = [G.player.cards.deck.pop(), ...G.player.cards.hand];
   }
 }

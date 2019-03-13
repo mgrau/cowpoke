@@ -12,18 +12,9 @@ export function cowDraw(G, ctx) {
 }
 
 export function cowBuy(G, ctx, value, price, cows) {
-  console.log({ value });
   if (!Array.isArray(cows)) {
     cows = [cows];
   }
-  console.log({ cows });
-
-  console.log(cows.map(index => G.cowMarket[index].value));
-  console.log(
-    cows
-      .map(index => G.cowMarket[index].value)
-      .every(cowValue => cowValue == value)
-  );
   if (
     !cows
       .map(index => G.cowMarket[index].value)
@@ -66,7 +57,7 @@ function wrangleCows(G, cowboys, cows) {
     const cow = cows
       .sort()
       .reverse()
-      .map(cowIndex => G.cowMarket.splice(cowIndex, 1));
-    G.player.cards.discard = [...G.player.cards.discard, ...cow];
+      .map(cowIndex => G.cowMarket.splice(cowIndex, 1)[0]);
+    G.player.cards.discard = [...cow, ...G.player.cards.discard];
   }
 }

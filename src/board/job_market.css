@@ -13,7 +13,6 @@
   color: white;
   text-align: center;
   font-size: 2.5vh;
-  padding: 0.5vh;
 }
 
 #job-market .cowboy {
@@ -26,4 +25,51 @@
 
 #job-market .engineer {
   background-color: var(--engineer-color);
+}
+
+#foresight {
+  display: grid;
+  grid-template-columns: 4vh 4vh 4vh;
+  grid-template-rows: 4vh 4vh;
+  grid-gap: 0.5vh;
+  grid-auto-flow: column;
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+.jobtile {
+  border-radius: 0.75vh;
+  background-color: var(--empty-space);
+  color: white;
+  text-align: center;
+  font-size: 2.5vh;
+  padding: 0.5vh;
+}
+
+#foresight > div {
+  border-radius: 0.75vh;
+  background-color: var(--empty-space);
+  color: white;
+  text-align: center;
+  font-size: 2.5vh;
+}
+
+#foresight .cowboy {
+  background-color: var(--cowboy-color);
+}
+
+#foresight .craftsman {
+  background-color: var(--craftsman-color);
+}
+
+#foresight .engineer {
+  background-color: var(--engineer-color);
+}
+
+#foresight .hazard > div {
+  height: 2.7vh;
+}
+
+#foresight .teepee {
+  height: 3.3vh;
 }
