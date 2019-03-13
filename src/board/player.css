@@ -1,13 +1,15 @@
 @import url("./colors.css");
 
 .player {
-  border: 0.5vh solid;
+  border: 1vh solid;
+  border-radius: 0.5vh;
   margin: 0.5vh;
   padding: 0.25vh;
   width: 20vh;
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   grid-gap: 0.2vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .player0 {

@@ -138,7 +138,7 @@ function pay_toll(G, ctx) {
   G.player.money = G.player.money < 0 ? 0 : G.player.money;
 }
 
-function draw(G, ctx) {
+export function draw(G, ctx) {
   while (G.player.cards.hand.length < G.player.handSize) {
     if (G.player.cards.deck.length == 0) {
       G.player.cards.deck = G.player.cards.discard;

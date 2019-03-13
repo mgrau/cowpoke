@@ -35,3 +35,21 @@
 .pass-button:hover {
   background-color: rgb(74, 111, 167);
 }
+
+.undo-button {
+  background-color: rgb(8, 128, 165);
+  color: white;
+}
+
+.undo-button:hover {
+  background-color: rgb(67, 189, 168);
+}
+
+.sell-button {
+  background-color: rgb(105, 11, 117);
+  color: white;
+}
+
+.sell-button:hover {
+  background-color: rgb(165, 67, 189);
+}

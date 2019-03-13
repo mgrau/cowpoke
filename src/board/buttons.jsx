@@ -35,7 +35,7 @@ export class Pass extends React.Component {
 export class Undo extends React.Component {
   render() {
     return (
-      <div className="button pass-button" onClick={this.props.undo}>
+      <div className="button undo-button" onClick={this.props.undo}>
         Undo
       </div>
     );
@@ -45,8 +45,18 @@ export class Undo extends React.Component {
 export class Redo extends React.Component {
   render() {
     return (
-      <div className="button pass-button" onClick={this.props.redo}>
+      <div className="button redo-button" onClick={this.props.redo}>
         Redo
+      </div>
+    );
+  }
+}
+
+export class Sell extends React.Component {
+  render() {
+    return (
+      <div className="button sell-button" onClick={this.props.onClick}>
+        Sell
       </div>
     );
   }

@@ -112,7 +112,6 @@ const Cowpoke = Game({
   flow: {
     endTurn: false,
     endPhase: false,
-    // startingPhase: "PostSetup",
     startingPhase: "MovePhase",
 
     phases: {
