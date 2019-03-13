@@ -102,6 +102,7 @@ function sellHerd(G) {
     .map(card => card.value)
     .reduce((a, b) => a + b);
 
+  G.player.money += handValue;
   G.player.cards.discard = [...G.player.cards.discard, ...hand];
   G.player.cards.hand = [];
 }
