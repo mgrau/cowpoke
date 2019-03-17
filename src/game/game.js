@@ -4,8 +4,9 @@ import Trail, { addSmallTile } from "./trail";
 import Player, { draw } from "./player";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
-import { move, stop, pass, hire, moveEngine } from "./moves";
+import { move, stop, pass, hire, moveEngine, discardCycle } from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
+import { auxMove } from "./aux_actions";
 import {
   kansasCity1,
   kansasCity2,
@@ -89,6 +90,8 @@ const Cowpoke = Game({
     cowDraw,
     cowBuy,
     cowPass,
+    auxMove,
+    discardCycle,
     kansasCity1,
     kansasCity2,
     kansasCity3,
@@ -137,34 +140,33 @@ const Cowpoke = Game({
         allowedMoves: ["cowDraw", "cowBuy", "cowPass"],
         endPhaseIf: G => G.availableCowboys <= 0
       },
+      DiscardPhase: {
+        allowedMoves: ["discardCycle"],
+        endPhaseIf: G => G.mustDiscard <= 0
+      },
       ActionPhase: {
-        allowedMoves: ["stop"],
-        next: "MovePhase",
-        onPhaseEnd: (G, ctx) => {
-          ctx.events.endTurn();
-          return G;
-        }
+        allowedMoves: ["pass", "auxMove"]
       },
       neutralA: {
-        allowedMoves: ["pass", "neutralA1", "neutralA2", "neutralA3"]
+        allowedMoves: ["pass", "auxMove", "neutralA1", "neutralA2", "neutralA3"]
       },
       neutralB: {
-        allowedMoves: ["pass", "neutralB1", "neutralB2"]
+        allowedMoves: ["pass", "auxMove", "neutralB1", "neutralB2"]
       },
       neutralC: {
-        allowedMoves: ["pass", "neutralC1", "neutralC2"]
+        allowedMoves: ["pass", "auxMove", "neutralC1", "neutralC2"]
       },
       neutralD: {
-        allowedMoves: ["pass", "neutralD1", "neutralD2"]
+        allowedMoves: ["pass", "auxMove", "neutralD1", "neutralD2"]
       },
       neutralE: {
-        allowedMoves: ["pass", "neutralE1", "neutralE2"]
+        allowedMoves: ["pass", "auxMove", "neutralE1", "neutralE2"]
       },
       neutralF: {
-        allowedMoves: ["pass", "neutralF1", "neutralF2"]
+        allowedMoves: ["pass", "auxMove", "neutralF1", "neutralF2"]
       },
       neutralG: {
-        allowedMoves: ["pass", "neutralG1", "neutralG2"]
+        allowedMoves: ["pass", "auxMove", "neutralG1", "neutralG2"]
       },
       KansasCity: {
         allowedMoves: [

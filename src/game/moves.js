@@ -97,14 +97,18 @@ export function moveEngine(G, ctx, destination) {
         return;
       }
       if (
-        G.players[i].engine > G.player.engine &&
-        G.players[i].engine < destination
+        G.players[i].engine > Math.min(G.player.engine, destination) &&
+        G.players[i].engine < Math.max(G.player.engine, destination)
       ) {
-        distance--;
+        if (distance > 0) distance--;
+        else distance++;
       }
     }
   }
-  if (distance <= G.engineSpaces) {
+  if (
+    (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
+    (G.engineSpaces < 0 && distance == G.engineSpaces)
+  ) {
     G.player.engine = destination;
     ctx.events.endPhase();
   }
@@ -140,11 +144,24 @@ function pay_toll(G, ctx) {
 
 export function draw(G, ctx) {
   while (G.player.cards.hand.length < G.player.handSize) {
-    if (G.player.cards.deck.length == 0) {
-      G.player.cards.deck = G.player.cards.discard;
-      G.player.cards.discard = [];
-    }
-    G.player.cards.deck = ctx.random.Shuffle(G.player.cards.deck);
-    G.player.cards.hand = [G.player.cards.deck.pop(), ...G.player.cards.hand];
+    drawOne(G, ctx);
+  }
+}
+
+export function drawOne(G, ctx) {
+  if (G.player.cards.deck.length == 0) {
+    G.player.cards.deck = G.player.cards.discard;
+    G.player.cards.discard = [];
+  }
+  G.player.cards.deck = ctx.random.Shuffle(G.player.cards.deck);
+  G.player.cards.hand = [G.player.cards.deck.pop(), ...G.player.cards.hand];
+}
+
+export function discardCycle(G, ctx, index) {
+  if (G.player.cards.hand[index] !== undefined) {
+    const card = G.player.cards.hand[index];
+    G.player.cards.discard = [card, ...G.player.cards.discard];
+    G.player.cards.hand.splice(index, 1);
+    G.mustDiscard--;
   }
 }
