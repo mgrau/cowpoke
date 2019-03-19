@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./card";
-import { Money, Worker } from "./symbols";
+import { Money, Worker, Certificate } from "./symbols";
 import "./player.css";
 
 export default class Player extends React.Component {
@@ -32,6 +32,10 @@ export default class Player extends React.Component {
           <span>
             <Money $={this.props.money} />
           </span>
+          <span>
+            <Certificate spaces={this.props.certificates} />
+          </span>
+          /4
         </div>
         <div className="player-workers">
           <div className="player-cowboys">{cowboys}</div>
