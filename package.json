@@ -5,6 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
