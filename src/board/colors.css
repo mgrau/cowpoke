@@ -21,4 +21,7 @@
   --engineer-color: rgb(113, 5, 201);
 
   --empty-space: #ddd;
+
+  --money-color: rgb(207, 162, 94);
+  --money-color-negative: rgb(196, 60, 43);
 }

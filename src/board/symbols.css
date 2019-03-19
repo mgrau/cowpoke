@@ -14,7 +14,7 @@
 }
 
 .money .coin {
-  color: rgb(207, 162, 94);
+  color: var(--money-color);
 }
 
 .money .fa-layers-text {
@@ -23,7 +23,7 @@
 }
 
 .money .negative {
-  color: rgb(196, 60, 43);
+  color: var(--money-color-negative);
 }
 
 .points {
