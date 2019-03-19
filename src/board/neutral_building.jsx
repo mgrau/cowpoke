@@ -18,7 +18,9 @@ export default class NeutralBuilding extends React.Component {
     return (
       <div className={"neutral"}>
         <div>
-          <div className={"body"}>{this.props.name}</div>
+          <div className={"body"}>
+            {this.props.name.replace(/neutral/g, "")}
+          </div>
           <div className={"actions"}>{actions}</div>
         </div>
       </div>
