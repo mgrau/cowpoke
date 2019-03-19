@@ -1,6 +1,7 @@
 import { addSmallTile } from "./trail";
 import { addWorker } from "./job_market";
 import { draw } from "./moves";
+import { ship } from "./cities";
 
 export function kansasCity1(G, ctx, index) {
   if (G.actionsPerformed.includes("kansasCity1")) {
@@ -55,27 +56,34 @@ export function kansasCity3(G, ctx, index) {
   }
 }
 
-export function kansasCitySell(G, ctx) {
-  if (G.actionsPerformed.includes("kansasCityShip")) {
+export function kansasCitySell(G, ctx, certificates = 0) {
+  if (G.actionsPerformed.includes("kansasCitySell")) {
     console.log("already did this move");
   } else {
     if (G.actionsPerformed.includes("kansasCity3")) {
-      G.player.location = "start";
-
-      refillForesight(G);
-
-      sellHerd(G);
-
-      draw(G, ctx);
-
-      G.actionsPerformed = [...G.actionsPerformed, "kansasCityShip"];
-      ctx.events.endPhase();
+      if (G.player.certificates >= certificates && certificates >= 0) {
+        sellHerd(G, certificates);
+        G.actionsPerformed = [...G.actionsPerformed, "kansasCitySell"];
+      }
     }
   }
-  //redraw
 }
 
-export function kansasCityShip(G, ctx) {}
+export function kansasCityShip(G, ctx, destination) {
+  if (G.actionsPerformed.includes("kansasCityShip")) {
+    console.log("already did this move");
+  } else {
+    if (G.actionsPerformed.includes("kansasCitySell")) {
+      if (ship(G, ctx, destination)) {
+        draw(G, ctx);
+        refillForesight(G);
+        G.player.location = "start";
+        G.actionsPerformed = [...G.actionsPerformed, "kansasCitySell"];
+        ctx.events.endPhase();
+      }
+    }
+  }
+}
 
 function refillForesight(G) {
   G.foresight.foresight1 = [
@@ -92,17 +100,20 @@ function refillForesight(G) {
   ];
 }
 
-function sellHerd(G) {
+function sellHerd(G, certificates) {
   const hand = G.player.cards.hand;
-  const handValue = hand
-    .filter(
-      (obj, index, arr) =>
-        arr.map(card => card.name).indexOf(obj.name) === index
-    )
-    .map(card => card.value)
-    .reduce((a, b) => a + b);
-
+  const handValue =
+    certificates +
+    hand
+      .filter(
+        (obj, index, arr) =>
+          arr.map(card => card.name).indexOf(obj.name) === index
+      )
+      .map(card => card.value)
+      .reduce((a, b) => a + b);
+  G.player.certificates -= certificates;
   G.player.money += handValue;
   G.player.cards.discard = [...G.player.cards.discard, ...hand];
   G.player.cards.hand = [];
+  G.deliveryValue = handValue;
 }

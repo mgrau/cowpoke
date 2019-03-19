@@ -1,9 +1,14 @@
 import { Game } from "boardgame.io/core";
 import PluginPlayer from "./plugins/plugin-player";
-import Trail, { addSmallTile } from "./trail";
+
 import Player, { draw } from "./player";
+
+import Trail, { addSmallTile } from "./trail";
+import Cities from "./cities";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
+import MarketCattle from "./cows";
+
 import { move, stop, pass, hire, moveEngine, discardCycle } from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
 import { auxMove } from "./aux_actions";
@@ -11,6 +16,7 @@ import {
   kansasCity1,
   kansasCity2,
   kansasCity3,
+  kansasCitySell,
   kansasCityShip
 } from "./kansas_city";
 import {
@@ -40,13 +46,12 @@ import {
   neutralG
 } from "./buildings";
 
-import MarketCattle from "./cows";
-
 const Cowpoke = Game({
   name: "Great Western Trail",
   setup: ctx => {
     const G = {
       trail: Trail(),
+      cities: Cities(),
       foresight: Foresight(ctx),
       jobMarket: JobMarket(ctx),
       cowDeck: MarketCattle(ctx),
@@ -95,6 +100,7 @@ const Cowpoke = Game({
     kansasCity1,
     kansasCity2,
     kansasCity3,
+    kansasCitySell,
     kansasCityShip,
     neutralA1,
     neutralA2,
@@ -173,6 +179,7 @@ const Cowpoke = Game({
           "kansasCity1",
           "kansasCity2",
           "kansasCity3",
+          "kansasCitySell",
           "kansasCityShip"
         ],
         next: "MovePhase",
