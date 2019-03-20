@@ -4,7 +4,7 @@ import JobMarket from "./job_market";
 import Trail from "./trail";
 import Player from "./player";
 import CowMarket from "./cow_market";
-import { Sell, Stop, Pass, Undo } from "./buttons";
+import { Stop, Pass, Undo } from "./buttons";
 
 import "./board.css";
 
@@ -17,18 +17,17 @@ export default class CowpokeBoard extends React.Component {
     if (this.props.ctx.allowedMoves.includes("pass")) {
       buttons.push(<Pass key="pass" onClick={() => this.props.moves.pass()} />);
     }
-    if (
-      this.props.ctx.allowedMoves.includes("kansasCitySell") &&
-      this.props.G.actionsPerformed.includes("kansasCity3")
-    ) {
-      buttons.push(
-        <Sell key="sell" onClick={() => this.props.moves.kansasCitySell()} />
-      );
-    }
+
     buttons.push(<Undo key="undo" undo={this.props.undo} />);
 
     const players = Object.values(this.props.G.players).map((player, index) => (
-      <Player key={index} {...player} />
+      <Player
+        key={index}
+        {...player}
+        G={this.props.G}
+        ctx={this.props.ctx}
+        moves={this.props.moves}
+      />
     ));
 
     const player = this.props.G.players[this.props.ctx.currentPlayer];

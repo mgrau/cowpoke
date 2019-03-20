@@ -55,6 +55,14 @@
   border-radius: 0.25vh;
 }
 
+.player-spend-certificates {
+  grid-row: 4;
+  grid-column: 1/4;
+  display: flex;
+  font-size: 125%;
+  font-weight: bold;
+}
+
 .player-workers > div {
   display: flex;
 }

@@ -12,20 +12,21 @@ export default function Player(ctx, playerID) {
     craftsmen: 1,
     engineers: 1,
     location: "start",
-    // location: "G",
     engine: 0,
     certificates: 0,
-    auxMoneyToken: 1,
-    auxCycleToken: 1,
-    auxCertificateToken: 2,
-    auxEngineToken: 2,
-    auxTrashToken: 2,
-    certificateToken1: true,
-    certificateToken2: true,
-    moveToken1: true,
-    moveToken2: true,
-    handToken1: true,
-    handToken2: true
+    tokens: {
+      auxMoney: 1,
+      auxCycle: 1,
+      auxCertificate: 2,
+      auxEngine: 2,
+      auxTrash: 2,
+      certificate1: 1,
+      certificate2: 1,
+      move1: 1,
+      move2: 1,
+      hand1: 1,
+      hand2: 1
+    }
   };
 }
 

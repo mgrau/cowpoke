@@ -23,7 +23,7 @@ export function auxMove(G, ctx, action, double = false) {
 }
 
 function auxMoney(G, ctx, double = false) {
-  if (double && G.player.auxMoneyToken >= 2) {
+  if (double && G.player.token.auxMoney >= 2) {
     G.player.money += 2;
   } else {
     G.player.money += 1;
@@ -31,7 +31,7 @@ function auxMoney(G, ctx, double = false) {
 }
 
 function auxCycle(G, ctx, double = false) {
-  if (double && G.player.auxCycleToken >= 2) {
+  if (double && G.player.token.auxCycle >= 2) {
     drawOne(G, ctx);
     drawOne(G, ctx);
     G.mustDiscard = 2;

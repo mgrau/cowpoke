@@ -4,6 +4,34 @@ import { Money, Worker, Certificate } from "./symbols";
 import "./player.css";
 
 export default class Player extends React.Component {
+  certificates() {
+    if (
+      this.props.ctx.allowedMoves.includes("kansasCitySell") &&
+      this.props.G.actionsPerformed.includes("kansasCity3") &&
+      !this.props.G.actionsPerformed.includes("kansasCitySell") &&
+      this.props.ctx.currentPlayer == this.props.playerID
+    ) {
+      return (
+        <div className="player-spend-certificates">
+          Spend:
+          {[6, 4, 3, 2, 1, 0]
+            .filter(n => n <= this.props.certificates)
+            .map(n => (
+              <div
+                onClick={() =>
+                  this.props.moves.kansasCitySell(this.props.certificates - n)
+                }
+              >
+                <Certificate spaces={this.props.certificates - n} />
+              </div>
+            ))}
+        </div>
+      );
+    } else {
+      return "";
+    }
+  }
+
   render() {
     const hand = this.props.cards.hand.map((card, index) => (
       <Card key={index} {...card} />
@@ -15,6 +43,18 @@ export default class Player extends React.Component {
       ) : (
         ""
       );
+
+    var max_certificates = 3;
+    if (
+      this.props.tokens.certificate1 == 0 &&
+      this.props.tokens.certificate2 == 0
+    ) {
+      max_certificates = 6;
+    } else if (this.props.tokens.certificate1 == 0) {
+      max_certificates = 4;
+    }
+
+    const certificates = this.certificates();
 
     const cowboys = Array(this.props.cowboys)
       .fill()
@@ -35,7 +75,7 @@ export default class Player extends React.Component {
           <span>
             <Certificate spaces={this.props.certificates} />
           </span>
-          /4
+          /{max_certificates}
         </div>
         <div className="player-workers">
           <div className="player-cowboys">{cowboys}</div>
@@ -44,7 +84,14 @@ export default class Player extends React.Component {
         </div>
         <div className="player-hand">{hand}</div>
         <div className="player-discard">{discard}</div>
+        {certificates}
       </div>
     );
+  }
+}
+
+class Token extends React.Component {
+  render() {
+    return <div className="player-token" />;
   }
 }
