@@ -1,22 +1,23 @@
 export default function Cities() {
   return {
-    kansas_city: City(0),
-    topeka: City(1),
-    wichita: City(4),
-    colorado_springs: City(6),
-    santa_fe: City(8),
-    albuquerque: City(10, true),
-    el_paso: City(12, true),
-    san_diego: City(14),
-    sacramento: City(16),
-    san_francisco: City(18)
+    KansasCity: City(0, false, true),
+    Topeka: City(1),
+    Wichita: City(4),
+    ColoradoSprings: City(6),
+    SantaFe: City(8),
+    Albuquerque: City(10, true),
+    ElPaso: City(12, true),
+    SanDiego: City(14),
+    Sacramento: City(16, true),
+    SanFrancisco: City(18, true, true)
   };
 }
 
-function City(distance, black = false) {
+function City(distance, black = false, multiple = false) {
   return {
     distance: distance,
     black: black,
+    multiple: multiple,
     players: []
   };
 }
@@ -25,7 +26,7 @@ export function ship(G, ctx, destination) {
   if (!destination in G.cities) {
     return false;
   }
-  if (destination != "kansas_city" && destination != "san_francisco") {
+  if (!G.cities[destination].multiple) {
     if (G.cities[destination].players.includes(G.player.playerID)) {
       return false;
     }
@@ -33,9 +34,17 @@ export function ship(G, ctx, destination) {
   if (G.deliveryValue < G.cities[destination].distance) {
     return false;
   }
+  const cost = transportCost(G.player.engine, G.cities[destination].distance);
+  G.player.money -= cost;
   G.cities[destination].players = [
     G.player.playerID,
     ...G.cities[destination].players
   ];
   return true;
+}
+
+function transportCost(start, destination) {
+  // the rail crosses come after these spaces
+  const cross = [3, 4, 5, 7, 9, 10, 11, 13, 15, 16, 17];
+  return cross.filter(cross => cross >= start && cross < destination).length;
 }
