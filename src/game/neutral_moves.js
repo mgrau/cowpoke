@@ -1,6 +1,13 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import { handIncludes, discard, gainCertificate } from "./player";
 
+// TODO:
+// build
+// gain a teepee
+// gain an objective
+// gain an obstacle
+// double discard
+
 export function neutralA1(G, ctx) {
   if (G.actionsPerformed.includes("neutralA1")) {
     console.log("already did this move");
@@ -119,7 +126,7 @@ export function neutralD2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    //double auxillary
+    ctx.events.endPhase({ next: "DoubleAuxPhase" });
     G.actionsPerformed = [...G.actionsPerformed, "neutralD2"];
   }
 }
@@ -187,6 +194,7 @@ export function neutralG2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
+    ctx.events.endPhase({ next: "DoubleAuxPhase" });
     G.actionsPerformed = [...G.actionsPerformed, "neutralG2"];
   }
 }

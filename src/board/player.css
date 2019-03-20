@@ -5,7 +5,7 @@
   border-radius: 0.5vh;
   margin: 0.5vh;
   padding: 0.25vh;
-  width: 20vh;
+  width: 25vh;
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   grid-gap: 0.2vh;
@@ -37,6 +37,17 @@
 .player-workers {
   grid-row: 2;
   grid-column: 2/4;
+  font-size: 125%;
+}
+
+.player-workers > div {
+  display: flex;
+}
+
+.player-workers > div > div {
+  margin: 0.1vh;
+  padding: 0.5vh;
+  text-align: left;
 }
 
 .player-hand {
@@ -63,10 +74,48 @@
   font-weight: bold;
 }
 
-.player-workers > div {
-  display: flex;
+.player-tokens {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
 }
 
-.player-workers > div > div {
+.player-token {
+  border: 1px solid gray;
+  width: 2vh;
+  height: 2vh;
+  border-radius: 0.25vh;
   margin: 0.1vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.player-token > div {
+  width: 1.5vh;
+  height: 1.5vh;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.player-tokens > span {
+  font-size: 85%;
+}
+
+.player-token-0 {
+  background-color: var(--player0-color);
+}
+
+.player-token-1 {
+  background: var(--player1-color);
+}
+
+.player-token-2 {
+  background: var(--player2-color);
+}
+
+.player-token-3 {
+  background: var(--player3-color);
 }

@@ -11,7 +11,7 @@ import MarketCattle from "./cows";
 
 import { move, stop, pass, hire, moveEngine, discardCycle } from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
-import { auxMove } from "./aux_actions";
+import { auxMove, auxDoubleMove } from "./aux_actions";
 import {
   kansasCity1,
   kansasCity2,
@@ -96,6 +96,7 @@ const Cowpoke = Game({
     cowBuy,
     cowPass,
     auxMove,
+    auxDoubleMove,
     discardCycle,
     kansasCity1,
     kansasCity2,
@@ -173,6 +174,12 @@ const Cowpoke = Game({
       },
       neutralG: {
         allowedMoves: ["pass", "auxMove", "neutralG1", "neutralG2"]
+      },
+      DoubleAuxPhase: {
+        allowedMoves: ["auxMove", "auxDoubleMove"],
+        endPhaseIf: G =>
+          G.actionsPerformed.includes("auxMove") ||
+          G.actionsPerformed.includes("auxDoubleMove")
       },
       KansasCity: {
         allowedMoves: [

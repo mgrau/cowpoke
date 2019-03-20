@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "./card";
 import { Money, Worker, Certificate } from "./symbols";
+import { AuxAction } from "../game/aux_actions";
+
 import "./player.css";
 
 export default class Player extends React.Component {
@@ -34,7 +36,15 @@ export default class Player extends React.Component {
 
   render() {
     const hand = this.props.cards.hand.map((card, index) => (
-      <Card key={index} {...card} />
+      <Card
+        key={index}
+        {...card}
+        discard={() => {
+          if (this.props.ctx.phase == "DiscardPhase") {
+            this.props.moves.discardCycle(index);
+          }
+        }}
+      />
     ));
 
     const discard =
@@ -77,6 +87,11 @@ export default class Player extends React.Component {
           </span>
           /{max_certificates}
         </div>
+        <Tokens
+          playerID={this.props.playerID}
+          tokens={this.props.tokens}
+          moves={this.props.moves}
+        />
         <div className="player-workers">
           <div className="player-cowboys">{cowboys}</div>
           <div className="player-craftsmen">{craftsmen}</div>
@@ -90,8 +105,84 @@ export default class Player extends React.Component {
   }
 }
 
+class Tokens extends React.Component {
+  render() {
+    return (
+      <div className="player-tokens">
+        <span>Money:</span>
+        <Token
+          empty={true}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxMove(AuxAction.MONEY)}
+        />
+        <Token
+          empty={this.props.tokens.auxMoney <= 0}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxDoubleMove(AuxAction.MONEY)}
+        />
+        <span>Cycle:</span>
+        <Token
+          empty={true}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxMove(AuxAction.CYCLE)}
+        />
+        <Token
+          empty={this.props.tokens.auxCycle <= 0}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxDoubleMove(AuxAction.CYCLE)}
+        />
+        <span>Cert-:</span>
+        <Token
+          empty={this.props.tokens.auxCertificate <= 1}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxMove(AuxAction.CERTIFICATE)}
+        />
+        <Token
+          empty={this.props.tokens.auxCertificate <= 0}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxDoubleMove(AuxAction.CERTIFICATE)}
+        />
+        <span>Engine:</span>
+        <Token
+          empty={this.props.tokens.auxEngine <= 1}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxMove(AuxAction.ENGINE)}
+        />
+        <Token
+          empty={this.props.tokens.auxEngine <= 0}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxDoubleMove(AuxAction.ENGINE)}
+        />
+        <span>Trash:</span>
+        <Token
+          empty={this.props.tokens.auxTrash <= 1}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxMove(AuxAction.TRASH)}
+        />
+        <Token
+          empty={this.props.tokens.auxTrash <= 0}
+          playerID={this.props.playerID}
+          onClick={() => this.props.moves.auxDoubleMove(AuxAction.TRASH)}
+        />
+      </div>
+    );
+  }
+}
 class Token extends React.Component {
   render() {
-    return <div className="player-token" />;
+    return (
+      <div className="player-token">
+        <div
+          onClick={() => {
+            if (this.props.empty) {
+              this.props.onClick();
+            }
+          }}
+          className={
+            this.props.empty ? "" : "player-token-" + this.props.playerID
+          }
+        />
+      </div>
+    );
   }
 }
