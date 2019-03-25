@@ -37,17 +37,9 @@ export default class JobMarket extends React.Component {
         </div>
       );
     } else if (tile.tile == "teepee") {
-      return (
-        <div className="foresight">
-          <Teepee {...tile} />
-        </div>
-      );
+      return <Teepee {...tile} />;
     } else if (tile.tile == "hazard") {
-      return (
-        <div className="foresight">
-          <Hazard {...tile} />
-        </div>
-      );
+      return <Hazard {...tile} />;
     }
   }
 

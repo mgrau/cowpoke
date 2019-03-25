@@ -27,8 +27,8 @@ export default class Trains extends React.Component {
     });
     return (
       <div id="trains">
-        {spaces}
         <Cities G={this.props.G} moves={this.props.moves} />
+        {spaces}
       </div>
     );
   }

@@ -51,7 +51,6 @@
   background-color: var(--empty-space);
   color: white;
   text-align: center;
-  font-size: 2.5vh;
 }
 
 #foresight .cowboy {
@@ -66,10 +65,8 @@
   background-color: var(--engineer-color);
 }
 
-#foresight .hazard > div {
-  height: 2.7vh;
-}
-
+#foresight .hazard,
 #foresight .teepee {
-  height: 3.3vh;
+  position: relative;
+  top: 0%;
 }
