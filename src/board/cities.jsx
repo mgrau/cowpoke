@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./cities.css";
+import "./css/cities.css";
 
 export default class Cities extends React.Component {
   render() {

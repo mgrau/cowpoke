@@ -2,7 +2,7 @@ import React from "react";
 import LineTo from "react-lineto";
 import Tile from "./tile";
 
-import "./trail.css";
+import "./css/trail.css";
 
 export default class Trail extends React.Component {
   render() {

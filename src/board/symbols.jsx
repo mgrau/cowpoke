@@ -18,7 +18,7 @@ import {
   faHandPaper
 } from "@fortawesome/free-solid-svg-icons";
 
-import "./symbols.css";
+import "./css/symbols.css";
 
 export class Separator extends React.Component {
   render() {

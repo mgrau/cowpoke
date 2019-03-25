@@ -17,7 +17,7 @@ import {
   Pair
 } from "./symbols";
 
-import "./action.css";
+import "./css/action.css";
 
 export default class Action extends React.Component {
   render() {

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCampground, faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
-import "./teepee.css";
+import "./css/teepee.css";
 
 export default class Teepee extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React from "react";
 import Cities from "./cities";
 
-import "./trains.css";
+import "./css/trains.css";
 
 export default class Trains extends React.Component {
   render() {

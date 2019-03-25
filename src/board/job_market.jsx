@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Teepee from "./teepee";
 import Hazard from "./hazard";
-import "./job_market.css";
+import "./css/job_market.css";
 
 export default class JobMarket extends React.Component {
   foresight(foresight, index) {

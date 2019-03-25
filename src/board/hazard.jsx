@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
-import "./hazard.css";
+import "./css/hazard.css";
 
 export default class Hazard extends React.Component {
   render() {

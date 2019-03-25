@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./tokens.css";
+import "./css/tokens.css";
 
 export default class Tokens extends React.Component {
   render() {

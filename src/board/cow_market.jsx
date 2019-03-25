@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./card";
 import { Worker, Separator, Money } from "./symbols";
 
-import "./cow_market.css";
+import "./css/cow_market.css";
 
 export default class CowMarket extends React.Component {
   constructor(props) {

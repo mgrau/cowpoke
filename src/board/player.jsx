@@ -3,7 +3,7 @@ import Card from "./card";
 import { Money, Worker, Certificate } from "./symbols";
 import { AuxAction } from "../game/aux_actions";
 
-import "./player.css";
+import "./css/player.css";
 
 export default class Player extends React.Component {
   certificates() {

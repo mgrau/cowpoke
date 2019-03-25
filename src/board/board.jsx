@@ -6,7 +6,7 @@ import Player from "./player";
 import CowMarket from "./cow_market";
 import { Stop, Pass, Undo } from "./buttons";
 
-import "./board.css";
+import "./css/board.css";
 
 export default class CowpokeBoard extends React.Component {
   render() {

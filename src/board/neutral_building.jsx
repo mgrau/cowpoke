@@ -2,7 +2,7 @@ import React from "react";
 
 import Action from "./action";
 
-import "./neutral_building.css";
+import "./css/neutral_building.css";
 
 export default class NeutralBuilding extends React.Component {
   render() {
