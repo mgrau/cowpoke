@@ -1,11 +1,12 @@
 @import url("./colors.css");
 
 #board {
-  width: 50%;
+  width: 75%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr autofill; */
   grid-gap: 1vh;
   font-family: arial;
+  font-size: 1.75vh;
 }
 
 #board > div {

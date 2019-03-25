@@ -5,7 +5,8 @@
   border-radius: 0.5vh;
   margin: 0.5vh;
   padding: 0.25vh;
-  width: 25vh;
+  /* width: 25vh; */
+  width: calc(100%-1.5vh);
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   grid-gap: 0.2vh;
@@ -47,7 +48,8 @@
 .player-workers > div > div {
   margin: 0.1vh;
   padding: 0.5vh;
-  text-align: left;
+  width: 1.5vh;
+  text-align: center;
 }
 
 .player-hand {
