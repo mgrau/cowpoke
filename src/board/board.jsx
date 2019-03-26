@@ -4,7 +4,7 @@ import JobMarket from "./job_market";
 import Trail from "./trail";
 import Player from "./player";
 import CowMarket from "./cow_market";
-import { Stop, Pass, Undo } from "./buttons";
+import { Stop, Pass, End, Undo } from "./buttons";
 
 import "./css/board.css";
 
@@ -16,6 +16,9 @@ export default class CowpokeBoard extends React.Component {
     }
     if (this.props.ctx.allowedMoves.includes("pass")) {
       buttons.push(<Pass key="pass" onClick={() => this.props.moves.pass()} />);
+    }
+    if (this.props.ctx.allowedMoves.includes("end")) {
+      buttons.push(<End key="end" onClick={() => this.props.moves.end()} />);
     }
 
     buttons.push(<Undo key="undo" undo={this.props.undo} />);

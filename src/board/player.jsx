@@ -42,6 +42,8 @@ export default class Player extends React.Component {
         discard={() => {
           if (this.props.ctx.phase == "DiscardPhase") {
             this.props.moves.discardCycle(index);
+          } else if (this.props.ctx.phase == "TrashPhase") {
+            this.props.moves.trash(index);
           }
         }}
       />
@@ -113,7 +115,10 @@ class Tokens extends React.Component {
         <Token
           empty={true}
           playerID={this.props.playerID}
-          onClick={() => this.props.moves.auxMove(AuxAction.MONEY)}
+          onClick={() => {
+            this.props.moves.beginAuxMove();
+            this.props.moves.auxMove(AuxAction.MONEY);
+          }}
         />
         <Token
           empty={this.props.tokens.auxMoney <= 0}
@@ -124,7 +129,10 @@ class Tokens extends React.Component {
         <Token
           empty={true}
           playerID={this.props.playerID}
-          onClick={() => this.props.moves.auxMove(AuxAction.CYCLE)}
+          onClick={() => {
+            this.props.moves.beginAuxMove();
+            this.props.moves.auxMove(AuxAction.CYCLE);
+          }}
         />
         <Token
           empty={this.props.tokens.auxCycle <= 0}
@@ -135,7 +143,10 @@ class Tokens extends React.Component {
         <Token
           empty={this.props.tokens.auxCertificate <= 1}
           playerID={this.props.playerID}
-          onClick={() => this.props.moves.auxMove(AuxAction.CERTIFICATE)}
+          onClick={() => {
+            this.props.moves.beginAuxMove();
+            this.props.moves.auxMove(AuxAction.CERTIFICATE);
+          }}
         />
         <Token
           empty={this.props.tokens.auxCertificate <= 0}
@@ -146,7 +157,10 @@ class Tokens extends React.Component {
         <Token
           empty={this.props.tokens.auxEngine <= 1}
           playerID={this.props.playerID}
-          onClick={() => this.props.moves.auxMove(AuxAction.ENGINE)}
+          onClick={() => {
+            this.props.moves.beginAuxMove();
+            this.props.moves.auxMove(AuxAction.ENGINE);
+          }}
         />
         <Token
           empty={this.props.tokens.auxEngine <= 0}
@@ -157,7 +171,10 @@ class Tokens extends React.Component {
         <Token
           empty={this.props.tokens.auxTrash <= 1}
           playerID={this.props.playerID}
-          onClick={() => this.props.moves.auxMove(AuxAction.TRASH)}
+          onClick={() => {
+            this.props.moves.beginAuxMove();
+            this.props.moves.auxMove(AuxAction.TRASH);
+          }}
         />
         <Token
           empty={this.props.tokens.auxTrash <= 0}

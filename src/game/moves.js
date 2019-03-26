@@ -1,6 +1,7 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { removeWorker } from "./job_market";
+import { trainDistance } from "./train";
 
 export function move(G, ctx, destination) {
   const currentLocation = G.player.location;
@@ -63,10 +64,14 @@ export function stop(G, ctx) {
   }
 }
 
-export function pass(G, ctx) {
+export function end(G, ctx) {
   draw(G, ctx);
   ctx.events.endPhase({ next: "MovePhase" });
   ctx.events.endTurn();
+}
+
+export function pass(G, ctx) {
+  ctx.events.endPhase();
 }
 
 export function hire(G, ctx, row, col) {
@@ -90,21 +95,7 @@ export function hire(G, ctx, row, col) {
 }
 
 export function moveEngine(G, ctx, destination) {
-  let distance = destination - G.player.engine;
-  for (var i = 0; i < ctx.numPlayers; i++) {
-    if (G.players[i].playerID != ctx.currentPlayer) {
-      if (G.players[i].engine == destination) {
-        return;
-      }
-      if (
-        G.players[i].engine > Math.min(G.player.engine, destination) &&
-        G.players[i].engine < Math.max(G.player.engine, destination)
-      ) {
-        if (distance > 0) distance--;
-        else distance++;
-      }
-    }
-  }
+  let distance = trainDistance(G, ctx, destination);
   if (
     (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
     (G.engineSpaces < 0 && distance == G.engineSpaces)
@@ -163,5 +154,17 @@ export function discardCycle(G, ctx, index) {
     G.player.cards.discard = [card, ...G.player.cards.discard];
     G.player.cards.hand.splice(index, 1);
     G.mustDiscard--;
+  }
+}
+
+export function trash(G, ctx, index) {
+  if (G.player.cards.hand[index] !== undefined) {
+    G.player.cards.hand.splice(index, 1);
+    G.mustTrash--;
+  }
+  if (G.mustTrash <= 0) {
+    // This is a really ugly hack to correctly next these phases
+    ctx.events.endPhase({ next: G.afterTrash });
+    ctx.events.endPhase({ next: "EnginePhase" });
   }
 }

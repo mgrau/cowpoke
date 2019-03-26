@@ -9,9 +9,18 @@ import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle from "./cows";
 
-import { move, stop, pass, hire, moveEngine, discardCycle } from "./moves";
+import {
+  move,
+  stop,
+  pass,
+  end,
+  hire,
+  moveEngine,
+  discardCycle,
+  trash
+} from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
-import { auxMove, auxDoubleMove } from "./aux_actions";
+import { beginAuxMove, auxMove, auxDoubleMove } from "./aux_actions";
 import {
   kansasCity1,
   kansasCity2,
@@ -90,14 +99,17 @@ const Cowpoke = Game({
     move,
     stop,
     pass,
+    end,
     hire,
     moveEngine,
     cowDraw,
     cowBuy,
     cowPass,
+    beginAuxMove,
     auxMove,
     auxDoubleMove,
     discardCycle,
+    trash,
     kansasCity1,
     kansasCity2,
     kansasCity3,
@@ -138,45 +150,57 @@ const Cowpoke = Game({
         next: "ActionPhase"
       },
       HirePhase: {
-        allowedMoves: ["hire"]
+        allowedMoves: ["pass", "hire"]
       },
       EnginePhase: {
         allowedMoves: ["moveEngine"]
       },
       CowPhase: {
-        allowedMoves: ["cowDraw", "cowBuy", "cowPass"],
+        allowedMoves: ["pass", "cowDraw", "cowBuy"],
         endPhaseIf: G => G.availableCowboys <= 0
       },
       DiscardPhase: {
         allowedMoves: ["discardCycle"],
         endPhaseIf: G => G.mustDiscard <= 0
       },
+      TrashPhase: {
+        allowedMoves: ["trash"]
+      },
       ActionPhase: {
-        allowedMoves: ["pass", "auxMove"]
+        allowedMoves: ["end", "beginAuxMove"]
+      },
+      AuxMovePhase: {
+        allowedMoves: ["end", "auxMove"]
       },
       neutralA: {
-        allowedMoves: ["pass", "auxMove", "neutralA1", "neutralA2", "neutralA3"]
+        allowedMoves: [
+          "end",
+          "beginAuxMove",
+          "neutralA1",
+          "neutralA2",
+          "neutralA3"
+        ]
       },
       neutralB: {
-        allowedMoves: ["pass", "auxMove", "neutralB1", "neutralB2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralB1", "neutralB2"]
       },
       neutralC: {
-        allowedMoves: ["pass", "auxMove", "neutralC1", "neutralC2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralC1", "neutralC2"]
       },
       neutralD: {
-        allowedMoves: ["pass", "auxMove", "neutralD1", "neutralD2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralD1", "neutralD2"]
       },
       neutralE: {
-        allowedMoves: ["pass", "auxMove", "neutralE1", "neutralE2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralE1", "neutralE2"]
       },
       neutralF: {
-        allowedMoves: ["pass", "auxMove", "neutralF1", "neutralF2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralF1", "neutralF2"]
       },
       neutralG: {
-        allowedMoves: ["pass", "auxMove", "neutralG1", "neutralG2"]
+        allowedMoves: ["end", "beginAuxMove", "neutralG1", "neutralG2"]
       },
       DoubleAuxPhase: {
-        allowedMoves: ["auxMove", "auxDoubleMove"],
+        allowedMoves: ["pass", "auxMove", "auxDoubleMove"],
         endPhaseIf: G =>
           G.actionsPerformed.includes("auxMove") ||
           G.actionsPerformed.includes("auxDoubleMove")
