@@ -15,7 +15,14 @@ export default class Tile extends React.Component {
       if (this.props.tile.tile === "hazard") {
         tile = <Hazard {...this.props.tile} />;
       } else if (this.props.tile.tile === "teepee") {
-        tile = <Teepee {...this.props.tile} />;
+        tile = (
+          <Teepee
+            {...this.props.tile}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            name={this.props.name}
+          />
+        );
       } else if (this.props.tile.tile === "neutral") {
         tile = (
           <NeutralBuilding

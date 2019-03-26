@@ -17,7 +17,9 @@ import {
   hire,
   moveEngine,
   discardCycle,
-  trash
+  trash,
+  gainTeepee,
+  gainHazard
 } from "./moves";
 import { cowDraw, cowBuy, cowPass } from "./cow_moves";
 import { beginAuxMove, auxMove, auxDoubleMove } from "./aux_actions";
@@ -102,6 +104,8 @@ const Cowpoke = Game({
     end,
     hire,
     moveEngine,
+    gainTeepee,
+    gainHazard,
     cowDraw,
     cowBuy,
     cowPass,
@@ -165,6 +169,12 @@ const Cowpoke = Game({
       },
       TrashPhase: {
         allowedMoves: ["trash"]
+      },
+      TeepeePhase: {
+        allowedMoves: ["gainTeepee"]
+      },
+      HazardPhase: {
+        allowedMoves: ["gainHazard"]
       },
       ActionPhase: {
         allowedMoves: ["end", "beginAuxMove"]

@@ -7,7 +7,16 @@ import "./css/teepee.css";
 export default class Teepee extends React.Component {
   render() {
     return (
-      <div className={"teepee " + this.props.color}>
+      <div
+        className={"teepee " + this.props.color}
+        onClick={() => {
+          if (this.props.name != undefined) {
+            if (this.props.ctx.phase == "TeepeePhase") {
+              this.props.moves.gainTeepee(this.props.name);
+            }
+          }
+        }}
+      >
         <div>
           <FontAwesomeIcon icon={faCampground} />
         </div>

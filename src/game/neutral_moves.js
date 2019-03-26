@@ -111,7 +111,7 @@ export function neutralD1(G, ctx, teepee) {
       return;
     }
     if (teepee) {
-      // gain a teepee
+      ctx.events.endPhase({ next: "TeepeePhase" });
     } else {
       G.player.money -= 2;
       G.engineSpaces = 2;

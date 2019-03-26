@@ -168,3 +168,15 @@ export function trash(G, ctx, index) {
     ctx.events.endPhase({ next: "EnginePhase" });
   }
 }
+
+export function gainTeepee(G, ctx, name) {
+  const value = parseInt(name.slice(6));
+  if (G.player.money + value >= 0) {
+    G.player.money += value;
+    G.player.teepees = [G.trail[name].tile, ...G.player.teepees];
+    G.trail[name].tile = null;
+  }
+  ctx.events.endPhase();
+}
+
+export function gainHazard(G, ctx, index) {}
