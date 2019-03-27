@@ -161,7 +161,12 @@ const Cowpoke = Game({
         allowedMoves: ["pass", "hire"]
       },
       EnginePhase: {
-        allowedMoves: ["moveEngine"]
+        allowedMoves: ["pass", "moveEngine"],
+        endPhaseIf: G => G.engineSpaces == 0
+      },
+      ReverseEnginePhase: {
+        allowedMoves: ["moveEngine"],
+        endPhaseIf: G => G.engineSpaces == 0
       },
       CowPhase: {
         allowedMoves: ["pass", "cowDraw", "cowBuy"],
@@ -175,7 +180,8 @@ const Cowpoke = Game({
         allowedMoves: ["pass", "discardPair"]
       },
       TrashPhase: {
-        allowedMoves: ["trash"]
+        allowedMoves: ["trash", "moveEngine"],
+        endPhaseIf: G => G.engineSpaces == 0 && G.mustTrash == 0
       },
       TeepeePhase: {
         allowedMoves: ["pass", "gainTeepee"]

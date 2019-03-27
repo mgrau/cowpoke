@@ -78,7 +78,7 @@ function auxCertificate(G, ctx, double = false) {
       gainCertificate(G.player);
       gainCertificate(G.player);
       G.engineSpaces = -2;
-      ctx.events.endPhase({ next: "EnginePhase" });
+      ctx.events.endPhase({ next: "ReverseEnginePhase" });
     }
   } else {
     if (
@@ -89,7 +89,7 @@ function auxCertificate(G, ctx, double = false) {
       G.player.money -= 1;
       gainCertificate(G.player);
       G.engineSpaces = -1;
-      ctx.events.endPhase({ next: "EnginePhase" });
+      ctx.events.endPhase({ next: "ReverseEnginePhase" });
     }
   }
 }
@@ -119,8 +119,8 @@ function auxTrash(G, ctx, double = false) {
     ) {
       G.mustTrash = 2;
       G.afterTrash = ctx.prevPhase;
-      ctx.events.endPhase({ next: "TrashPhase" });
       G.engineSpaces = -2;
+      ctx.events.endPhase({ next: "TrashPhase" });
     }
   } else {
     if (
@@ -131,8 +131,8 @@ function auxTrash(G, ctx, double = false) {
       G.mustTrash = 1;
       // This is a really ugly hack to correctly next these phases
       G.afterTrash = ctx.phase;
-      ctx.events.endPhase({ next: "TrashPhase" });
       G.engineSpaces = -1;
+      ctx.events.endPhase({ next: "TrashPhase" });
     }
   }
 }

@@ -101,8 +101,9 @@ export function moveEngine(G, ctx, destination) {
     (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
     (G.engineSpaces < 0 && distance == G.engineSpaces)
   ) {
+    
     G.player.engine = destination;
-    ctx.events.endPhase();
+    G.engineSpaces -= distance;
   }
 }
 
@@ -171,11 +172,6 @@ export function trash(G, ctx, index) {
   if (G.player.cards.hand[index] !== undefined) {
     G.player.cards.hand.splice(index, 1);
     G.mustTrash--;
-  }
-  if (G.mustTrash <= 0) {
-    // This is a really ugly hack to correctly next these phases
-    ctx.events.endPhase({ next: G.afterTrash });
-    ctx.events.endPhase({ next: "EnginePhase" });
   }
 }
 
