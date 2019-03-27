@@ -38,7 +38,11 @@ export default class CowpokeBoard extends React.Component {
     return (
       <div id="board">
         <Trains G={this.props.G} moves={this.props.moves} />
-        <JobMarket G={this.props.G} moves={this.props.moves} />
+        <JobMarket
+          G={this.props.G}
+          ctx={this.props.ctx}
+          moves={this.props.moves}
+        />
         <Trail
           G={this.props.G}
           ctx={this.props.ctx}

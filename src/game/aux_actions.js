@@ -3,11 +3,11 @@ import { gainCertificate } from "./player";
 import { trainDistance } from "./train";
 
 export var AuxAction = {
-  MONEY: 0,
-  CYCLE: 1,
-  CERTIFICATE: 2,
-  ENGINE: 3,
-  TRASH: 4
+  Money: 0,
+  Cycle: 1,
+  Cert: 2,
+  Engine: 3,
+  Trash: 4
 };
 
 export function beginAuxMove(G, ctx) {
@@ -15,15 +15,15 @@ export function beginAuxMove(G, ctx) {
 }
 
 export function auxDoubleMove(G, ctx, action) {
-  if (action === AuxAction.MONEY) {
+  if (action === AuxAction.Money) {
     auxMoney(G, ctx, true);
-  } else if (action === AuxAction.CYCLE) {
+  } else if (action === AuxAction.Cycle) {
     auxCycle(G, ctx, true);
-  } else if (action === AuxAction.CERTIFICATE) {
+  } else if (action === AuxAction.Cert) {
     auxCertificate(G, ctx, true);
-  } else if (action === AuxAction.ENGINE) {
+  } else if (action === AuxAction.Engine) {
     auxEngine(G, ctx, true);
-  } else if (action === AuxAction.TRASH) {
+  } else if (action === AuxAction.Trash) {
     auxTrash(G, ctx, true);
   }
   G.actionsPerformed = [...G.actionsPerformed, "auxDoubleMove"];
@@ -31,15 +31,15 @@ export function auxDoubleMove(G, ctx, action) {
 
 export function auxMove(G, ctx, action) {
   if (G.actionsPerformed.length === 0 || ctx.phase == "DoubleAuxPhase") {
-    if (action === AuxAction.MONEY) {
+    if (action === AuxAction.Money) {
       auxMoney(G, ctx, false);
-    } else if (action === AuxAction.CYCLE) {
+    } else if (action === AuxAction.Cycle) {
       auxCycle(G, ctx, false);
-    } else if (action === AuxAction.CERTIFICATE) {
+    } else if (action === AuxAction.Cert) {
       auxCertificate(G, ctx, false);
-    } else if (action === AuxAction.ENGINE) {
+    } else if (action === AuxAction.Engine) {
       auxEngine(G, ctx, false);
-    } else if (action === AuxAction.TRASH) {
+    } else if (action === AuxAction.Trash) {
       auxTrash(G, ctx, false);
     }
     G.actionsPerformed = [...G.actionsPerformed, "auxMove"];
@@ -70,7 +70,7 @@ function auxCycle(G, ctx, double = false) {
 function auxCertificate(G, ctx, double = false) {
   if (double) {
     if (
-      G.player.tokens.auxCertificate <= 0 &&
+      G.player.tokens.auxCert <= 0 &&
       G.player.money >= 2 &&
       -trainDistance(G, ctx, 0) >= 2
     ) {
@@ -82,7 +82,7 @@ function auxCertificate(G, ctx, double = false) {
     }
   } else {
     if (
-      G.player.tokens.auxCertificate <= 1 &&
+      G.player.tokens.auxCert <= 1 &&
       G.player.money >= 1 &&
       -trainDistance(G, ctx, 0) >= 1
     ) {

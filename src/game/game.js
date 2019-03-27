@@ -17,6 +17,7 @@ import {
   hire,
   moveEngine,
   discardCycle,
+  discardPair,
   trash,
   gainTeepee,
   gainHazard
@@ -28,6 +29,7 @@ import {
   kansasCity2,
   kansasCity3,
   kansasCitySell,
+  kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
 import {
@@ -113,11 +115,13 @@ const Cowpoke = Game({
     auxMove,
     auxDoubleMove,
     discardCycle,
+    discardPair,
     trash,
     kansasCity1,
     kansasCity2,
     kansasCity3,
     kansasCitySell,
+    kansasCityChooseToken,
     kansasCityShip,
     neutralA1,
     neutralA2,
@@ -167,14 +171,17 @@ const Cowpoke = Game({
         allowedMoves: ["discardCycle"],
         endPhaseIf: G => G.mustDiscard <= 0
       },
+      DiscardPairPhase: {
+        allowedMoves: ["pass", "discardPair"]
+      },
       TrashPhase: {
         allowedMoves: ["trash"]
       },
       TeepeePhase: {
-        allowedMoves: ["gainTeepee"]
+        allowedMoves: ["pass", "gainTeepee"]
       },
       HazardPhase: {
-        allowedMoves: ["gainHazard"]
+        allowedMoves: ["pass", "gainHazard"]
       },
       ActionPhase: {
         allowedMoves: ["end", "beginAuxMove"]
@@ -216,11 +223,15 @@ const Cowpoke = Game({
           G.actionsPerformed.includes("auxDoubleMove")
       },
       KansasCity: {
+        onPhaseBegin: (G, ctx) => {
+          G.readyToken = null;
+        },
         allowedMoves: [
           "kansasCity1",
           "kansasCity2",
           "kansasCity3",
           "kansasCitySell",
+          "kansasCityChooseToken",
           "kansasCityShip"
         ],
         next: "MovePhase",

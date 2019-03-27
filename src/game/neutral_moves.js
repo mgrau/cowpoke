@@ -163,7 +163,8 @@ export function neutralF1(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // discard pair
+    G.discardPairValue = 4;
+    ctx.events.endPhase({ next: "DiscardPairPhase" });
     G.actionsPerformed = [...G.actionsPerformed, "neutralF1"];
   }
 }
@@ -173,7 +174,10 @@ export function neutralF2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // pay 7 to take an obstacle
+    if (G.player.money >= 7) {
+      G.player.money -= 7;
+      ctx.events.endPhase({ next: "HazardPhase" });
+    }
     G.actionsPerformed = [...G.actionsPerformed, "neutralF2"];
   }
 }

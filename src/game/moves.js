@@ -2,6 +2,7 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { removeWorker } from "./job_market";
 import { trainDistance } from "./train";
+import { discard } from "./player";
 
 export function move(G, ctx, destination) {
   const currentLocation = G.player.location;
@@ -157,6 +158,15 @@ export function discardCycle(G, ctx, index) {
   }
 }
 
+export function discardPair(G, ctx, name) {
+  if (G.player.cards.hand.filter(cow => cow.name == name).length >= 2) {
+    discard(G, name);
+    discard(G, name);
+    G.player.money += G.discardPairValue;
+    ctx.events.endPhase();
+  }
+}
+
 export function trash(G, ctx, index) {
   if (G.player.cards.hand[index] !== undefined) {
     G.player.cards.hand.splice(index, 1);
@@ -171,12 +181,24 @@ export function trash(G, ctx, index) {
 
 export function gainTeepee(G, ctx, name) {
   const value = parseInt(name.slice(6));
-  if (G.player.money + value >= 0) {
+  if (
+    G.player.money + value >= 0 &&
+    name.includes("teepee") &&
+    G.trail[name].tile != null
+  ) {
     G.player.money += value;
     G.player.teepees = [G.trail[name].tile, ...G.player.teepees];
     G.trail[name].tile = null;
+    ctx.events.endPhase();
   }
-  ctx.events.endPhase();
 }
 
-export function gainHazard(G, ctx, index) {}
+export function gainHazard(G, ctx, name) {
+  if (G.trail[name].tile != null) {
+    if (G.trail[name].tile.tile == "hazard") {
+      G.player.hazards = [G.trail[name].tile, ...G.player.hazards];
+      G.trail[name].tile = null;
+      ctx.events.endPhase();
+    }
+  }
+}

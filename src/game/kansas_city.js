@@ -69,16 +69,27 @@ export function kansasCitySell(G, ctx, certificates = 0) {
   }
 }
 
+export function kansasCityChooseToken(G, ctx, token) {
+  console.log(token);
+  console.log(G.player.tokens[token]);
+  if (Object.keys(G.player.tokens).includes(token)) {
+    if (G.player.tokens[token] > 0) {
+      G.readyToken = token;
+    }
+  }
+}
+
 export function kansasCityShip(G, ctx, destination) {
   if (G.actionsPerformed.includes("kansasCityShip")) {
     console.log("already did this move");
   } else {
-    if (G.actionsPerformed.includes("kansasCitySell")) {
-      if (ship(G, ctx, destination)) {
+    if (G.actionsPerformed.includes("kansasCitySell") && G.readyToken != null) {
+      if (ship(G, ctx, destination) && G.player.tokens[G.readyToken] > 0) {
         draw(G, ctx);
         refillForesight(G);
         G.player.location = "start";
         G.actionsPerformed = [...G.actionsPerformed, "kansasCitySell"];
+        G.player.tokens[G.readyToken]--;
         ctx.events.endPhase();
       }
     }

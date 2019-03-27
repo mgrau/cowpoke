@@ -7,7 +7,14 @@ import "./css/hazard.css";
 export default class Hazard extends React.Component {
   render() {
     return (
-      <div className={"hazard " + this.props.type}>
+      <div
+        className={"hazard " + this.props.type}
+        onClick={() => {
+          if (this.props.ctx.phase == "HazardPhase") {
+            this.props.moves.gainHazard(this.props.name);
+          }
+        }}
+      >
         <div>
           <span>
             <FontAwesomeIcon icon={faHandPaper} color={this.props.hand} />
