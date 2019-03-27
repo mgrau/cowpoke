@@ -1,22 +1,24 @@
 # TODO
 
-- kansas city shipping
+- fix aux actions (trash is broken)
+- shipping should distinguish between token colors
+- job market
+  - display labor costs
+  - refill cows at appropriate points
+  - display game turn market
+    - end game?
 - player view
-  - aux actions
+  - display non aux tokens
   - see all discard contents in hover
-  - certificates
 - better railroad view
+
   - include stations
   - don't overlap at zero
   - tracks?
-- auxillary actions
+
 - player buildings
 - objectives
 
-- add visual indicator of dollar value to teepee spaces
-- add visual indicator of labor market price
 - add tooltip hover to action components
-
   - highlight available actions?
-
 - give any component that can be clicked a hover indicator
