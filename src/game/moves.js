@@ -31,8 +31,6 @@ export function stop(G, ctx) {
       console.log("can not stop here");
       // return INVALID_MOVE;
     } else {
-      console.log("ok ending phase");
-      console.log(G.trail[G.player.location].tile.name);
       switch (G.trail[G.player.location].tile.name) {
         case "KansasCity":
           ctx.events.endPhase({ next: "KansasCity" });
@@ -96,14 +94,21 @@ export function hire(G, ctx, row, col) {
 }
 
 export function moveEngine(G, ctx, destination) {
-  let distance = trainDistance(G, ctx, destination);
+  const opponents = Object.keys(G.players)
+    .filter(player => player != ctx.currentPlayer)
+    .map(player => G.players[player]);
   if (
-    (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
-    (G.engineSpaces < 0 && distance == G.engineSpaces)
+    destination == 0 ||
+    !opponents.map(player => player.engine).includes(destination)
   ) {
-    
-    G.player.engine = destination;
-    G.engineSpaces -= distance;
+    let distance = trainDistance(G, ctx, destination);
+    if (
+      (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
+      (G.engineSpaces < 0 && distance == G.engineSpaces)
+    ) {
+      G.player.engine = destination;
+      G.engineSpaces -= distance;
+    }
   }
 }
 

@@ -1,16 +1,20 @@
 export function trainDistance(G, ctx, destination) {
   let distance = destination - G.player.engine;
-  for (var i = 0; i < ctx.numPlayers; i++) {
-    if (G.players[i].playerID != ctx.currentPlayer) {
-      if (
-        G.players[i].engine > Math.min(G.player.engine, destination) &&
-        G.players[i].engine < Math.max(G.player.engine, destination)
-      ) {
-        if (distance > 0) distance--;
-        else distance++;
+  const opponents = Object.keys(G.players)
+    .filter(player => player != ctx.currentPlayer)
+    .map(player => G.players[player]);
+
+  opponents.forEach(player => {
+    if (
+      player.engine > Math.min(G.player.engine, destination) &&
+      player.engine < Math.max(G.player.engine, destination)
+    ) {
+      if (distance > 0) {
+        distance--;
+      } else {
+        distance++;
       }
     }
-  }
-  console.log({ distance: distance });
+  });
   return distance;
 }
