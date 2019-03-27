@@ -22,7 +22,7 @@ export function addSmallTile(trail, tile) {
       const space = tile.type + (i + 1);
       if (trail[space].tile == null) {
         trail[space].tile = tile;
-        console.log("placing hazard in " + space);
+        // console.log("placing hazard in " + space);
         return;
       }
     }
@@ -33,7 +33,7 @@ export function addSmallTile(trail, tile) {
     for (var i = 0; i < teepees.length; i++) {
       if (trail[teepees[i]].tile == null) {
         trail[teepees[i]].tile = tile;
-        console.log("placing teepee in " + teepees[i]);
+        // console.log("placing teepee in " + teepees[i]);
         return;
       }
     }

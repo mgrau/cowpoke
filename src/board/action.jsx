@@ -31,7 +31,6 @@ export default class Action extends React.Component {
       <div
         className={"action " + active + " " + this.props.action}
         onClick={() => {
-          console.log(this.props.action);
           this.props.moves[this.props.action]();
         }}
       >
