@@ -77,8 +77,20 @@ export default class JobMarket extends React.Component {
     return (
       <div id="foresight-market">
         <div id="foresight">{foresight}</div>
-        <div id="job-market">
-          <div id="job-market-labor">
+        <div
+          id="job-market"
+          style={{
+            gridTemplateColumns:
+              4.5 * this.props.ctx.numPlayers + -0.5 + "vh 2vh"
+          }}
+        >
+          <div
+            id="job-market-labor"
+            style={{
+              gridTemplateColumns:
+                "repeat(" + this.props.ctx.numPlayers + ", 4vh)"
+            }}
+          >
             <div
               style={{
                 gridColumn: this.props.G.jobMarket.numPlayers,

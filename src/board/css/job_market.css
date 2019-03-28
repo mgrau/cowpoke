@@ -20,13 +20,10 @@
 
 #job-market {
   display: grid;
-  /* grid-gap: 0.5vh; */
-  grid-template-columns: 13vh 2vh;
 }
 
 #job-market-labor {
   display: grid;
-  grid-template-columns: 4vh 4vh 4vh;
   grid-template-rows: repeat(12, 4vh);
   grid-gap: 0.5vh;
 }
