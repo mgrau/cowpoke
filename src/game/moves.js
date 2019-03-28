@@ -2,7 +2,7 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { removeWorker } from "./job_market";
 import { trainDistance } from "./train";
-import { discard } from "./player";
+import { discard, stepLimit, handSize } from "./player";
 
 export function move(G, ctx, destination) {
   const currentLocation = G.player.location;
@@ -23,7 +23,7 @@ export function move(G, ctx, destination) {
 }
 
 export function stop(G, ctx) {
-  if (G.movesRemaining == G.player.stepLimit) {
+  if (G.movesRemaining == stepLimit(G.player, ctx)) {
     console.log("have not moved yet");
     // return INVALID_MOVE;
   } else {
@@ -141,7 +141,7 @@ function pay_toll(G, ctx) {
 }
 
 export function draw(G, ctx) {
-  while (G.player.cards.hand.length < G.player.handSize) {
+  while (G.player.cards.hand.length < handSize(G.player)) {
     drawOne(G, ctx);
   }
 }

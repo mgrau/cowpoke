@@ -5,23 +5,21 @@ export default function Player(ctx, playerID) {
     playerID: playerID,
     name: "",
     money: 6 + parseInt(playerID),
-    stepLimit: ctx.numPlayers >= 4 ? 4 : 3,
-    handSize: 4,
     cards: StartingDeck(ctx),
     cowboys: 1,
     craftsmen: 1,
     engineers: 1,
-    location: "C",
+    location: "start",
     engine: 0,
     certificates: 0,
     teepees: [],
     hazards: [],
     tokens: {
-      auxMoney: 0,
-      auxCycle: 0,
-      auxCert: 0,
-      auxEngine: 0,
-      auxTrash: 0,
+      auxMoney: 1,
+      auxCycle: 1,
+      auxCert: 2,
+      auxEngine: 2,
+      auxTrash: 2,
       certificate1: 1,
       certificate2: 1,
       move1: 1,
@@ -51,4 +49,21 @@ export function gainCertificate(player) {
   if (!player.certificateToken1 && player.certificates > 3) {
     player.certificates = 3;
   }
+}
+
+export function stepLimit(player, ctx) {
+  // the base steplimit is 3 for 2 and 3 player games, and 4 for 4 player games
+  // the first move token increases this by 1 for 2 player games, and 2 for 3 and 4 player games
+  // the second move token always increases this by 1
+  return (
+    (ctx.numPlayers >= 4 ? 4 : 3) +
+    (player.tokens.move1 == 0 ? (ctx.numPlayers >= 3 ? 2 : 1) : 0) +
+    (player.tokens.move2 == 0 ? 1 : 0)
+  );
+}
+
+export function handSize(player) {
+  return (
+    4 + (player.tokens.hand1 == 0 ? 1 : 0) + (player.tokens.hand2 == 0 ? 1 : 0)
+  );
 }

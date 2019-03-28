@@ -139,3 +139,9 @@ export default function MarketCattle(ctx) {
     TexasLonghorn(7)
   ]);
 }
+
+export function refillCowMarket(G, ctx) {
+  while (G.cowMarket.length < 1 + 3 * ctx.numPlayers) {
+    G.cowMarket = [...G.cowMarket, G.cowDeck.pop()];
+  }
+}

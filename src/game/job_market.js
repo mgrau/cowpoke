@@ -1,3 +1,5 @@
+import { refillCowMarket } from "./cows";
+
 export default function JobMarket(ctx) {
   return {
     numPlayers: ctx.numPlayers,
@@ -8,16 +10,20 @@ export default function JobMarket(ctx) {
   };
 }
 
-export function addWorker(jobMarket, worker) {
-  jobMarket.market[
-    jobMarket.col + jobMarket.row * jobMarket.numPlayers
+export function addWorker(G, ctx, worker) {
+  G.jobMarket.market[
+    G.jobMarket.col + G.jobMarket.row * G.jobMarket.numPlayers
   ] = worker;
-  jobMarket.col++;
-  if (jobMarket.col >= jobMarket.numPlayers) {
-    jobMarket.col = 0;
-    jobMarket.row++;
+  G.jobMarket.col++;
+  if (G.jobMarket.col >= G.jobMarket.numPlayers) {
+    G.jobMarket.col = 0;
+    G.jobMarket.row++;
 
-    if (jobMarket.row >= 12) {
+    if (G.jobMarket.row == 6 || G.jobMarket.row == 9) {
+      refillCowMarket(G, ctx);
+    }
+
+    if (G.jobMarket.row >= 12) {
       console.log("End the game soon!");
     }
   }

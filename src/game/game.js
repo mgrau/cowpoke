@@ -1,13 +1,13 @@
 import { Game } from "boardgame.io/core";
 import PluginPlayer from "./plugins/plugin-player";
 
-import Player, { draw } from "./player";
+import Player, { draw, stepLimit } from "./player";
 
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
-import MarketCattle from "./cows";
+import MarketCattle, { refillCowMarket } from "./cows";
 
 import {
   move,
@@ -88,12 +88,10 @@ const Cowpoke = Game({
     }
 
     for (var i = 0; i < 2 * ctx.numPlayers - 1; i++) {
-      addWorker(G.jobMarket, G.foresight.pile2.pop());
+      addWorker(G, ctx, G.foresight.pile2.pop());
     }
 
-    for (var i = 0; i < 1 + 3 * ctx.numPlayers; i++) {
-      G.cowMarket.push(G.cowDeck.pop());
-    }
+    refillCowMarket(G, ctx);
 
     return G;
   },
@@ -147,7 +145,7 @@ const Cowpoke = Game({
     phases: {
       MovePhase: {
         onPhaseBegin: (G, ctx) => {
-          G.movesRemaining = G.player.stepLimit;
+          G.movesRemaining = stepLimit(G.player, ctx);
           return G;
         },
         onPhaseEnd: (G, ctx) => {

@@ -28,7 +28,7 @@ export function kansasCity2(G, ctx, index) {
     ) {
       const tile = G.foresight.foresight2.splice(index, 1)[0];
       if (tile.tile == "worker") {
-        addWorker(G.jobMarket, tile);
+        addWorker(G, ctx, tile);
       } else {
         addSmallTile(G.trail, tile);
       }
@@ -47,7 +47,7 @@ export function kansasCity3(G, ctx, index) {
     ) {
       const tile = G.foresight.foresight3.splice(index, 1)[0];
       if (tile.tile == "worker") {
-        addWorker(G.jobMarket, tile);
+        addWorker(G, ctx, tile);
       } else {
         addSmallTile(G.trail, tile);
       }
