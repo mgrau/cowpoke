@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Teepee from "./teepee";
 import Hazard from "./hazard";
+import { Money, Points } from "./symbols";
 import "./css/job_market.css";
 
 export default class JobMarket extends React.Component {
@@ -69,11 +70,30 @@ export default class JobMarket extends React.Component {
         {this.makeTile(worker)}
       </div>
     ));
+    const prices = this.props.G.jobMarket.cost.map((cost, index) => (
+      <Money key={index} $={cost} />
+    ));
 
     return (
       <div id="foresight-market">
         <div id="foresight">{foresight}</div>
-        <div id="job-market">{market}</div>
+        <div id="job-market">
+          <div id="job-market-labor">
+            <div
+              style={{
+                gridColumn: this.props.G.jobMarket.numPlayers,
+                gridRow: this.props.G.jobMarket.row + 1
+              }}
+              id="job-market-token"
+            >
+              <div>
+                <Points vp={2} />
+              </div>
+            </div>
+            {market}
+          </div>
+          <div id="job-market-prices">{prices}</div>
+        </div>
       </div>
     );
   }
