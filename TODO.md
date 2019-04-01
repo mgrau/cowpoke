@@ -7,8 +7,9 @@
 - job market
   - end game condition
 - scoring
-  
+
 - better railroad view
+
   - include stations
   - include station masters
 
@@ -43,3 +44,12 @@
 - train
   - overlap at zero
   - tracks
+
+## BJ Comments
+
+- put shipping value numbers on cities
+- enable the players to choose to start in any loication on first turn
+- make dual actions (e.g., certificate or objective) individually highlighted
+- make the cow actions hoverable and show when slected, make it clear when one has been selected.
+- put point symbols between cities
+- mark cow reshuffles on labor market
