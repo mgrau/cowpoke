@@ -32,15 +32,15 @@
       rgb(221, 220, 163) 33%,
       rgba(0, 0, 0, 0) 33%
     ),
-    linear-gradient(180deg, rgb(212, 164, 164) 66%, rgb(168, 168, 223) 66%);
+    linear-gradient(180deg, rgb(245, 172, 172) 66%, rgb(149, 181, 248) 66%);
 }
 
 .cow4 {
   border: 0.25vh solid var(--west-highland-color);
-  background-color: rgb(236, 215, 201);
+  background-color: rgb(211, 194, 187);
 }
 
 .cow5 {
   border: 0.25vh solid var(--texas-longhorn-color);
-  background-color: rgb(235, 201, 236);
+  background-color: rgb(211, 187, 250);
 }
