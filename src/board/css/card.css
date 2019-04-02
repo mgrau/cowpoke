@@ -10,7 +10,11 @@
   background-color: var(--card-background);
   border-radius: 0.5vh;
   font-weight: bold;
-  font-size: 1.25vh;
+  font-size: 1.5vh;
+}
+
+.card .value {
+  font-size: 1.2vh;
 }
 
 .card.Jersey {
