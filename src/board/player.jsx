@@ -84,14 +84,68 @@ export default class Player extends React.Component {
     return (
       <div className={"player " + ("player" + this.props.playerID)}>
         <div className="player-header">
-          <span>Player {this.props.playerID}</span>
-          <span>
-            <Money $={this.props.money} />
-          </span>
+          Moves:
+          <Token
+            key={"move1"}
+            name={"move1"}
+            empty={this.props.tokens.move1 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            black={true}
+          />
+          <Token
+            key={"move2"}
+            name={"move2"}
+            empty={this.props.tokens.move2 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            black={true}
+          />
+          Hand:
+          <Token
+            key={"hand1"}
+            name={"hand1"}
+            empty={this.props.tokens.hand1 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            black={true}
+          />
+          <Token
+            key={"hand2"}
+            name={"hand2"}
+            empty={this.props.tokens.hand2 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            black={true}
+          />
           <span>
             <Certificate spaces={this.props.certificates} />
           </span>
           /{max_certificates}
+          <Token
+            key={"certificate1"}
+            name={"certificate1"}
+            empty={this.props.tokens.certificate1 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+          />
+          <Token
+            key={"certificate2"}
+            name={"certificate2"}
+            empty={this.props.tokens.certificate2 <= 0}
+            playerID={this.props.playerID}
+            ctx={this.props.ctx}
+            moves={this.props.moves}
+            black={true}
+          />
+          <span>
+            <Money $={this.props.money} />
+          </span>
         </div>
         <AuxTokens
           playerID={this.props.playerID}
@@ -157,7 +211,9 @@ class AuxTokens extends React.Component {
 class Token extends React.Component {
   render() {
     return (
-      <div className="player-token">
+      <div
+        className={"player-token " + (this.props.black == true ? "black" : "")}
+      >
         <div
           onClick={() => {
             if (this.props.empty) {

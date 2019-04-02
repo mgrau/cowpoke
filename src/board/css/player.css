@@ -95,6 +95,10 @@
   justify-items: center;
 }
 
+.player-token.black {
+  background-color: rgb(56, 56, 56);
+}
+
 .player-token > div {
   width: 1.5vh;
   height: 1.5vh;

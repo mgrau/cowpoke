@@ -82,7 +82,10 @@ export function kansasCityShip(G, ctx, destination) {
     console.log("already did this move");
   } else {
     if (G.actionsPerformed.includes("kansasCitySell") && G.readyToken != null) {
-      if (ship(G, ctx, destination) && G.player.tokens[G.readyToken] > 0) {
+      if (
+        ship(G, ctx, destination, G.readyToken) &&
+        G.player.tokens[G.readyToken] > 0
+      ) {
         draw(G, ctx);
         refillForesight(G);
         G.player.location = "start";

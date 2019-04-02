@@ -22,7 +22,12 @@ function City(distance, black = false, multiple = false) {
   };
 }
 
-export function ship(G, ctx, destination) {
+export function ship(G, ctx, destination, token) {
+  if (["certificate2", "move1", "move2", "hand1", "hand2"].includes(token)) {
+    if (!G.cities[destination].black) {
+      return false;
+    }
+  }
   if (!destination in G.cities) {
     return false;
   }
