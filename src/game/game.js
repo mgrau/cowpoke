@@ -142,16 +142,14 @@ const Cowpoke = Game({
     endPhase: false,
     startingPhase: "MovePhase",
     onTurnBegin: (G, ctx) => {
+      G.movesRemaining = stepLimit(G.player, ctx);
       if (G.gameEndPlayer == ctx.currentPlayer) {
         return ctx.events.endGame();
       }
+      return G;
     },
     phases: {
       MovePhase: {
-        onPhaseBegin: (G, ctx) => {
-          G.movesRemaining = stepLimit(G.player, ctx);
-          return G;
-        },
         onPhaseEnd: (G, ctx) => {
           G.actionsPerformed = [];
           return G;
