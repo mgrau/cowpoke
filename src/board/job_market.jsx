@@ -65,14 +65,35 @@ export default class JobMarket extends React.Component {
         {this.makeTile(this.props.G.foresight.foresight3[1])}
       </div>
     ];
-    const market = this.props.G.jobMarket.market.map((worker, index) => (
-      <div key={index} onClick={() => this.hire(index)}>
-        {this.makeTile(worker)}
-      </div>
-    ));
+    const market = this.props.G.jobMarket.market.map((worker, index) =>
+      index < 12 * this.props.G.jobMarket.numPlayers ? (
+        <div key={index} onClick={() => this.hire(index)}>
+          {this.makeTile(worker)}
+        </div>
+      ) : (
+        ""
+      )
+    );
     const prices = this.props.G.jobMarket.cost.map((cost, index) => (
       <Money key={index} $={cost} />
     ));
+
+    const token =
+      this.props.G.jobMarket.row >= 12 ? (
+        ""
+      ) : (
+        <div
+          style={{
+            gridColumn: this.props.G.jobMarket.numPlayers,
+            gridRow: this.props.G.jobMarket.row + 1
+          }}
+          id="job-market-token"
+        >
+          <div>
+            <Points vp={2} />
+          </div>
+        </div>
+      );
 
     return (
       <div id="foresight-market">
@@ -91,17 +112,7 @@ export default class JobMarket extends React.Component {
                 "repeat(" + this.props.ctx.numPlayers + ", 4vh)"
             }}
           >
-            <div
-              style={{
-                gridColumn: this.props.G.jobMarket.numPlayers,
-                gridRow: this.props.G.jobMarket.row + 1
-              }}
-              id="job-market-token"
-            >
-              <div>
-                <Points vp={2} />
-              </div>
-            </div>
+            {token}
             {market}
           </div>
           <div id="job-market-prices">{prices}</div>
