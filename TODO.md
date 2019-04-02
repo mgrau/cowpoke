@@ -3,18 +3,12 @@
 # gameplay
 
 - shipping should distinguish between token colors
-  - ship non aux tokens
-- job market
-  - end game condition
-- scoring
-
-- better railroad view
-
-  - include stations
-  - include station masters
-
+  - award 6\$ for shipping to kansas city
+- game end tasks
+  - scoring
+- include station masters
 - player buildings
-- objectives
+- objective cards
 - risk actions
 - hiring actions
   - gain hazard at 4 cowboys
@@ -28,28 +22,25 @@
   - discard a jersey for 4\$ at 6 engineers
   - check for maximum number of workers when hiring
   - check for minimum number of workers (stationmaster)
+- prevent hiring of a 7th worker
 
 # view
 
 - player
-
-  - display non aux tokens
   - show all of discard contents on hover
-
+- better railroad view
+  - include stations
+- job market
+  - display cow market refresh markers
 - add tooltip hover to action components
   - highlight available actions?
   - give any component that can be clicked a hover indicator
+  - make dual actions (e.g., certificate or objective) individually highlighted
 - cities
   - display value required to ship
+  - put point symbols between cities
 - train
-  - overlap at zero
+  - fix train overlap at zero
   - tracks
-
-## BJ Comments
-
-- put shipping value numbers on cities
-- enable the players to choose to start in any loication on first turn
-- make dual actions (e.g., certificate or objective) individually highlighted
-- make the cow actions hoverable and show when slected, make it clear when one has been selected.
-- put point symbols between cities
-- mark cow reshuffles on labor market
+- cow market
+  - make actions hoverable, and show which has been selected.
