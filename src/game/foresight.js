@@ -121,3 +121,13 @@ export default function Foresight(ctx) {
     pile3: pile3
   };
 }
+
+export function emptyWorkers(G) {
+  const f = tile => tile == undefined || tile.tile != "worker";
+  G.foresight.pile1 = G.foresight.pile1.filter(f);
+  G.foresight.pile2 = G.foresight.pile3.filter(f);
+  G.foresight.pile3 = G.foresight.pile3.filter(f);
+  G.foresight.foresight1 = G.foresight.foresight1.filter(f);
+  G.foresight.foresight2 = G.foresight.foresight2.filter(f);
+  G.foresight.foresight3 = G.foresight.foresight3.filter(f);
+}

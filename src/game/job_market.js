@@ -1,4 +1,5 @@
 import { refillCowMarket } from "./cows";
+import { emptyWorkers } from "./foresight";
 
 export default function JobMarket(ctx) {
   return {
@@ -21,6 +22,11 @@ export function addWorker(G, ctx, worker) {
 
     if (G.jobMarket.row == 6 || G.jobMarket.row == 9) {
       refillCowMarket(G, ctx);
+    }
+
+    if (G.jobMarket.row >= 12 && G.gameEndPlayer == undefined) {
+      G.gameEndPlayer = ctx.currentPlayer;
+      emptyWorkers(G);
     }
   }
 }
