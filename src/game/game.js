@@ -244,9 +244,6 @@ const Cowpoke = Game({
         ],
         next: "MovePhase",
         onPhaseEnd: (G, ctx) => {
-          if (G.jobMarket.row >= 12 && G.gameEndPlayer == undefined) {
-            G.gameEndPlayer = ctx.currentPlayer;
-          }
           ctx.events.endTurn();
           return G;
         }
