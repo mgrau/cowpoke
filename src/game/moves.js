@@ -5,19 +5,26 @@ import { trainDistance } from "./train";
 import { discard, stepLimit, handSize } from "./player";
 
 export function move(G, ctx, destination) {
-  const currentLocation = G.player.location;
-  if (G.movesRemaining <= 0) {
-    console.log("no moves remaining");
-    // return INVALID_MOVE;
+  if (
+    ctx.turn == ctx.currentPlayer &&
+    ctx.stats.turn.numMoves[ctx.currentPlayer] == undefined
+  ) {
+    G.player.location = destination;
   } else {
-    if (!isAdjacent(G.trail, currentLocation, destination)) {
-      console.log("that space is not adjacent");
+    const currentLocation = G.player.location;
+    if (G.movesRemaining <= 0) {
+      console.log("no moves remaining");
       // return INVALID_MOVE;
     } else {
-      G.player.location = destination;
-      if (G.trail[destination].tile != null) G.movesRemaining--;
+      if (!isAdjacent(G.trail, currentLocation, destination)) {
+        console.log("that space is not adjacent");
+        // return INVALID_MOVE;
+      } else {
+        G.player.location = destination;
+        if (G.trail[destination].tile != null) G.movesRemaining--;
 
-      pay_toll(G, ctx);
+        pay_toll(G, ctx);
+      }
     }
   }
 }
