@@ -22,10 +22,6 @@ export function addWorker(G, ctx, worker) {
     if (G.jobMarket.row == 6 || G.jobMarket.row == 9) {
       refillCowMarket(G, ctx);
     }
-
-    if (G.jobMarket.row >= 12) {
-      console.log("End the game soon!");
-    }
   }
 }
 

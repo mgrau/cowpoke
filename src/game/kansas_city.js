@@ -7,7 +7,7 @@ export function kansasCity1(G, ctx, index) {
   if (G.actionsPerformed.includes("kansasCity1")) {
     console.log("already did this move");
   } else {
-    if (G.foresight.foresight1.length == 2) {
+    if (!G.foresight.foresight1.every(tile => tile == null)) {
       const tile = G.foresight.foresight1.splice(index, 1)[0];
       if (tile.tile == "worker") {
       } else {
@@ -22,15 +22,14 @@ export function kansasCity2(G, ctx, index) {
   if (G.actionsPerformed.includes("kansasCity2")) {
     console.log("already did this move");
   } else {
-    if (
-      G.foresight.foresight2.length == 2 &&
-      G.actionsPerformed.includes("kansasCity1")
-    ) {
-      const tile = G.foresight.foresight2.splice(index, 1)[0];
-      if (tile.tile == "worker") {
-        addWorker(G, ctx, tile);
-      } else {
-        addSmallTile(G.trail, tile);
+    if (G.actionsPerformed.includes("kansasCity1")) {
+      if (!G.foresight.foresight2.every(tile => tile == null)) {
+        const tile = G.foresight.foresight2.splice(index, 1)[0];
+        if (tile.tile == "worker") {
+          addWorker(G, ctx, tile);
+        } else {
+          addSmallTile(G.trail, tile);
+        }
       }
       G.actionsPerformed = [...G.actionsPerformed, "kansasCity2"];
     }
@@ -41,15 +40,14 @@ export function kansasCity3(G, ctx, index) {
   if (G.actionsPerformed.includes("kansasCity3")) {
     console.log("already did this move");
   } else {
-    if (
-      G.foresight.foresight3.length == 2 &&
-      G.actionsPerformed.includes("kansasCity2")
-    ) {
-      const tile = G.foresight.foresight3.splice(index, 1)[0];
-      if (tile.tile == "worker") {
-        addWorker(G, ctx, tile);
-      } else {
-        addSmallTile(G.trail, tile);
+    if (G.actionsPerformed.includes("kansasCity2")) {
+      if (!G.foresight.foresight3.every(tile => tile == null)) {
+        const tile = G.foresight.foresight3.splice(index, 1)[0];
+        if (tile.tile == "worker") {
+          addWorker(G, ctx, tile);
+        } else {
+          addSmallTile(G.trail, tile);
+        }
       }
       G.actionsPerformed = [...G.actionsPerformed, "kansasCity3"];
     }
