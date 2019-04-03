@@ -2,10 +2,8 @@
 
 # gameplay
 
-- shipping should distinguish between token colors
-  - award 6\$ for shipping to kansas city
-- game end tasks
-  - scoring
+- award 6\$ for shipping to kansas city
+- scoring
 - include station masters
 - player buildings
 - objective cards
