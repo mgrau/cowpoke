@@ -1,7 +1,7 @@
 import { Game } from "boardgame.io/core";
 import PluginPlayer from "./plugins/plugin-player";
 
-import Player, { draw, stepLimit } from "./player";
+import Player, { stepLimit } from "./player";
 
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
@@ -59,8 +59,8 @@ import {
   neutralG
 } from "./buildings";
 
-const Cowpoke = Game({
-  name: "Great Western Trail",
+export const Cowpoke = Game({
+  name: "cowpoke",
   setup: ctx => {
     const G = {
       trail: Trail(),
@@ -250,5 +250,3 @@ const Cowpoke = Game({
   },
   plugins: [PluginPlayer]
 });
-
-export default Cowpoke;

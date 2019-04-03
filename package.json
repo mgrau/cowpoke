@@ -5,7 +5,8 @@
   "main": "index.jsx",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --public-url /cowpoke/",
+    "server": "node -r esm src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
@@ -19,7 +20,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "boardgame.io": "^0.31.3",
+    "boardgame.io": "^0.31.4",
+    "esm": "^3.2.22",
     "parcel": "^1.12.3",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
