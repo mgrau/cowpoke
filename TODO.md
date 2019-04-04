@@ -44,3 +44,9 @@
   - tracks
 - cow market
   - make actions hoverable, and show which has been selected.
+
+# bugs
+
+- Don't allow other players to Undo
+- cow buying index bug
+- on first turn should be able to move 0 spaces.
