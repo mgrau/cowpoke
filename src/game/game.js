@@ -61,6 +61,8 @@ import {
 
 export const Cowpoke = Game({
   name: "cowpoke",
+  minPlayers: 2,
+  maxPlayers: 4,
   setup: ctx => {
     const G = {
       trail: Trail(),
