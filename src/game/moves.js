@@ -30,7 +30,10 @@ export function move(G, ctx, destination) {
 }
 
 export function stop(G, ctx) {
-  if (G.movesRemaining == stepLimit(G.player, ctx)) {
+  if (
+    G.movesRemaining == stepLimit(G.player, ctx) &&
+    !(ctx.turn == ctx.currentPlayer) // and not the first turn
+  ) {
     console.log("have not moved yet");
     // return INVALID_MOVE;
   } else {
