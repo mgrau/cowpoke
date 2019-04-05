@@ -9,7 +9,9 @@ export default class Card extends React.Component {
     return (
       <div
         className={"card " + this.props.name.replace(/ /g, "")}
-        onClick={() => this.props.discard()}
+        onClick={() =>
+          this.props.discard == undefined ? "" : this.props.discard()
+        }
       >
         <div className="value">{this.props.value}</div>
         {points}

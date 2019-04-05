@@ -27,14 +27,15 @@ export default class CowMarket extends React.Component {
       } else {
         if (this.state.secondCow == null) {
           this.props.moves.cowBuy(this.state.value, this.state.price, index);
+          this.setState({ buy: false });
         } else {
           this.props.moves.cowBuy(this.state.value, this.state.price, [
             index,
             this.state.secondCow
           ]);
           this.setState({ secondCow: null });
+          this.setState({ buy: false });
         }
-        this.setState({ buy: false });
       }
     }
   }
@@ -47,9 +48,10 @@ export default class CowMarket extends React.Component {
         ""
       );
     const market = this.props.G.cowMarket
+      .map((card, index) => ({ ...card, index }))
       .sort(cowCompare)
-      .map((card, index) => (
-        <span key={index} onClick={() => this.buy(index)}>
+      .map(card => (
+        <span key={card.index} onClick={() => this.buy(card.index)}>
           <Card {...card} />
         </span>
       ));
