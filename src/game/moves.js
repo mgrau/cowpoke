@@ -4,11 +4,13 @@ import { removeWorker } from "./job_market";
 import { trainDistance } from "./train";
 import { discard, stepLimit, handSize } from "./player";
 import { neutralMove } from "./neutral_moves";
+import { privateMove } from "./private_moves";
 
 export function move(G, ctx, destination) {
   if (
-    ctx.turn == ctx.currentPlayer &&
-    ctx.stats.turn.numMoves[ctx.currentPlayer] == undefined
+    true ||
+    (ctx.turn == ctx.currentPlayer &&
+      ctx.stats.turn.numMoves[ctx.currentPlayer] == undefined)
   ) {
     G.player.location = destination;
   } else {
@@ -44,8 +46,11 @@ export function stop(G, ctx) {
       // return INVALID_MOVE;
     } else if (tile.name.includes("neutral")) {
       ctx.events.endPhase({ next: "NeutralPhase" });
-    } else if (tile.name.includes("private")) {
-      ctx.eventes.endPhase({ next: "PrivatePhase" });
+    } else if (
+      tile.name.includes("private") &&
+      tile.owner == ctx.currentPlayer
+    ) {
+      ctx.events.endPhase({ next: "PrivatePhase" });
     } else if (tile.name === "KansasCity") {
       ctx.events.endPhase({ next: "KansasCity" });
     } else {
@@ -96,6 +101,9 @@ export function buildingMove(G, ctx, index) {
   if (building.includes("neutral")) {
     neutralMove(G, ctx, building + index);
   }
+  if (building.includes("private")) {
+    privateMove(G, ctx, building + index);
+  }
 }
 
 export function hire(G, ctx, row, col) {
@@ -118,31 +126,45 @@ export function hire(G, ctx, row, col) {
   ctx.events.endPhase();
 }
 
-export function build(G, ctx, buildingName, location) {
-  if (G.trail[location].build) {
-    if (
-      G.trail[location].tile == null ||
-      G.trail[location].tile.owner == ctx.currentPlayer
-    ) {
+export function build(G, ctx, location) {
+  if (G.selectedBuilding != null) {
+    if (G.trail[location].build) {
       if (
-        G.buildings.map(building => building.name).includes(buildingName) &&
-        !G.player.built.includes(buildingName)
+        G.buildings
+          .map(building => building.name)
+          .includes(G.selectedBuilding) &&
+        !G.player.built.includes(G.selectedBuilding)
       ) {
-        const building = G.buildings.find(
-          building => building.name == buildingName
-        );
         if (
-          G.player.money >= 2 * building.craftsmen &&
-          G.player.craftsmen >= building.craftsmen
+          G.trail[location].tile == null ||
+          G.trail[location].tile.owner == ctx.currentPlayer
         ) {
-          G.player.built = [...G.player.built, buildingName];
-          G.player.money -= 2 * building.craftsmen;
-          G.trail[location].tile = building;
-          G.trail[location].tile.owner = ctx.currentPlayer;
-          ctx.events.endPhase();
+          const building = G.buildings.find(
+            building => building.name == G.selectedBuilding
+          );
+          if (
+            G.player.money >= G.buildCost * building.craftsmen &&
+            G.player.craftsmen >= building.craftsmen
+          ) {
+            G.player.built = [...G.player.built, G.selectedBuilding];
+            G.player.money -= G.buildCost * building.craftsmen;
+            G.trail[location].tile = building;
+            G.trail[location].tile.owner = ctx.currentPlayer;
+            G.selectedBuilding = null;
+            ctx.events.endPhase();
+          }
         }
       }
     }
+  }
+}
+
+export function selectBuilding(G, ctx, buildingName) {
+  if (
+    G.buildings.map(building => building.name).includes(buildingName) &&
+    !G.player.built.includes(buildingName)
+  ) {
+    G.selectedBuilding = buildingName;
   }
 }
 

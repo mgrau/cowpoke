@@ -3,8 +3,10 @@ import React from "react";
 import {
   Separator,
   Or,
+  And,
   Card,
   Money,
+  Cattleman,
   Worker,
   Building,
   Train,
@@ -201,6 +203,135 @@ function get_content(action, moves) {
           <Separator />
           <Money $={2} />
         </div>
+      </div>
+    );
+  } else if (action === "private2a0") {
+    return (
+      <div>
+        <Card cow="Guernsey" />
+        <Money $={4} />
+      </div>
+    );
+  } else if (action === "private2a1") {
+    return (
+      <div>
+        <Cow />
+      </div>
+    );
+  } else if (action === "private3a0") {
+    return (
+      <div>
+        <Pair />
+        <Money $={3} />
+      </div>
+    );
+  } else if (action === "private3a1") {
+    return (
+      <div>
+        <Cattleman spaces={1} />
+      </div>
+    );
+  } else if (action === "private4a0") {
+    return (
+      <div>
+        <Hazard />
+        <Money $={-5} />
+      </div>
+    );
+  } else if (action === "private4a1") {
+    return (
+      <div>
+        <Cattleman spaces={2} />
+      </div>
+    );
+  } else if (action === "private5a0") {
+    return (
+      <div>
+        <Worker />
+        <Money $={1} />
+      </div>
+    );
+  } else if (action === "private5a1") {
+    return (
+      <div>
+        <div className="row">
+          <Worker type="engineer" />
+          <Separator />
+        </div>
+        <Train spaces={1} />
+      </div>
+    );
+  } else if (action === "private6a0") {
+    return (
+      <div>
+        <Card cow="Holstein" />
+        <Money $={10} />
+      </div>
+    );
+  } else if (action === "private6a1") {
+    return (
+      <div>
+        <Auxillary />
+      </div>
+    );
+  } else if (action === "private7a0") {
+    return (
+      <div>
+        <div className="row">
+          <Teepee color="green" />
+          <And />
+          <Teepee color="blue" />
+        </div>
+        <div className="row">
+          <Separator />
+          <Certificate spaces={2} />
+          <And />
+          <Money $={2} />
+        </div>
+      </div>
+    );
+  } else if (action === "private8a0") {
+    return (
+      <div>
+        <div onClick={() => moves["buildingMove"]("0a")} className="subAction">
+          <Teepee />
+        </div>
+
+        <Or />
+        <div onClick={() => moves["buildingMove"]("0b")} className="subAction">
+          <Auxillary />
+        </div>
+      </div>
+    );
+  } else if (action === "private8a1") {
+    return (
+      <div>
+        <Train spaces={2} />
+      </div>
+    );
+  } else if (action === "private9a0") {
+    return (
+      <div>
+        <Train spaces={3} />
+      </div>
+    );
+  } else if (action === "private9a1") {
+    return (
+      <div>
+        <Train spaces={"-X"} />
+        <div style={{ fontSize: "50%", color: "black" }}>deliver X</div>
+      </div>
+    );
+  } else if (action === "private10a0") {
+    return (
+      <div style={{ fontSize: "150%" }}>
+        <Certificate spaces={"6"} />
+      </div>
+    );
+  } else if (action === "private10a1") {
+    return (
+      <div>
+        <Cattleman spaces={5} />
       </div>
     );
   } else {

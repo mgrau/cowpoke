@@ -14,6 +14,7 @@ import {
   buildingMove,
   hire,
   build,
+  selectBuilding,
   moveEngine,
   discardCycle,
   discardPair,
@@ -124,6 +125,7 @@ export const Cowpoke = Game({
     end,
     hire,
     build,
+    selectBuilding,
     moveEngine,
     gainTeepee,
     gainHazard,
@@ -167,7 +169,7 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "hire"]
       },
       BuildPhase: {
-        allowedMoves: ["pass", "build"]
+        allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
         allowedMoves: ["pass", "moveEngine"],

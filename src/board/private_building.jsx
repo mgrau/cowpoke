@@ -6,10 +6,11 @@ import "./css/private_building.css";
 
 export default class PrivateBuilding extends React.Component {
   render() {
-    const actions = this.props.actions.map((action, index) => (
+    const actions = [...Array(this.props.actions).keys()].map(index => (
       <Action
         key={index}
-        action={action}
+        building={this.props.name}
+        index={index}
         moves={this.props.moves}
         G={this.props.G}
         ctx={this.props.ctx}
@@ -21,7 +22,6 @@ export default class PrivateBuilding extends React.Component {
           <div className={"body"}>
             {this.props.craftsmen}
             <Worker type={"craftsman"} />
-            {/* {this.props.name.replace(/private/g, "")} */}
             <Points vp={this.props.points} />
           </div>
           <div className={"actions"}>{actions}</div>

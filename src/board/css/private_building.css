@@ -9,19 +9,23 @@
   top: -100%;
 }
 
-.private.player0 {
+.private.player0,
+.private.player0 .cattleman {
   background-color: var(--player0-color);
 }
 
-.private.player1 {
+.private.player1,
+.private.player1 .cattleman {
   background: var(--player1-color);
 }
 
-.private.player2 {
+.private.player2,
+.private.player2 .cattleman {
   background: var(--player2-color);
 }
 
-.private.player3 {
+.private.player3,
+.private.player3 .cattleman {
   background: var(--player3-color);
 }
 
@@ -29,8 +33,6 @@
   background-color: rgb(63, 63, 63);
   height: 100%;
   border-radius: 0.5vh;
-  /* display: flex;
-    flex-direction: column; */
 }
 
 .private .body {
@@ -47,4 +49,20 @@
 
 .private > div > div > div {
   flex-grow: 1;
+}
+
+.private.player0 .building {
+  color: var(--player0-color);
+}
+
+.private.player1 .building {
+  color: var(--player1-color);
+}
+
+.private.player2 .building {
+  color: var(--player2-color);
+}
+
+.private.player3 .building {
+  color: var(--player3-color);
 }

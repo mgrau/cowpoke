@@ -1,9 +1,8 @@
 @import url("./colors.css");
 
 #board {
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 6fr 6fr;
+  grid-template-columns: 1fr 1fr 6fr 1fr 6fr;
   grid-gap: 1vh;
   font-family: arial;
   font-size: 1.75vh;
@@ -17,7 +16,7 @@
 }
 #board-spacer {
   grid-row: 1/4;
-  grid-column: 4;
+  grid-column: 5;
   border: none !important;
   box-shadow: none !important;
 }
@@ -44,6 +43,11 @@
 
 #board-players {
   grid-column: 3;
+}
+
+#building-selection {
+  grid-row: 1 / 4;
+  grid-column: 4;
 }
 
 #board-info {

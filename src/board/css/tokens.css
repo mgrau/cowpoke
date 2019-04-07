@@ -5,40 +5,22 @@
   text-align: left;
 }
 
-.cattleman:hover {
+.tokens .cattleman:hover {
   opacity: 0.25;
 }
 
 .tokens > div {
-  height: 100%;
-  padding-top: 10%;
-  padding-left: 10%;
-  line-height: 0;
+  height: 80%;
+  padding: 10%;
+  display: grid;
 }
 
-.cattleman {
-  height: 1.5vh;
-  width: 1.5vh;
-  border-radius: 50%;
-  border: 1px black solid;
-  display: inline-block;
-  margin-bottom: -0.75vh;
-  position: relative;
-  z-index: 1;
+.nobuild .tokens > div {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
-.cattleman-player-0 {
-  background-color: var(--player0-color);
-}
-
-.cattleman-player-1 {
-  background-color: var(--player1-color);
-}
-
-.cattleman-player-2 {
-  background-color: var(--player2-color);
-}
-
-.cattleman-player-3 {
-  background-color: var(--player3-color);
+.build .tokens > div {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
 }

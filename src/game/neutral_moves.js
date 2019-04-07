@@ -88,6 +88,7 @@ function neutralB0(G, ctx) {
 }
 
 function neutralB1(G, ctx) {
+  G.buildCost = 2;
   ctx.events.endPhase({ next: "BuildPhase" });
 }
 

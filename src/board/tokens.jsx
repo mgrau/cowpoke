@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Cattleman } from "./symbols";
 import "./css/tokens.css";
 
 export default class Tokens extends React.Component {
@@ -10,10 +10,7 @@ export default class Tokens extends React.Component {
           {Object.values(this.props.players)
             .filter(player => player.location === this.props.location)
             .map(player => (
-              <span
-                className={"cattleman cattleman-player-" + player.playerID}
-                key={player.playerID}
-              />
+              <Cattleman key={player.playerID} player={player.playerID} />
             ))}
         </div>
       </div>

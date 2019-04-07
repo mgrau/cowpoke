@@ -3,6 +3,7 @@ import Trains from "./trains";
 import JobMarket from "./job_market";
 import Trail from "./trail";
 import Player from "./player";
+import BuildingSelection from "./building_selection";
 import CowMarket from "./cow_market";
 import { Stop, Pass, End, Undo } from "./buttons";
 
@@ -51,6 +52,11 @@ export default class CowpokeBoard extends React.Component {
           id="board-trail"
         />
         <div id="board-players">{players}</div>
+        <BuildingSelection
+          G={this.props.G}
+          ctx={this.props.ctx}
+          moves={this.props.moves}
+        />
         <CowMarket {...this.props} />
         <div id="board-info">
           <div className={"current-player-" + player.playerID}>

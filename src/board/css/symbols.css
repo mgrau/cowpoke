@@ -7,7 +7,8 @@
   font-family: Varela;
 }
 
-.or {
+.or,
+.and {
   font-size: 75%;
   color: black;
   font-weight: bold;
@@ -42,6 +43,33 @@
   font-size: 75%;
   color: white;
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.cattleman {
+  height: 1.5vh;
+  width: 1.5vh;
+  border-radius: 50%;
+  border: 1px black solid;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cattleman-player-0 {
+  background-color: var(--player0-color);
+}
+
+.cattleman-player-1 {
+  background-color: var(--player1-color);
+}
+
+.cattleman-player-2 {
+  background-color: var(--player2-color);
+}
+
+.cattleman-player-3 {
+  background-color: var(--player3-color);
 }
 
 .symbol-card {
@@ -119,6 +147,9 @@
 .building {
   color: rgb(57, 63, 75);
   font-size: 150%;
+  border-radius: 0.5vh;
+  display: flex;
+  align-items: center;
 }
 
 .train {
@@ -127,10 +158,15 @@
 }
 
 .train .train-forward {
-  color: rgb(13, 104, 48);
+  position: relative;
+  left: -15%;
+  color: rgb(12, 180, 77);
 }
 
 .train .train-backwards {
+  position: relative;
+  left: 15%;
+  z-index: 1;
   color: rgb(219, 48, 26);
 }
 
@@ -173,6 +209,22 @@
   font-size: 75%;
   border-radius: 0.25vh;
   padding: 0.25vh;
+}
+
+.symbol-teepee.green {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(31, 187, 39),
+    rgb(31, 187, 39)
+  );
+}
+
+.symbol-teepee.blue {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(60, 77, 235),
+    rgb(60, 77, 235)
+  );
 }
 
 .cow {

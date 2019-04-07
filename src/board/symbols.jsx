@@ -32,6 +32,12 @@ export class Or extends React.Component {
   }
 }
 
+export class And extends React.Component {
+  render() {
+    return <div className="and">+</div>;
+  }
+}
+
 export class Money extends React.Component {
   render() {
     return (
@@ -61,6 +67,16 @@ export class Points extends React.Component {
           <span className="fa-layers-text fa-inverse">{this.props.vp}</span>
         </span>
       </div>
+    );
+  }
+}
+
+export class Cattleman extends React.Component {
+  render() {
+    return (
+      <span className={"cattleman cattleman-player-" + this.props.player}>
+        {this.props.spaces}
+      </span>
     );
   }
 }
@@ -205,7 +221,7 @@ export class Auxillary extends React.Component {
 export class Teepee extends React.Component {
   render() {
     return (
-      <div className="symbol-teepee">
+      <div className={"symbol-teepee " + this.props.color}>
         <FontAwesomeIcon icon={faCampground} />
       </div>
     );

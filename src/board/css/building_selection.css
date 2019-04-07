@@ -1,0 +1,17 @@
+#building-selection {
+  /* visibility: hidden; */
+  display: grid;
+  grid-template-columns: 9vh 9vh;
+  grid-template-rows: repeat(5, 9vh);
+  grid-gap: 1vh;
+  text-align: center;
+}
+
+#building-selection.visible {
+  visibility: visible;
+}
+
+#building-selection .private {
+  position: relative;
+  top: 0%;
+}

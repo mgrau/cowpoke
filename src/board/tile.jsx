@@ -16,7 +16,7 @@ export default class Tile extends React.Component {
           this.props.tile == null ||
           this.props.tile.owner == this.props.ctx.currentPlayer
         ) {
-          this.props.moves.build("private1a", this.props.name);
+          this.props.moves.build(this.props.name);
         }
       }
     }
@@ -65,7 +65,10 @@ export default class Tile extends React.Component {
     return (
       <div
         className={
-          "space " + (this.props.woods ? "woods " : "") + this.props.name
+          "space " +
+          (this.props.woods ? "woods " : "") +
+          (this.props.build ? "build " : "nobuild ") +
+          this.props.name
         }
         onClick={() => this.onClick()}
       >
