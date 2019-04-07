@@ -4,30 +4,24 @@ import { Client, Lobby } from "boardgame.io/react";
 import { Cowpoke } from "./game/game";
 import CowpokeBoard from "./board/board";
 
+import "./board/css/lobby.css";
+
 const CowpokeClient = Client({
-  numPlayers: 2,
+  numPlayers: 3,
   game: Cowpoke,
   board: CowpokeBoard,
-  debug: false,
-  multiplayer: { server: "https://mgrau.dev" }
+  debug: true
+  // multiplayer: { server: "https://mgrau.dev" }
 });
-
-const LobbyView = () => (
-  <div style={{ padding: 0 }}>
-    <h1>Lobby</h1>
-
-    <Lobby
-      gameServer="https://mgrau.dev"
-      lobbyServer="https://mgrau.dev/cowpoke"
-      gameComponents={[{ game: Cowpoke, board: CowpokeBoard }]}
-    />
-  </div>
-);
 
 ReactDOM.render(
   <div>
-    {/* <CowpokeClient playerID="0" /> */}
-    <LobbyView />
+    <CowpokeClient />
+    {/* <Lobby
+      gameServer="https://mgrau.dev"
+      lobbyServer="https://mgrau.dev/cowpoke"
+      gameComponents={[{ game: Cowpoke, board: CowpokeBoard }]}
+    /> */}
   </div>,
   document.getElementById("root")
 );
