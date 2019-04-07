@@ -47,10 +47,6 @@ export function cowBuy(G, ctx, value, price, cows) {
   }
 }
 
-export function cowPass(G, ctx) {
-  ctx.events.endPhase();
-}
-
 function wrangleCows(G, cowboys, cows) {
   if (G.availableCowboys >= cowboys) {
     G.availableCowboys -= cowboys;

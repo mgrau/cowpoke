@@ -20,7 +20,7 @@ import {
   gainTeepee,
   gainHazard
 } from "./moves";
-import { cowDraw, cowBuy, cowPass } from "./cow_moves";
+import { cowDraw, cowBuy } from "./cow_moves";
 import { beginAuxMove, auxMove, auxDoubleMove } from "./aux_actions";
 import {
   kansasCity1,
@@ -143,7 +143,6 @@ export const Cowpoke = Game({
     gainHazard,
     cowDraw,
     cowBuy,
-    cowPass,
     beginAuxMove,
     auxMove,
     auxDoubleMove,
