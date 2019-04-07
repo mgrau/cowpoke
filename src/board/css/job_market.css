@@ -30,6 +30,7 @@
 
 #job-market-prices {
   grid-template-columns: 2vh;
+  grid-template-rows: repeat(12, 4vh);
   display: grid;
   grid-gap: 0.5vh;
   align-items: center;
@@ -37,6 +38,21 @@
 
 #job-market-prices > div {
   font-size: 2vh;
+}
+
+#job-market-prices .refillCows1,
+#job-market-prices .refillCows2 {
+  position: relative;
+  left: -115%;
+  font-size: 1vh;
+}
+
+#job-market-prices .refillCows1 {
+  grid-row: 6 / 8;
+}
+
+#job-market-prices .refillCows2 {
+  grid-row: 9 / 11;
 }
 
 #job-market-labor > div {

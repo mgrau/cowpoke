@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Teepee from "./teepee";
 import Hazard from "./hazard";
-import { Money, Points } from "./symbols";
+import { Money, Points, Cow } from "./symbols";
 import "./css/job_market.css";
 
 export default class JobMarket extends React.Component {
@@ -75,7 +75,9 @@ export default class JobMarket extends React.Component {
       )
     );
     const prices = this.props.G.jobMarket.cost.map((cost, index) => (
-      <Money key={index} $={cost} />
+      <div style={{ gridRow: index + 1 }}>
+        <Money key={index} $={cost} />
+      </div>
     ));
 
     const token =
@@ -115,7 +117,15 @@ export default class JobMarket extends React.Component {
             {token}
             {market}
           </div>
-          <div id="job-market-prices">{prices}</div>
+          <div id="job-market-prices">
+            {prices}
+            <div className="refillCows1">
+              <Cow />
+            </div>
+            <div className="refillCows2">
+              <Cow />
+            </div>
+          </div>
         </div>
       </div>
     );
