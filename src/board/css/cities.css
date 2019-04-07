@@ -1,7 +1,7 @@
 #cities {
   display: grid;
   grid-template-rows: 4vh;
-  grid-template-columns: repeat(11, 4vh);
+  grid-template-columns: repeat(11, 9vh);
   grid-gap: 0.5vh;
   grid-auto-flow: column;
 }
@@ -15,4 +15,13 @@
 
 #cities .city.black {
   background-color: rgb(73, 73, 73);
+  color: white;
+}
+
+.city .name {
+  padding: 1%;
+}
+
+.city .distance {
+  font-size: 150%;
 }

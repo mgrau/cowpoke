@@ -24,7 +24,10 @@ class City extends React.Component {
         className={"city " + (this.props.black ? "black" : "")}
         onClick={() => this.ship()}
       >
-        {this.props.name.split(/(?=[A-Z])/).join(" ")}
+        <div className="name">
+          {this.props.name.split(/(?=[A-Z])/).join(" ")}
+        </div>
+        <div className="distance">{this.props.distance}</div>
         {players}
       </div>
     );
