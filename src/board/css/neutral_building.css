@@ -12,15 +12,18 @@
   background-color: rgb(63, 63, 63);
   height: 100%;
   border-radius: 0.5vh;
-  /* display: flex;
-  flex-direction: column; */
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr;
 }
 
 .neutral .body {
-  height: 25%;
+  display: flex;
+  font-size: 75%;
+  align-items: center;
+  justify-content: center;
 }
 .neutral .actions {
-  height: 75%;
   display: flex;
   text-align: left;
 }

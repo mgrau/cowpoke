@@ -9,6 +9,39 @@
   top: -100%;
 }
 
+.private > div {
+  background-color: rgb(63, 63, 63);
+  height: 100%;
+  border-radius: 0.5vh;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr;
+}
+
+.private .body {
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-flow: column;
+}
+
+.private .body > div {
+  display: flex;
+  font-size: 75%;
+  align-items: center;
+}
+.private .actions {
+  display: flex;
+  text-align: left;
+}
+
+.private > div > div > div {
+  flex-grow: 1;
+}
+
 .private.player0,
 .private.player0 .cattleman {
   background-color: var(--player0-color);
@@ -27,28 +60,6 @@
 .private.player3,
 .private.player3 .cattleman {
   background: var(--player3-color);
-}
-
-.private > div {
-  background-color: rgb(63, 63, 63);
-  height: 100%;
-  border-radius: 0.5vh;
-}
-
-.private .body {
-  display: inline-flex;
-  justify-content: space-between;
-  height: 25%;
-  font-size: 100%;
-}
-.private .actions {
-  height: 75%;
-  display: flex;
-  text-align: left;
-}
-
-.private > div > div > div {
-  flex-grow: 1;
 }
 
 .private.player0 .building {
