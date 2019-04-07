@@ -24,6 +24,10 @@
   align-content: center;
 }
 
+.action.active {
+  border: 1px solid white;
+}
+
 .action.active:hover {
   background-color: white;
 }

@@ -2,14 +2,15 @@
 
 # gameplay
 
-- award 6\$ for shipping to kansas city
-- scoring
-- include station masters
 - player buildings
   - implement remaining actions (special delivery)
   - implement reduced cost for building on another building
-- objective cards
-- risk actions
+  - tolls
+- award 6\$ for shipping to kansas city
+- train station
+- scoring
+- include station masters
+
 - hiring actions
   - gain hazard at 4 cowboys
   - gain teepee at 6 cowboys
@@ -24,23 +25,37 @@
   - check for minimum number of workers (stationmaster)
 - prevent hiring of a 7th worker
 
+- objective cards
+- risk actions
+
 # view
 
 - player
   - show all of discard contents on hover
 - better railroad view
   - include stations
-- job market
-  - display cow market refresh markers
 - add tooltip hover to action components
   - highlight available actions?
   - give any component that can be clicked a hover indicator
-  - make dual actions (e.g., certificate or objective) individually highlighted
 - cities
-  - display value required to ship
   - put point symbols between cities
 - train
   - fix train overlap at zero
   - tracks
 - cow market
+
   - make actions hoverable, and show which has been selected.
+
+- kansas city
+  - make an active halo around foresight tiles
+  - make an active halo around certificates
+  - display value of herd where certificates were
+  - make active halo around tokens
+  - make active halo around cities
+  - fix display of tokens in cities
+
+# bugs
+
+- undo of actions doesn't quite work
+- pair discard visual overflow
+- pair discard undo allows you to discard two pairs.
