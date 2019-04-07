@@ -152,7 +152,6 @@ function pay_toll(G, ctx) {
   if (hand == undefined) {
     return;
   }
-  console.log(hand.includes("bla"));
   if (hand.includes("black")) {
     if (ctx.numPlayers == 3) {
       G.player.money -= 1;
