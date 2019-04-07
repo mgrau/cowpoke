@@ -21,17 +21,40 @@ import "./css/action.css";
 
 export default class Action extends React.Component {
   render() {
-    const active =
-      this.props.ctx.allowedMoves.includes(this.props.action) &&
-      !this.props.G.actionsPerformed.includes(this.props.action)
-        ? "active"
-        : "";
-    const content = get_content(this.props.action, this.props.moves);
+    const action = this.props.building + this.props.index;
+    let active = false;
+    let actionOr = false;
+    if (
+      this.props.ctx.phase == "NeutralPhase" ||
+      this.props.ctx.phase == "PrivatePhase"
+    ) {
+      if (
+        this.props.building ==
+        this.props.G.trail[
+          this.props.G.players[this.props.ctx.currentPlayer].location
+        ].tile.name
+      ) {
+        if (!this.props.G.actionsPerformed.includes(action)) {
+          active = true;
+        }
+      }
+    }
+    if (action == "neutralC0" || action == "neutralD0") {
+      actionOr = true;
+    }
+    const content = get_content(action, this.props.moves);
     return (
       <div
-        className={"action " + active + " " + this.props.action}
+        className={
+          "action " +
+          (active ? "active " : " ") +
+          (actionOr ? "actionOr " : " ") +
+          this.props.action
+        }
         onClick={() => {
-          this.props.moves[this.props.action]();
+          if (active) {
+            this.props.moves["buildingMove"](this.props.index);
+          }
         }}
       >
         {content}
@@ -41,35 +64,35 @@ export default class Action extends React.Component {
 }
 
 function get_content(action, moves) {
-  if (action === "neutralA1") {
+  if (action === "neutralA0") {
     return (
       <div>
         <Card cow="Guernsey" />
         <Money $={2} />
       </div>
     );
-  } else if (action === "neutralA2") {
+  } else if (action === "neutralA1") {
     return (
       <div>
         <Worker />
         <Money $={0} />
       </div>
     );
-  } else if (action === "neutralA3") {
+  } else if (action === "neutralA2") {
     return (
       <div>
         <Worker />
         <Money $={-2} />
       </div>
     );
-  } else if (action === "neutralB1") {
+  } else if (action === "neutralB0") {
     return (
       <div>
         <Card cow="DutchBelt" />
         <Money $={2} />
       </div>
     );
-  } else if (action === "neutralB2") {
+  } else if (action === "neutralB1") {
     return (
       <div>
         <Building />
@@ -80,20 +103,20 @@ function get_content(action, moves) {
         </div>
       </div>
     );
-  } else if (action === "neutralC1") {
+  } else if (action === "neutralC0") {
     return (
       <div>
-        <div onClick={() => moves["neutralC1"](true)}>
+        <div onClick={() => moves["buildingMove"]("0a")} className="subAction">
           <Certificate spaces={1} />
         </div>
 
         <Or />
-        <div onClick={() => moves["neutralC1"](false)}>
+        <div onClick={() => moves["buildingMove"]("0b")} className="subAction">
           <Objective />
         </div>
       </div>
     );
-  } else if (action === "neutralC2") {
+  } else if (action === "neutralC1") {
     return (
       <div>
         <div className="row">
@@ -103,16 +126,16 @@ function get_content(action, moves) {
         <Train spaces={1} />
       </div>
     );
-  } else if (action === "neutralD1") {
+  } else if (action === "neutralD0") {
     return (
       <div>
-        <div onClick={() => moves["neutralD1"](true)}>
+        <div onClick={() => moves["buildingMove"]("0a")} className="subAction">
           <Teepee />
         </div>
 
         <Or />
-        <div onClick={() => moves["neutralD1"](false)}>
-          <div className="row">
+        <div onClick={() => moves["buildingMove"]("0b")} className="subAction">
+          <div className="row" style={{ fontSize: "75%" }}>
             <span style={{ marginRight: "-0.35vh" }}>
               <Money $={-2} />
             </span>
@@ -121,40 +144,40 @@ function get_content(action, moves) {
         </div>
       </div>
     );
-  } else if (action === "neutralD2") {
+  } else if (action === "neutralD1") {
     return (
       <div>
         <Auxillary />
       </div>
     );
-  } else if (action === "neutralE1") {
+  } else if (action === "neutralE0") {
     return (
       <div>
         <Card cow="BlackAngus" />
         <Money $={2} />
       </div>
     );
-  } else if (action === "neutralE2") {
+  } else if (action === "neutralE1") {
     return (
       <div>
         <Cow />
       </div>
     );
-  } else if (action === "neutralF1") {
+  } else if (action === "neutralF0") {
     return (
       <div>
         <Pair />
         <Money $={4} />
       </div>
     );
-  } else if (action === "neutralF2") {
+  } else if (action === "neutralF1") {
     return (
       <div>
         <Hazard />
         <Money $={-7} />
       </div>
     );
-  } else if (action === "neutralG1") {
+  } else if (action === "neutralG0") {
     return (
       <div>
         <div className="row">
@@ -164,13 +187,13 @@ function get_content(action, moves) {
         <Train spaces={1} />
       </div>
     );
-  } else if (action === "neutralG2") {
+  } else if (action === "neutralG1") {
     return (
       <div>
         <Auxillary />
       </div>
     );
-  } else if (action === "private1a1") {
+  } else if (action === "private1a0") {
     return (
       <div>
         <div className="row">

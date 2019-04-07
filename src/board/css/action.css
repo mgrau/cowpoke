@@ -27,3 +27,17 @@
 .action.active:hover {
   background-color: white;
 }
+
+.action.active.actionOr:hover {
+  background-color: rgb(202, 200, 200);
+}
+
+.action.active.actionOr .subAction:hover {
+  background-color: white;
+}
+
+.subAction {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 0.5vh;
+}

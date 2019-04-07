@@ -11,6 +11,7 @@ import {
   stop,
   pass,
   end,
+  buildingMove,
   hire,
   build,
   moveEngine,
@@ -30,23 +31,8 @@ import {
   kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
-import {
-  neutralA1,
-  neutralA2,
-  neutralA3,
-  neutralB1,
-  neutralB2,
-  neutralC1,
-  neutralC2,
-  neutralD1,
-  neutralD2,
-  neutralE1,
-  neutralE2,
-  neutralF1,
-  neutralF2,
-  neutralG1,
-  neutralG2
-} from "./neutral_moves";
+import { neutralMove } from "./neutral_moves";
+import { private1a1 } from "./private_moves";
 import {
   neutralA,
   neutralB,
@@ -155,21 +141,7 @@ export const Cowpoke = Game({
     kansasCitySell,
     kansasCityChooseToken,
     kansasCityShip,
-    neutralA1,
-    neutralA2,
-    neutralA3,
-    neutralB1,
-    neutralB2,
-    neutralC1,
-    neutralC2,
-    neutralD1,
-    neutralD2,
-    neutralE1,
-    neutralE2,
-    neutralF1,
-    neutralF2,
-    neutralG1,
-    neutralG2
+    buildingMove
   },
   flow: {
     endTurn: false,
@@ -232,32 +204,11 @@ export const Cowpoke = Game({
       AuxMovePhase: {
         allowedMoves: ["end", "auxMove"]
       },
-      neutralA: {
-        allowedMoves: [
-          "end",
-          "beginAuxMove",
-          "neutralA1",
-          "neutralA2",
-          "neutralA3"
-        ]
+      NeutralPhase: {
+        allowedMoves: ["end", "beginAuxMove", "buildingMove"]
       },
-      neutralB: {
-        allowedMoves: ["end", "beginAuxMove", "neutralB1", "neutralB2"]
-      },
-      neutralC: {
-        allowedMoves: ["end", "beginAuxMove", "neutralC1", "neutralC2"]
-      },
-      neutralD: {
-        allowedMoves: ["end", "beginAuxMove", "neutralD1", "neutralD2"]
-      },
-      neutralE: {
-        allowedMoves: ["end", "beginAuxMove", "neutralE1", "neutralE2"]
-      },
-      neutralF: {
-        allowedMoves: ["end", "beginAuxMove", "neutralF1", "neutralF2"]
-      },
-      neutralG: {
-        allowedMoves: ["end", "beginAuxMove", "neutralG1", "neutralG2"]
+      PrivatePhase: {
+        allowedMoves: ["end", "beginAuxMove", "buildingMove"]
       },
       DoubleAuxPhase: {
         allowedMoves: ["pass", "auxMove", "auxDoubleMove"],

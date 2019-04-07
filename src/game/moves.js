@@ -3,6 +3,7 @@ import { isAdjacent } from "./trail";
 import { removeWorker } from "./job_market";
 import { trainDistance } from "./train";
 import { discard, stepLimit, handSize } from "./player";
+import { neutralMove } from "./neutral_moves";
 
 export function move(G, ctx, destination) {
   if (
@@ -37,9 +38,16 @@ export function stop(G, ctx) {
     console.log("have not moved yet");
     // return INVALID_MOVE;
   } else {
-    if (G.trail[G.player.location].tile === null) {
+    const tile = G.trail[G.player.location].tile;
+    if (tile === null) {
       console.log("can not stop here");
       // return INVALID_MOVE;
+    } else if (tile.name.includes("neutral")) {
+      ctx.events.endPhase({ next: "NeutralPhase" });
+    } else if (tile.name.includes("private")) {
+      ctx.eventes.endPhase({ next: "PrivatePhase" });
+    } else if (tile.name === "KansasCity") {
+      ctx.events.endPhase({ next: "KansasCity" });
     } else {
       switch (G.trail[G.player.location].tile.name) {
         case "KansasCity":
@@ -81,6 +89,13 @@ export function end(G, ctx) {
 
 export function pass(G, ctx) {
   ctx.events.endPhase();
+}
+
+export function buildingMove(G, ctx, index) {
+  const building = G.trail[G.player.location].tile.name;
+  if (building.includes("neutral")) {
+    neutralMove(G, ctx, building + index);
+  }
 }
 
 export function hire(G, ctx, row, col) {
