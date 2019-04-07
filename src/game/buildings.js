@@ -12,6 +12,7 @@ function PrivateBuilding(name, craftsmen = 0, actions = [], hand = "") {
     name: name,
     owner: null,
     craftsmen: craftsmen,
+    points: points(craftsmen),
     actions: actions,
     hand: hand
   };
@@ -91,7 +92,7 @@ const private10b = PrivateBuilding(
   "black"
 );
 
-export function buildingPoints(craftsmen) {
+function points(craftsmen) {
   if (craftsmen < 6) {
     return craftsmen + 1;
   } else if (6 <= craftsmen && craftsmen < 8) {

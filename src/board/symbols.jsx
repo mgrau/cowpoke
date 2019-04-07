@@ -130,7 +130,7 @@ export class Worker extends React.Component {
 export class Building extends React.Component {
   render() {
     return (
-      <div className="building">
+      <div className={"building " + (this.props.woods ? "woods" : "")}>
         <FontAwesomeIcon icon={faHome} />
       </div>
     );

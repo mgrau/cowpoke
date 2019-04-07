@@ -113,13 +113,19 @@ export function build(G, ctx, buildingName, location) {
         G.buildings.map(building => building.name).includes(buildingName) &&
         !G.player.built.includes(buildingName)
       ) {
-        G.player.built = [...G.player.built, buildingName];
-        console.log(
-          G.buildings.find(building => building.name == buildingName)
+        const building = G.buildings.find(
+          building => building.name == buildingName
         );
-        console.log({ buildingName });
-        console.log({ location });
-        ctx.events.endPhase();
+        if (
+          G.player.money >= 2 * building.craftsmen &&
+          G.player.craftsmen >= building.craftsmen
+        ) {
+          G.player.built = [...G.player.built, buildingName];
+          G.player.money -= 2 * building.craftsmen;
+          G.trail[location].tile = building;
+          G.trail[location].tile.owner = ctx.currentPlayer;
+          ctx.events.endPhase();
+        }
       }
     }
   }

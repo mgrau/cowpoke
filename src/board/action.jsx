@@ -170,6 +170,16 @@ function get_content(action, moves) {
         <Auxillary />
       </div>
     );
+  } else if (action === "private1a1") {
+    return (
+      <div>
+        <div className="row">
+          <Building woods={true} />
+          <Separator />
+          <Money $={2} />
+        </div>
+      </div>
+    );
   } else {
     return "";
   }

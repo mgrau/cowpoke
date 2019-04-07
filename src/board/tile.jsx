@@ -2,6 +2,7 @@ import React from "react";
 import Hazard from "./hazard";
 import Teepee from "./teepee";
 import NeutralBuilding from "./neutral_building";
+import PrivateBuilding from "./private_building";
 import Tokens from "./tokens";
 
 import "./css/tile.css";
@@ -44,6 +45,15 @@ export default class Tile extends React.Component {
       } else if (this.props.tile.tile === "neutral") {
         tile = (
           <NeutralBuilding
+            {...this.props.tile}
+            moves={this.props.moves}
+            G={this.props.G}
+            ctx={this.props.ctx}
+          />
+        );
+      } else if (this.props.tile.tile === "private") {
+        tile = (
+          <PrivateBuilding
             {...this.props.tile}
             moves={this.props.moves}
             G={this.props.G}

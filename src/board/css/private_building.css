@@ -1,0 +1,50 @@
+@import url("./colors.css");
+
+.private {
+  color: #fff;
+  border-radius: 0.75vh;
+  height: calc(100% - 1vh);
+  padding: 0.5vh;
+  position: relative;
+  top: -100%;
+}
+
+.private.player0 {
+  background-color: var(--player0-color);
+}
+
+.private.player1 {
+  background: var(--player1-color);
+}
+
+.private.player2 {
+  background: var(--player2-color);
+}
+
+.private.player3 {
+  background: var(--player3-color);
+}
+
+.private > div {
+  background-color: rgb(63, 63, 63);
+  height: 100%;
+  border-radius: 0.5vh;
+  /* display: flex;
+    flex-direction: column; */
+}
+
+.private .body {
+  display: inline-flex;
+  justify-content: space-between;
+  height: 25%;
+  font-size: 100%;
+}
+.private .actions {
+  height: 75%;
+  display: flex;
+  text-align: left;
+}
+
+.private > div > div > div {
+  flex-grow: 1;
+}
