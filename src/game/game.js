@@ -1,20 +1,18 @@
 import { Game } from "boardgame.io/core";
 import PluginPlayer from "./plugins/plugin-player";
-
 import Player, { stepLimit } from "./player";
-
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
-
 import {
   move,
   stop,
   pass,
   end,
   hire,
+  build,
   moveEngine,
   discardCycle,
   discardPair,
@@ -56,7 +54,27 @@ import {
   neutralD,
   neutralE,
   neutralF,
-  neutralG
+  neutralG,
+  private1a,
+  private2a,
+  private3a,
+  private4a,
+  private5a,
+  private6a,
+  private7a,
+  private8a,
+  private9a,
+  private10a,
+  private1b,
+  private2b,
+  private3b,
+  private4b,
+  private5b,
+  private6b,
+  private7b,
+  private8b,
+  private9b,
+  private10b
 } from "./buildings";
 
 export const Cowpoke = Game({
@@ -69,6 +87,7 @@ export const Cowpoke = Game({
       cities: Cities(),
       foresight: Foresight(ctx),
       jobMarket: JobMarket(ctx),
+      buildings: [],
       cowDeck: MarketCattle(ctx),
       cowMarket: [],
       objectiveDeck: ctx.random.Shuffle([]),
@@ -84,6 +103,19 @@ export const Cowpoke = Game({
     G.trail["E"].tile = neutralE;
     G.trail["F"].tile = neutralF;
     G.trail["G"].tile = neutralG;
+
+    G.buildings = [
+      private1a,
+      private2a,
+      private3a,
+      private4a,
+      private5a,
+      private6a,
+      private7a,
+      private8a,
+      private9a,
+      private10a
+    ];
 
     for (var i = 0; i < 7; i++) {
       addSmallTile(G.trail, G.foresight.pile1.pop());
@@ -105,6 +137,7 @@ export const Cowpoke = Game({
     pass,
     end,
     hire,
+    build,
     moveEngine,
     gainTeepee,
     gainHazard,
@@ -161,6 +194,9 @@ export const Cowpoke = Game({
       },
       HirePhase: {
         allowedMoves: ["pass", "hire"]
+      },
+      BuildPhase: {
+        allowedMoves: ["pass", "build"]
       },
       EnginePhase: {
         allowedMoves: ["pass", "moveEngine"],

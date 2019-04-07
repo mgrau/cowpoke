@@ -12,8 +12,10 @@ export default function Player(ctx, playerID) {
     location: "start",
     engine: 0,
     certificates: 0,
+    built: [],
     teepees: [],
     hazards: [],
+    objectives: [],
     tokens: {
       auxMoney: 1,
       auxCycle: 1,

@@ -7,7 +7,18 @@ import Tokens from "./tokens";
 import "./css/tile.css";
 export default class Tile extends React.Component {
   onClick() {
-    this.props.moves.move(this.props.name);
+    if (this.props.ctx.phase == "MovePhase") {
+      this.props.moves.move(this.props.name);
+    } else if (this.props.ctx.phase == "BuildPhase") {
+      if (this.props.build) {
+        if (
+          this.props.tile == null ||
+          this.props.tile.owner == this.props.ctx.currentPlayer
+        ) {
+          this.props.moves.build("private1a", this.props.name);
+        }
+      }
+    }
   }
   render() {
     let tile = "";

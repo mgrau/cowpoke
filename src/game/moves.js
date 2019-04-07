@@ -103,6 +103,28 @@ export function hire(G, ctx, row, col) {
   ctx.events.endPhase();
 }
 
+export function build(G, ctx, buildingName, location) {
+  if (G.trail[location].build) {
+    if (
+      G.trail[location].tile == null ||
+      G.trail[location].tile.owner == ctx.currentPlayer
+    ) {
+      if (
+        G.buildings.map(building => building.name).includes(buildingName) &&
+        !G.player.built.includes(buildingName)
+      ) {
+        G.player.built = [...G.player.built, buildingName];
+        console.log(
+          G.buildings.find(building => building.name == buildingName)
+        );
+        console.log({ buildingName });
+        console.log({ location });
+        ctx.events.endPhase();
+      }
+    }
+  }
+}
+
 export function moveEngine(G, ctx, destination) {
   const opponents = Object.keys(G.players)
     .filter(player => player != ctx.currentPlayer)

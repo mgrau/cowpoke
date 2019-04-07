@@ -67,7 +67,7 @@ export function neutralB2(G, ctx) {
     console.log("already did this move");
     // return INVALID_MOVE
   } else {
-    // build
+    ctx.events.endPhase({ next: "BuildPhase" });
     G.actionsPerformed = [...G.actionsPerformed, "neutralB2"];
   }
 }
