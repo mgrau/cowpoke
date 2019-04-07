@@ -21,8 +21,12 @@ export default class CowpokeBoard extends React.Component {
     if (this.props.ctx.allowedMoves.includes("end")) {
       buttons.push(<End key="end" onClick={() => this.props.moves.end()} />);
     }
-
-    buttons.push(<Undo key="undo" undo={this.props.undo} />);
+    if (
+      this.props.playerID == null ||
+      this.props.ctx.currentPlayer == this.props.playerID
+    ) {
+      buttons.push(<Undo key="undo" undo={this.props.undo} />);
+    }
 
     const players = Object.values(this.props.G.players).map((player, index) => (
       <Player

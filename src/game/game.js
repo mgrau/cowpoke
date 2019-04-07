@@ -32,8 +32,6 @@ import {
   kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
-import { neutralMove } from "./neutral_moves";
-import { private1a1 } from "./private_moves";
 import {
   neutralA,
   neutralB,

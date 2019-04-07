@@ -10,13 +10,19 @@ const CowpokeClient = Client({
   numPlayers: 3,
   game: Cowpoke,
   board: CowpokeBoard,
+  // multiplayer: { server: "https://mgrau.dev" },
+  // multiplayer: { server: "http://localhost:5000" },
   debug: true
-  // multiplayer: { server: "https://mgrau.dev" }
 });
 
 ReactDOM.render(
   <div>
     <CowpokeClient />
+    {/* <Lobby
+      gameServer="http://localhost:5000"
+      lobbyServer="http://localhost:5000"
+      gameComponents={[{ game: Cowpoke, board: CowpokeBoard }]}
+    /> */}
     {/* <Lobby
       gameServer="https://mgrau.dev"
       lobbyServer="https://mgrau.dev/cowpoke"

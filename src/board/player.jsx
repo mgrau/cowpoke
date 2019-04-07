@@ -71,15 +71,27 @@ export default class Player extends React.Component {
 
     const certificates = this.certificates();
 
-    const cowboys = Array(this.props.cowboys)
+    const cowboys = Array(6)
       .fill()
-      .map((cowboy, index) => <Worker key={index} type="cowboy" />);
-    const craftsmen = Array(this.props.craftsmen)
+      .map((cowboy, index) => {
+        if (index < this.props.cowboys) {
+          return <Worker key={index} type="cowboy" />;
+        } else return <div />;
+      });
+    const craftsmen = Array(6)
       .fill()
-      .map((craftsman, index) => <Worker key={index} type="craftsman" />);
-    const engineers = Array(this.props.engineers)
+      .map((cowboy, index) => {
+        if (index < this.props.craftsmen) {
+          return <Worker key={index} type="craftsman" />;
+        } else return <div />;
+      });
+    const engineers = Array(6)
       .fill()
-      .map((engineer, index) => <Worker key={index} type="engineer" />);
+      .map((cowboy, index) => {
+        if (index < this.props.engineers) {
+          return <Worker key={index} type="engineer" />;
+        } else return <div />;
+      });
 
     return (
       <div className={"player " + ("player" + this.props.playerID)}>

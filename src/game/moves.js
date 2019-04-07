@@ -8,9 +8,8 @@ import { privateMove } from "./private_moves";
 
 export function move(G, ctx, destination) {
   if (
-    true ||
-    (ctx.turn == ctx.currentPlayer &&
-      ctx.stats.turn.numMoves[ctx.currentPlayer] == undefined)
+    ctx.turn == ctx.currentPlayer &&
+    ctx.stats.turn.numMoves[ctx.currentPlayer] == undefined
   ) {
     G.player.location = destination;
   } else {
