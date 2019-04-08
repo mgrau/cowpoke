@@ -75,8 +75,8 @@ export default class JobMarket extends React.Component {
       )
     );
     const prices = this.props.G.jobMarket.cost.map((cost, index) => (
-      <div style={{ gridRow: index + 1 }}>
-        <Money key={index} $={cost} />
+      <div key={index} style={{ gridRow: index + 1 }}>
+        <Money $={cost} />
       </div>
     ));
 

@@ -76,21 +76,21 @@ export default class Player extends React.Component {
       .map((cowboy, index) => {
         if (index < this.props.cowboys) {
           return <Worker key={index} type="cowboy" />;
-        } else return <div />;
+        } else return <div key={index} />;
       });
     const craftsmen = Array(6)
       .fill()
       .map((cowboy, index) => {
         if (index < this.props.craftsmen) {
           return <Worker key={index} type="craftsman" />;
-        } else return <div />;
+        } else return <div key={index} />;
       });
     const engineers = Array(6)
       .fill()
       .map((cowboy, index) => {
         if (index < this.props.engineers) {
           return <Worker key={index} type="engineer" />;
-        } else return <div />;
+        } else return <div key={index} />;
       });
 
     return (
