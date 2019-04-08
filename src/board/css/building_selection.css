@@ -15,3 +15,7 @@
   position: relative;
   top: 0%;
 }
+
+#building-selection .active {
+  box-shadow: 0px 0px 15px 5px rgb(4, 141, 38);
+}

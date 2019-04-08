@@ -15,7 +15,10 @@ export default class BuildingSelection extends React.Component {
       .map((building, index) => (
         <div
           key={index}
-          className="space"
+          className={
+            "space " +
+            (this.props.G.selectedBuilding == building.name ? "active" : "")
+          }
           onClick={() => this.props.moves["selectBuilding"](building.name)}
         >
           <PrivateBuilding
