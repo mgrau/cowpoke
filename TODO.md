@@ -3,9 +3,9 @@
 # gameplay
 
 - player buildings
+
   - implement remaining actions (special delivery)
-  - implement reduced cost for building on another building
-  - tolls
+
 - award 6\$ for shipping to kansas city
 - train station
 - scoring
@@ -56,6 +56,7 @@
 
 # bugs
 
+- visual overflow of tokens in cities
 - undo of actions doesn't quite work
 - pair discard visual overflow
 - pair discard undo allows you to discard two pairs.

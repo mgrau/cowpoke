@@ -195,30 +195,38 @@ export function moveEngine(G, ctx, destination) {
 }
 
 function pay_toll(G, ctx) {
-  if (G.trail[G.player.location].trail == null) {
+  const tile = G.trail[G.player.location].tile;
+  if (tile == null) {
     return;
   }
-  const hand = G.trail[G.player.location].tile.hand;
+  const hand = tile.hand;
   if (hand == undefined) {
     return;
   }
+
+  console.log(tile.owner);
+  let toll = 0;
   if (hand.includes("black")) {
     if (ctx.numPlayers == 3) {
-      G.player.money -= 1;
+      toll += 1;
     } else {
-      G.player.money -= 2;
+      toll += 2;
     }
   }
 
   if (hand.includes("green")) {
     if (ctx.numPlayers == 4) {
-      G.player.money -= 1;
+      toll += 1;
     } else {
-      G.player.money -= 2;
+      toll += 2;
     }
   }
 
-  G.player.money = G.player.money < 0 ? 0 : G.player.money;
+  toll = toll > G.player.money ? G.player.money : toll;
+  G.player.money -= toll;
+  if (tile.owner != undefined) {
+    G.players[tile.owner].money += toll;
+  }
 }
 
 export function draw(G, ctx) {
