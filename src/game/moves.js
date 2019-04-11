@@ -2,7 +2,13 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { removeWorker } from "./job_market";
 import { trainDistance } from "./train";
-import { discard, stepLimit, handSize } from "./player";
+import {
+  discard,
+  stepLimit,
+  handSize,
+  gainCertificate,
+  handIncludes
+} from "./player";
 import { neutralMove } from "./neutral_moves";
 import { privateMove } from "./private_moves";
 
@@ -102,6 +108,45 @@ export function buildingMove(G, ctx, index) {
   }
   if (building.includes("private")) {
     privateMove(G, ctx, building + index);
+  }
+}
+
+export function risk(G, ctx) {
+  // if haven't done a risk action yet
+  if (!G.actionsPerformed.includes("risk")) {
+    // if the player is on a risk tile
+    if (G.player.location.includes("Risk")) {
+      if (
+        G.player.location == "floodRisk1" ||
+        G.player.location == "floodRisk2" ||
+        G.player.location == "rockfallRisk2" ||
+        G.player.location == "teepeeRisk2"
+      ) {
+        if (handIncludes(G.player, "Jersey")) {
+          discard(G, "Jersey");
+          gainCertificate(G.player);
+          G.player.money += 2;
+        }
+      }
+      if (
+        G.player.location == "droughtRisk1" ||
+        G.player.location == "rockfallRisk1" ||
+        G.player.location == "teepeeRisk1"
+      ) {
+        gainCertificate(G.player);
+        // discard any card
+      }
+      G.actionsPerformed = [...G.actionsPerformed, "risk"];
+    }
+  }
+}
+
+export function riskDiscard(G, ctx, index) {
+  if (G.player.cards.hand[index] !== undefined) {
+    const card = G.player.cards.hand[index];
+    G.player.cards.discard = [card, ...G.player.cards.discard];
+    G.player.cards.hand.splice(index, 1);
+    ctx.events.endPhase({ next: "PrivatePhase" });
   }
 }
 
@@ -254,6 +299,7 @@ export function discardCycle(G, ctx, index) {
 }
 
 export function discardPair(G, ctx, name) {
+  // bug here: can't choose which point value cows to discard
   if (G.player.cards.hand.filter(cow => cow.name == name).length >= 2) {
     discard(G, name);
     discard(G, name);

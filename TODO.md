@@ -60,3 +60,4 @@
 - undo of actions doesn't quite work
 - pair discard visual overflow
 - pair discard undo allows you to discard two pairs.
+- pair discard doesn't let you choose which 2 cards.

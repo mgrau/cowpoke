@@ -12,6 +12,7 @@ import {
   pass,
   end,
   buildingMove,
+  risk,
   hire,
   build,
   selectBuilding,
@@ -141,7 +142,8 @@ export const Cowpoke = Game({
     kansasCitySell,
     kansasCityChooseToken,
     kansasCityShip,
-    buildingMove
+    buildingMove,
+    risk
   },
   flow: {
     endTurn: false,
@@ -208,7 +210,7 @@ export const Cowpoke = Game({
         allowedMoves: ["end", "beginAuxMove", "buildingMove"]
       },
       PrivatePhase: {
-        allowedMoves: ["end", "beginAuxMove", "buildingMove"]
+        allowedMoves: ["end", "beginAuxMove", "buildingMove", "risk"]
       },
       DoubleAuxPhase: {
         allowedMoves: ["pass", "auxMove", "auxDoubleMove"],
