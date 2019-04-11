@@ -281,7 +281,7 @@ export function drawOne(G, ctx) {
   G.player.cards.hand = [G.player.cards.deck.pop(), ...G.player.cards.hand];
 }
 
-export function discard(G, ctx, index) {
+export function discardCard(G, ctx, index) {
   if (G.player.cards.hand[index] !== undefined) {
     const card = G.player.cards.hand[index];
     G.player.cards.discard = [card, ...G.player.cards.discard];

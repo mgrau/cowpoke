@@ -55,3 +55,78 @@
 .teepee10 {
   background-color: rgb(188, 184, 196);
 }
+
+.risk {
+  background-color: var(--empty-space);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.risk > div {
+  /* border: 1px solid red; */
+}
+
+.floodRisk1 > .risk,
+.floodRisk2 > .risk {
+  position: relative;
+  left: 10%;
+  top: 0%;
+  width: 80%;
+  width: 80%;
+  height: 25%;
+  border-bottom-left-radius: 0.5vh;
+  border-bottom-right-radius: 0.5vh;
+  grid-auto-flow: column;
+}
+
+.droughtRisk1 > .risk {
+  position: relative;
+  left: -25%;
+  top: -90%;
+  float: left;
+  width: 25%;
+  height: 80%;
+  border-top-left-radius: 0.5vh;
+  border-bottom-left-radius: 0.5vh;
+}
+
+.teepeeRisk1 > .risk,
+.teepeeRisk2 > .risk {
+  position: relative;
+  left: 100%;
+  top: -90%;
+  width: 25%;
+  height: 80%;
+  border-top-right-radius: 0.5vh;
+  border-bottom-right-radius: 0.5vh;
+}
+
+.rockfallRisk1 > .risk,
+.rockfallRisk2 > .risk {
+  position: relative;
+  left: 10%;
+  top: -125%;
+  width: 80%;
+  width: 80%;
+  height: 25%;
+  border-top-left-radius: 0.5vh;
+  border-top-right-radius: 0.5vh;
+  grid-auto-flow: column;
+}
+
+.floodRisk1 > .risk.displaced,
+.floodRisk2 > .risk.displaced {
+  top: -100%;
+}
+
+.rockfallRisk1 > .risk.displaced,
+.rockfallRisk2 > .risk.displaced {
+  top: -225%;
+}
+
+.droughtRisk1 > .risk.displaced,
+.teepeeRisk1 > .risk.displaced,
+.teepeeRisk2 > .risk.displaced {
+  top: -190%;
+}

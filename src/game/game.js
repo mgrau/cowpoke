@@ -13,12 +13,11 @@ import {
   end,
   buildingMove,
   risk,
-  riskDiscard,
   hire,
   build,
   selectBuilding,
   moveEngine,
-  discard,
+  discardCard,
   discardPair,
   trash,
   gainTeepee,
@@ -134,7 +133,7 @@ export const Cowpoke = Game({
     beginAuxMove,
     auxMove,
     auxDoubleMove,
-    discard,
+    discardCard,
     discardPair,
     trash,
     kansasCity1,
@@ -144,8 +143,7 @@ export const Cowpoke = Game({
     kansasCityChooseToken,
     kansasCityShip,
     buildingMove,
-    risk,
-    riskDiscard
+    risk
   },
   flow: {
     endTurn: false,
@@ -186,7 +184,7 @@ export const Cowpoke = Game({
         endPhaseIf: G => G.availableCowboys <= 0
       },
       DiscardPhase: {
-        allowedMoves: ["discard"],
+        allowedMoves: ["discardCard"],
         endPhaseIf: G => G.mustDiscard <= 0
       },
       DiscardPairPhase: {

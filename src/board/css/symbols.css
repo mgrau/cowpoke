@@ -122,6 +122,16 @@
   color: var(--texas-longhorn-color);
 }
 
+.symbol-card .any {
+  background: linear-gradient(
+    to right,
+    var(--holstein-color),
+    var(--brown-swiss-color),
+    var(--aryshire-color)
+  );
+  color: transparent;
+}
+
 .worker {
   color: rgb(73, 73, 73);
   font-size: 80%;

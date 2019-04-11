@@ -26,7 +26,6 @@
 - prevent hiring of a 7th worker
 
 - objective cards
-- risk actions
 
 # view
 

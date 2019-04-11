@@ -6,6 +6,7 @@
   grid-template-rows: repeat(14, 4vh);
   grid-gap: 1vh;
   text-align: center;
+  padding: 2vh;
 }
 
 .start {

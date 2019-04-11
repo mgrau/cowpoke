@@ -4,6 +4,7 @@ import Teepee from "./teepee";
 import NeutralBuilding from "./neutral_building";
 import PrivateBuilding from "./private_building";
 import Tokens from "./tokens";
+import { Card, Certificate, Money } from "./symbols";
 
 import "./css/tile.css";
 export default class Tile extends React.Component {
@@ -62,6 +63,53 @@ export default class Tile extends React.Component {
         );
       }
     }
+
+    let risk = "";
+    if (this.props.name.includes("Risk")) {
+      if (
+        (this.props.name == "floodRisk1") |
+        (this.props.name == "floodRisk2") |
+        (this.props.name == "rockfallRisk2") |
+        (this.props.name == "teepeeRisk2")
+      ) {
+        risk = (
+          <div
+            className={"risk " + (tile == "" ? "" : "displaced")}
+            onClick={() => {
+              if (this.props.ctx.phase == "PrivatePhase") {
+                this.props.moves.risk();
+              }
+            }}
+          >
+            <div style={{ fontSize: "75%" }}>
+              <Card cow="Jersey" />
+            </div>
+            <Certificate spaces={1} />
+            <Money $={2} />
+          </div>
+        );
+      } else if (
+        (this.props.name == "droughtRisk1") |
+        (this.props.name == "rockfallRisk1") |
+        (this.props.name == "teepeeRisk1")
+      ) {
+        risk = (
+          <div
+            className={"risk " + (tile == "" ? "" : "displaced")}
+            onClick={() => {
+              if (this.props.ctx.phase == "PrivatePhase") {
+                this.props.moves.risk();
+              }
+            }}
+          >
+            <div style={{ fontSize: "75%" }}>
+              <Card cow="any" />
+            </div>
+            <Certificate spaces={1} />
+          </div>
+        );
+      }
+    }
     return (
       <div
         className={
@@ -74,6 +122,7 @@ export default class Tile extends React.Component {
       >
         <Tokens players={this.props.G.players} location={this.props.name} />
         {tile}
+        {risk}
       </div>
     );
   }
