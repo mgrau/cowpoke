@@ -42,7 +42,7 @@ export default class Player extends React.Component {
         {...card}
         discard={() => {
           if (this.props.ctx.phase == "DiscardPhase") {
-            this.props.moves.discardCycle(index);
+            this.props.moves.discard(index);
           } else if (this.props.ctx.phase == "DiscardPairPhase") {
             this.props.moves.discardPair(card.name);
           } else if (this.props.ctx.phase == "TrashPhase") {

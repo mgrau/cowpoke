@@ -134,19 +134,11 @@ export function risk(G, ctx) {
         G.player.location == "teepeeRisk1"
       ) {
         gainCertificate(G.player);
-        // discard any card
+        G.mustDiscard = 1;
+        ctx.events.endPhase({ next: "DiscardPhase" });
       }
       G.actionsPerformed = [...G.actionsPerformed, "risk"];
     }
-  }
-}
-
-export function riskDiscard(G, ctx, index) {
-  if (G.player.cards.hand[index] !== undefined) {
-    const card = G.player.cards.hand[index];
-    G.player.cards.discard = [card, ...G.player.cards.discard];
-    G.player.cards.hand.splice(index, 1);
-    ctx.events.endPhase({ next: "PrivatePhase" });
   }
 }
 
@@ -289,7 +281,7 @@ export function drawOne(G, ctx) {
   G.player.cards.hand = [G.player.cards.deck.pop(), ...G.player.cards.hand];
 }
 
-export function discardCycle(G, ctx, index) {
+export function discard(G, ctx, index) {
   if (G.player.cards.hand[index] !== undefined) {
     const card = G.player.cards.hand[index];
     G.player.cards.discard = [card, ...G.player.cards.discard];
