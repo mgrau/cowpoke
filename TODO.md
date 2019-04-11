@@ -4,9 +4,9 @@
 
 - player buildings
 
-  - implement remaining actions (special delivery)
+  - implement special delivery
+  - implement 2 teepee : 2 certificates + 2 dollars
 
-- award 6\$ for shipping to kansas city
 - train station
 - scoring
 - include station masters

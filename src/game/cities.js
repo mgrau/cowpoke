@@ -45,6 +45,11 @@ export function ship(G, ctx, destination, token) {
     G.player.playerID,
     ...G.cities[destination].players
   ];
+
+  // Give the player 6 coins as consolation if they ship to KansasCity
+  if (destination == "KansasCity") {
+    G.player.money += 6;
+  }
   return true;
 }
 

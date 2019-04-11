@@ -89,7 +89,7 @@ export function kansasCityShip(G, ctx, destination) {
         draw(G, ctx);
         refillForesight(G);
         G.player.location = "start";
-        G.actionsPerformed = [...G.actionsPerformed, "kansasCitySell"];
+        G.actionsPerformed = [...G.actionsPerformed, "kansasCityShip"];
         G.player.tokens[G.readyToken]--;
         ctx.events.endPhase();
       }
