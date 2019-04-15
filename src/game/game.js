@@ -6,6 +6,7 @@ import Cities from "./cities";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
+import { neutrals, privateA, privateB } from "./buildings";
 import {
   move,
   stop,
@@ -33,35 +34,6 @@ import {
   kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
-import {
-  neutralA,
-  neutralB,
-  neutralC,
-  neutralD,
-  neutralE,
-  neutralF,
-  neutralG,
-  private1a,
-  private2a,
-  private3a,
-  private4a,
-  private5a,
-  private6a,
-  private7a,
-  private8a,
-  private9a,
-  private10a,
-  private1b,
-  private2b,
-  private3b,
-  private4b,
-  private5b,
-  private6b,
-  private7b,
-  private8b,
-  private9b,
-  private10b
-} from "./buildings";
 
 export const Cowpoke = Game({
   name: "cowpoke",
@@ -82,26 +54,15 @@ export const Cowpoke = Game({
       actionsPerformed: []
     };
 
-    G.trail["A"].tile = neutralA;
-    G.trail["B"].tile = neutralB;
-    G.trail["C"].tile = neutralC;
-    G.trail["D"].tile = neutralD;
-    G.trail["E"].tile = neutralE;
-    G.trail["F"].tile = neutralF;
-    G.trail["G"].tile = neutralG;
+    G.trail["A"].tile = neutrals[0];
+    G.trail["B"].tile = neutrals[1];
+    G.trail["C"].tile = neutrals[2];
+    G.trail["D"].tile = neutrals[3];
+    G.trail["E"].tile = neutrals[4];
+    G.trail["F"].tile = neutrals[5];
+    G.trail["G"].tile = neutrals[6];
 
-    G.buildings = [
-      private1a,
-      private2a,
-      private3a,
-      private4a,
-      private5a,
-      private6a,
-      private7a,
-      private8a,
-      private9a,
-      private10a
-    ];
+    G.buildings = privateA;
 
     for (var i = 0; i < 7; i++) {
       addSmallTile(G.trail, G.foresight.pile1.pop());

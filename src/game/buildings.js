@@ -60,14 +60,17 @@ const private8b = PrivateBuilding("private8b", 6, 1);
 const private9b = PrivateBuilding("private9b", 6, 1);
 const private10b = PrivateBuilding("private10b", 8, 3, "black");
 
-export {
+export const neutrals = [
   neutralA,
   neutralB,
   neutralC,
   neutralD,
   neutralE,
   neutralF,
-  neutralG,
+  neutralG
+];
+
+export const privateA = [
   private1a,
   private2a,
   private3a,
@@ -77,7 +80,10 @@ export {
   private7a,
   private8a,
   private9a,
-  private10a,
+  private10a
+];
+
+export const privateB = [
   private1b,
   private2b,
   private3b,
@@ -88,4 +94,4 @@ export {
   private8b,
   private9b,
   private10b
-};
+];
