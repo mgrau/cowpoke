@@ -141,15 +141,6 @@ export function risk(G, ctx) {
   }
 }
 
-export function riskDiscard(G, ctx, index) {
-  if (G.player.cards.hand[index] !== undefined) {
-    const card = G.player.cards.hand[index];
-    G.player.cards.discard = [card, ...G.player.cards.discard];
-    G.player.cards.hand.splice(index, 1);
-    ctx.events.endPhase({ next: "PrivatePhase" });
-  }
-}
-
 export function hire(G, ctx, row, col) {
   const cost = G.jobMarket.cost[row] - G.hireCostModifier;
   if (G.player.money >= cost) {
