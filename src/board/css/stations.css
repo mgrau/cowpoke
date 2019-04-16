@@ -1,0 +1,23 @@
+#stations {
+  display: grid;
+  grid-template-rows: 4vh;
+  grid-template-columns: repeat(11, 9vh);
+  grid-gap: 0.5vh;
+  grid-auto-flow: column;
+}
+
+#stations .station {
+  border: 1px solid black;
+  font-size: 1vh;
+  text-align: center;
+  border-radius: 0.5vh;
+}
+
+#stations .station.black {
+  background-color: rgb(73, 73, 73);
+  color: white;
+}
+
+.station .distance {
+  font-size: 150%;
+}

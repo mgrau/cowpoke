@@ -212,20 +212,72 @@ export function selectBuilding(G, ctx, buildingName) {
 }
 
 export function moveEngine(G, ctx, destination) {
-  const opponents = Object.keys(G.players)
-    .filter(player => player != ctx.currentPlayer)
-    .map(player => G.players[player]);
+  const stations = G.stations.map(station => station.distance);
   if (
-    destination == 0 ||
-    !opponents.map(player => player.engine).includes(destination)
+    [...Array(41).keys()].includes(destination) ||
+    stations.includes(destination)
   ) {
-    let distance = trainDistance(G, ctx, destination);
+    const opponents = Object.keys(G.players)
+      .filter(player => player != ctx.currentPlayer)
+      .map(player => G.players[player]);
     if (
-      (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
-      (G.engineSpaces < 0 && distance == G.engineSpaces)
+      destination == 0 ||
+      !opponents.map(player => player.engine).includes(destination)
     ) {
-      G.player.engine = destination;
-      G.engineSpaces -= distance;
+      let distance = trainDistance(G, ctx, destination);
+      if (
+        (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
+        (G.engineSpaces < 0 && distance == G.engineSpaces)
+      ) {
+        G.player.engine = destination;
+        G.engineSpaces -= distance;
+      }
+    }
+  }
+}
+
+export function upgradeStation(G, ctx) {
+  if (G.readyToken == null) {
+    return false;
+  }
+  const token = G.readyToken;
+
+  // is player is on a train station
+  if (!G.stations.map(station => station.distance).includes(G.player.engine)) {
+    return false;
+  }
+  const station = G.stations.find(
+    station => station.distance == G.player.engine
+  );
+
+  // has player hasn't upgraded this train station before
+  if (station.players.includes(G.playerID)) {
+    return false;
+  }
+
+  // does token color match station?
+  if (["certificate2", "move1", "move2", "hand1", "hand2"].includes(token)) {
+    if (!station.black) {
+      return false;
+    }
+  }
+
+  // if player can pay for upgrade
+  if (G.player.money < station.cost) {
+    return false;
+  }
+
+  G.player.money -= station.cost;
+  console.log("upgrade");
+  ctx.events.endPhase();
+}
+
+export function chooseToken(G, ctx, token) {
+  console.log(token);
+  console.log(G.player.tokens[token]);
+  if (Object.keys(G.player.tokens).includes(token)) {
+    if (G.player.tokens[token] > 0) {
+      G.readyToken = token;
     }
   }
 }

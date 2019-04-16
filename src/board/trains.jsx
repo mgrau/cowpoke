@@ -1,5 +1,6 @@
 import React from "react";
 import Cities from "./cities";
+import Stations from "./stations";
 
 import "./css/trains.css";
 
@@ -29,6 +30,11 @@ export default class Trains extends React.Component {
       <div id="trains">
         <Cities G={this.props.G} moves={this.props.moves} />
         {spaces}
+        <Stations
+          G={this.props.G}
+          ctx={this.props.ctx}
+          moves={this.props.moves}
+        />
       </div>
     );
   }

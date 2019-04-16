@@ -3,6 +3,7 @@ import PluginPlayer from "./plugins/plugin-player";
 import Player, { stepLimit } from "./player";
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
+import Stations from "./stations";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
@@ -18,6 +19,8 @@ import {
   build,
   selectBuilding,
   moveEngine,
+  upgradeStation,
+  chooseToken,
   discardCycle,
   discardPair,
   trash,
@@ -31,7 +34,6 @@ import {
   kansasCity2,
   kansasCity3,
   kansasCitySell,
-  kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
 
@@ -43,6 +45,7 @@ export const Cowpoke = Game({
     const G = {
       trail: Trail(),
       cities: Cities(),
+      stations: Stations(),
       foresight: Foresight(ctx),
       jobMarket: JobMarket(ctx),
       buildings: [],
@@ -87,6 +90,8 @@ export const Cowpoke = Game({
     build,
     selectBuilding,
     moveEngine,
+    upgradeStation,
+    chooseToken,
     gainTeepee,
     gainHazard,
     cowDraw,
@@ -101,7 +106,7 @@ export const Cowpoke = Game({
     kansasCity2,
     kansasCity3,
     kansasCitySell,
-    kansasCityChooseToken,
+
     kansasCityShip,
     buildingMove,
     risk
@@ -133,7 +138,7 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
-        allowedMoves: ["pass", "moveEngine"],
+        allowedMoves: ["pass", "moveEngine", "upgradeStation"],
         endPhaseIf: G => G.engineSpaces == 0
       },
       ReverseEnginePhase: {
@@ -188,7 +193,7 @@ export const Cowpoke = Game({
           "kansasCity2",
           "kansasCity3",
           "kansasCitySell",
-          "kansasCityChooseToken",
+          "chooseToken",
           "kansasCityShip"
         ],
         next: "MovePhase",
