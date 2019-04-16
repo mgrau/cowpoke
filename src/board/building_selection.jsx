@@ -30,10 +30,12 @@ export default class BuildingSelection extends React.Component {
         </div>
       ));
 
+    const active = this.props.ctx.phase == "BuildPhase" ? "active" : "";
+
     return (
       <div
         id="building-selection"
-        className={this.props.ctx.phase == "BuildPhase" ? "visible" : ""}
+        className={this.props.ctx.phase == "BuildPhase" ? "visible active" : ""}
       >
         {buildings}
       </div>
