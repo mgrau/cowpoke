@@ -3,9 +3,11 @@ import PluginPlayer from "./plugins/plugin-player";
 import Player, { stepLimit } from "./player";
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
+import Stations from "./stations";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
+import { neutrals, privateA, privateB } from "./buildings";
 import {
   move,
   stop,
@@ -17,7 +19,9 @@ import {
   build,
   selectBuilding,
   moveEngine,
-  discardCard,
+  upgradeStation,
+  chooseToken,
+  discardCycle,
   discardPair,
   trash,
   gainTeepee,
@@ -30,38 +34,8 @@ import {
   kansasCity2,
   kansasCity3,
   kansasCitySell,
-  kansasCityChooseToken,
   kansasCityShip
 } from "./kansas_city";
-import {
-  neutralA,
-  neutralB,
-  neutralC,
-  neutralD,
-  neutralE,
-  neutralF,
-  neutralG,
-  private1a,
-  private2a,
-  private3a,
-  private4a,
-  private5a,
-  private6a,
-  private7a,
-  private8a,
-  private9a,
-  private10a,
-  private1b,
-  private2b,
-  private3b,
-  private4b,
-  private5b,
-  private6b,
-  private7b,
-  private8b,
-  private9b,
-  private10b
-} from "./buildings";
 
 export const Cowpoke = Game({
   name: "cowpoke",
@@ -71,6 +45,7 @@ export const Cowpoke = Game({
     const G = {
       trail: Trail(),
       cities: Cities(),
+      stations: Stations(),
       foresight: Foresight(ctx),
       jobMarket: JobMarket(ctx),
       buildings: [],
@@ -82,26 +57,15 @@ export const Cowpoke = Game({
       actionsPerformed: []
     };
 
-    G.trail["A"].tile = neutralA;
-    G.trail["B"].tile = neutralB;
-    G.trail["C"].tile = neutralC;
-    G.trail["D"].tile = neutralD;
-    G.trail["E"].tile = neutralE;
-    G.trail["F"].tile = neutralF;
-    G.trail["G"].tile = neutralG;
+    G.trail["A"].tile = neutrals[0];
+    G.trail["B"].tile = neutrals[1];
+    G.trail["C"].tile = neutrals[2];
+    G.trail["D"].tile = neutrals[3];
+    G.trail["E"].tile = neutrals[4];
+    G.trail["F"].tile = neutrals[5];
+    G.trail["G"].tile = neutrals[6];
 
-    G.buildings = [
-      private1a,
-      private2a,
-      private3a,
-      private4a,
-      private5a,
-      private6a,
-      private7a,
-      private8a,
-      private9a,
-      private10a
-    ];
+    G.buildings = privateA;
 
     for (var i = 0; i < 7; i++) {
       addSmallTile(G.trail, G.foresight.pile1.pop());
@@ -126,6 +90,8 @@ export const Cowpoke = Game({
     build,
     selectBuilding,
     moveEngine,
+    upgradeStation,
+    chooseToken,
     gainTeepee,
     gainHazard,
     cowDraw,
@@ -140,7 +106,7 @@ export const Cowpoke = Game({
     kansasCity2,
     kansasCity3,
     kansasCitySell,
-    kansasCityChooseToken,
+
     kansasCityShip,
     buildingMove,
     risk
@@ -172,7 +138,7 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
-        allowedMoves: ["pass", "moveEngine"],
+        allowedMoves: ["pass", "moveEngine", "upgradeStation"],
         endPhaseIf: G => G.engineSpaces == 0
       },
       ReverseEnginePhase: {
@@ -227,7 +193,7 @@ export const Cowpoke = Game({
           "kansasCity2",
           "kansasCity3",
           "kansasCitySell",
-          "kansasCityChooseToken",
+          "chooseToken",
           "kansasCityShip"
         ],
         next: "MovePhase",

@@ -62,8 +62,11 @@ export default class CowMarket extends React.Component {
             .fill()
             .map((cowboy, index) => <Worker key={index} type="cowboy" />)
         : "";
+
+    const active = this.props.ctx.phase == "CowPhase" ? "active" : "";
+
     return (
-      <div id="cow-market">
+      <div id="cow-market" className={active}>
         <div id="cow-market-actions">
           <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
             <Worker type="cowboy" />

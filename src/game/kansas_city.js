@@ -67,16 +67,6 @@ export function kansasCitySell(G, ctx, certificates = 0) {
   }
 }
 
-export function kansasCityChooseToken(G, ctx, token) {
-  console.log(token);
-  console.log(G.player.tokens[token]);
-  if (Object.keys(G.player.tokens).includes(token)) {
-    if (G.player.tokens[token] > 0) {
-      G.readyToken = token;
-    }
-  }
-}
-
 export function kansasCityShip(G, ctx, destination) {
   if (G.actionsPerformed.includes("kansasCityShip")) {
     console.log("already did this move");

@@ -10,8 +10,10 @@
 - train station
 - scoring
 - include station masters
+  - check for minimum number of workers (stationmaster)
 
-- hiring actions
+* hiring actions
+
   - gain hazard at 4 cowboys
   - gain teepee at 6 cowboys
   - build for 1 at 4 craftsmen
@@ -22,10 +24,8 @@
   - discard a jersey for 2 certificates at 5 engineers
   - discard a jersey for 4\$ at 6 engineers
   - check for maximum number of workers when hiring
-  - check for minimum number of workers (stationmaster)
-- prevent hiring of a 7th worker
 
-- objective cards
+* objective cards
 
 # view
 
@@ -33,14 +33,13 @@
   - show all of discard contents on hover
 - better railroad view
   - include stations
+  - put point symbols between cities
+  - fix train overlap at zero
+  - tracks
 - add tooltip hover to action components
   - highlight available actions?
   - give any component that can be clicked a hover indicator
-- cities
-  - put point symbols between cities
-- train
-  - fix train overlap at zero
-  - tracks
+  -
 - cow market
 
   - make actions hoverable, and show which has been selected.

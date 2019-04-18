@@ -33,8 +33,9 @@ export default class Trail extends React.Component {
       )
       .flat();
 
+    const active = this.props.ctx.phase == "MovePhase" ? "active" : "";
     return (
-      <div>
+      <div className={active}>
         <div>{lines}</div>
         <div id="trail">{spaces}</div>
       </div>

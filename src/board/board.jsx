@@ -41,9 +41,13 @@ export default class CowpokeBoard extends React.Component {
     const player = this.props.G.players[this.props.ctx.currentPlayer];
 
     return (
-      <div id="board">
+      <div id="board" className={"player-" + this.props.ctx.currentPlayer}>
         <div id="board-spacer" />
-        <Trains G={this.props.G} moves={this.props.moves} />
+        <Trains
+          G={this.props.G}
+          ctx={this.props.ctx}
+          moves={this.props.moves}
+        />
         <JobMarket
           G={this.props.G}
           ctx={this.props.ctx}
