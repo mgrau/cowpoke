@@ -41,7 +41,11 @@ export default class Action extends React.Component {
         }
       }
     }
-    if (action == "neutralC0" || action == "neutralD0") {
+    if (
+      action == "neutralC0" ||
+      action == "neutralD0" ||
+      action == "private8a0"
+    ) {
       actionOr = true;
     }
     const content = get_content(action, this.props.moves);
@@ -50,8 +54,7 @@ export default class Action extends React.Component {
         className={
           "action " +
           (active ? "active " : " ") +
-          (actionOr ? "actionOr " : " ") +
-          this.props.action
+          (actionOr ? "actionOr " : " ")
         }
         onClick={() => {
           if (active) {

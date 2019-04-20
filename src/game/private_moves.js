@@ -27,7 +27,15 @@ export function privateMove(G, ctx, action) {
     } else if (action == "private7a0") {
       private7a0(G, ctx);
     } else if (action == "private8a0") {
-      private8a0(G, ctx);
+      return;
+    } else if (action == "private8a0a") {
+      private8a0a(G, ctx);
+      G.actionsPerformed = [...G.actionsPerformed, "private8a0a"];
+      return;
+    } else if (action == "private8a0b") {
+      private8a0b(G, ctx);
+      G.actionsPerformed = [...G.actionsPerformed, "private8a0b"];
+      return;
     } else if (action == "private8a1") {
       private8a1(G, ctx);
     } else if (action == "private9a0") {
@@ -74,54 +82,71 @@ function private3a1(G, ctx) {
   G.movesRemaining = 1;
   ctx.events.endPhase({ next: "MovePhase" });
 }
+
 function private4a0(G, ctx) {
   if (G.player.money >= 5) {
     G.player.money -= 5;
     ctx.events.endPhase({ next: "HazardPhase" });
   }
 }
+
 function private4a1(G, ctx) {
   G.movesRemaining = 2;
   ctx.events.endPhase({ next: "MovePhase" });
 }
+
 function private5a0(G, ctx) {
   G.hireCostModifier = 1;
   ctx.events.endPhase({ next: "HirePhase" });
 }
+
 function private5a1(G, ctx) {
   G.engineSpaces = G.player.engineers;
   ctx.events.endPhase({ next: "EnginePhase" });
 }
+
 function private6a0(G, ctx) {
   if (handIncludes(G.player, "Holstein")) {
     G.player.money += 10;
     discard(G, "Holstein");
   }
 }
+
 function private6a1(G, ctx) {
   ctx.events.endPhase({ next: "DoubleAuxPhase" });
 }
+
 function private7a0(G, ctx) {
   // 2 certificates and 2 dollars per pair of (blue, green) teepees
 }
-function private8a0(G, ctx) {
-  // either teepee or double auxillary action
+
+function private8a0a(G, ctx) {
+  ctx.events.endPhase({ next: "TeepeePhase" });
 }
+
+function private8a0b(G, ctx) {
+  ctx.events.endPhase({ next: "DoubleAuxPhase" });
+}
+
 function private8a1(G, ctx) {
   G.engineSpaces = 2;
   ctx.events.endPhase({ next: "EnginePhase" });
 }
+
 function private9a0(G, ctx) {
   G.engineSpaces = 3;
   ctx.events.endPhase({ next: "EnginePhase" });
 }
+
 function private9a1(G, ctx) {
   //extraordinary delivery
 }
+
 function private10a0(G, ctx) {
   G.player.certificate = 6;
   gainCertificate(G.player);
 }
+
 function private10a1(G, ctx) {
   G.movesRemaining = 5;
   ctx.events.endPhase({ next: "MovePhase" });
