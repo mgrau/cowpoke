@@ -363,10 +363,13 @@ function pay_toll(G, ctx) {
     }
   }
 
-  toll = toll > G.player.money ? G.player.money : toll;
-  G.player.money -= toll;
-  if (tile.owner != undefined) {
-    G.players[tile.owner].money += toll;
+  if (tile.owner != ctx.currentPlayer) {
+    toll = toll > G.player.money ? G.player.money : toll;
+    G.player.money -= toll;
+    console.log(tile.owner);
+    if (tile.owner != undefined) {
+      G.players[tile.owner].money += toll;
+    }
   }
 }
 

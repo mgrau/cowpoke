@@ -5,22 +5,22 @@
 # gameplay
 
 - player buildings
+
   - implement special delivery
   - implement b set
 
 - scoring
 - include station masters
+
   - check for minimum number of workers (stationmaster)
 
-* hiring actions
-
 - objective cards
-- risk action (discard any card)
 
 # view
 
 - player
   - show all of discard contents on hover
+  - show hiring actions
 - better railroad view
   - include stations
   - put point symbols between cities
@@ -49,6 +49,6 @@
 - pair discard visual overflow
 - pair discard undo allows you to discard two pairs.
 - pair discard doesn't let you choose which 2 cards.
-- charges players a toll on their own buildings
-- bonus action button doesn't show
 - add button to upgrade train stations
+- prevent players from being able to click on other player boards for actions
+- players can undo a discard (prevent this)
