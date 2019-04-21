@@ -1,6 +1,6 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
-import { removeWorker } from "./job_market";
+import { getWorker, removeWorker } from "./job_market";
 import { trainDistance } from "./train";
 import {
   discard,
@@ -143,18 +143,49 @@ export function risk(G, ctx) {
 
 export function hire(G, ctx, row, col) {
   const cost = G.jobMarket.cost[row] - G.hireCostModifier;
-  if (G.player.money >= cost) {
+  const workerType = getWorker(G.jobMarket, row, col).type;
+  if (
+    G.player.money >= cost &&
+    ((workerType == "cowboy" && G.player.cowboys < 6) ||
+      (workerType == "craftsman" && G.player.craftsmen < 6) ||
+      (workerType == "engineer" && G.player.engineers < 6))
+  ) {
     const worker = removeWorker(G.jobMarket, row, col);
     if (worker != null) {
       G.player.money -= cost;
       if (worker.type == "cowboy") {
         G.player.cowboys += 1;
+        if (G.player.cowboys == 4) {
+          console.log("gain a hazard");
+          return;
+        }
+        if (G.player.cowboys == 6) {
+          console.log("gain a teepee");
+        }
       }
       if (worker.type == "craftsman") {
         G.player.craftsmen += 1;
+        if (G.player.craftsmen == 4 || G.player.craftsmen == 6) {
+          console.log("build a building");
+        }
       }
       if (worker.type == "engineer") {
         G.player.engineers += 1;
+        if (G.player.engineers == 2) {
+          console.log("discard a jersey for a certificate");
+        }
+        if (G.player.engineers == 3) {
+          console.log("discards a jersey for 1 dollar");
+        }
+        if (G.player.engineers == 4) {
+          console.log("hire with a bonus of 2 dollars");
+        }
+        if (G.player.engineers == 5) {
+          console.log("discard a jersey for 2 certificates");
+        }
+        if (G.player.engineers == 6) {
+          console.log("discard a jersey for 4 dollars");
+        }
       }
     }
   }

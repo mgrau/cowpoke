@@ -31,12 +31,16 @@ export function addWorker(G, ctx, worker) {
   }
 }
 
+export function getWorker(jobMarket, row, col) {
+  return jobMarket.market[col + row * jobMarket.numPlayers];
+}
+
 export function removeWorker(jobMarket, row, col) {
   if (row >= jobMarket.row) {
     console.log("can't hire from jobMarket row yet!");
     return null;
   }
-  const worker = jobMarket.market[col + row * jobMarket.numPlayers];
+  const worker = getWorker(jobMarket, row, col);
   jobMarket.market[col + row * jobMarket.numPlayers] = null;
   return worker;
 }

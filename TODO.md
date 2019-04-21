@@ -1,11 +1,12 @@
 # TODO
 
+# remove UI actions from game logic
+
 # gameplay
 
 - player buildings
 
   - implement special delivery
-  - implement 2 teepee : 2 certificates + 2 dollars
 
 - train station
 - scoring
@@ -23,10 +24,8 @@
   - discard a jersey for 4\$ at 6 engineers
   - check for maximum number of workers when hiring
   - check for minimum number of workers (stationmaster)
-- prevent hiring of a 7th worker
 
 - objective cards
-- risk actions
 
 # view
 
