@@ -16,6 +16,7 @@ import {
   buildingMove,
   risk,
   hire,
+  hireBonus,
   build,
   selectBuilding,
   moveEngine,
@@ -87,6 +88,7 @@ export const Cowpoke = Game({
     pass,
     end,
     hire,
+    hireBonus,
     build,
     selectBuilding,
     moveEngine,
@@ -106,7 +108,6 @@ export const Cowpoke = Game({
     kansasCity2,
     kansasCity3,
     kansasCitySell,
-
     kansasCityShip,
     buildingMove,
     risk
@@ -120,6 +121,7 @@ export const Cowpoke = Game({
       if (G.gameEndPlayer == ctx.currentPlayer) {
         return ctx.events.endGame();
       }
+      G.hireBonus == null;
       return G;
     },
     phases: {
@@ -173,10 +175,16 @@ export const Cowpoke = Game({
         allowedMoves: ["end", "auxMove"]
       },
       NeutralPhase: {
-        allowedMoves: ["end", "beginAuxMove", "buildingMove"]
+        allowedMoves: ["end", "beginAuxMove", "buildingMove", "hireBonus"]
       },
       PrivatePhase: {
-        allowedMoves: ["end", "beginAuxMove", "buildingMove", "risk"]
+        allowedMoves: [
+          "end",
+          "beginAuxMove",
+          "buildingMove",
+          "hireBonus",
+          "risk"
+        ]
       },
       DoubleAuxPhase: {
         allowedMoves: ["pass", "auxMove", "auxDoubleMove"],

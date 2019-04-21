@@ -33,14 +33,15 @@ export default function Player(ctx, playerID) {
 }
 
 export function discard(G, name) {
-  const index = G.player.cards.hand.findIndex(cow => cow.name == name);
-  const card = G.player.cards.hand[index];
-  G.player.cards.discard = [card, ...G.player.cards.discard];
-  G.player.cards.hand.splice(index, 1);
-}
-
-export function handIncludes(player, name) {
-  return player.cards.hand.map(cow => cow.name).includes(name);
+  if (G.player.cards.hand.map(cow => cow.name).includes(name)) {
+    const index = G.player.cards.hand.findIndex(cow => cow.name == name);
+    const card = G.player.cards.hand[index];
+    G.player.cards.discard = [card, ...G.player.cards.discard];
+    G.player.cards.hand.splice(index, 1);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 export function gainCertificate(player) {

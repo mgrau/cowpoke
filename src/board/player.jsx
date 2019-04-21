@@ -35,6 +35,24 @@ export default class Player extends React.Component {
     }
   }
 
+  hireBonus() {
+    if (
+      this.props.G.hireBonus != null &&
+      this.props.ctx.currentPlayer == this.props.playerID
+    ) {
+      return (
+        <div
+          className="hire-bonus"
+          onClick={() => this.props.moves.hireBonus()}
+        >
+          Hire Bonus Action
+        </div>
+      );
+    } else {
+      return "";
+    }
+  }
+
   render() {
     const hand = this.props.cards.hand.map((card, index) => (
       <Card
@@ -68,8 +86,6 @@ export default class Player extends React.Component {
     } else if (this.props.tokens.certificate1 == 0) {
       max_certificates = 4;
     }
-
-    const certificates = this.certificates();
 
     const cowboys = Array(6)
       .fill()
@@ -172,7 +188,8 @@ export default class Player extends React.Component {
         </div>
         <div className="player-hand">{hand}</div>
         <div className="player-discard">{discard}</div>
-        {certificates}
+        {this.certificates()}
+        {this.hireBonus()}
       </div>
     );
   }

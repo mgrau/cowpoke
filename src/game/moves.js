@@ -2,13 +2,7 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { getWorker, removeWorker } from "./job_market";
 import { trainDistance } from "./train";
-import {
-  discard,
-  stepLimit,
-  handSize,
-  gainCertificate,
-  handIncludes
-} from "./player";
+import { discard, stepLimit, handSize, gainCertificate } from "./player";
 import { neutralMove } from "./neutral_moves";
 import { privateMove } from "./private_moves";
 
@@ -29,8 +23,9 @@ export function move(G, ctx, destination) {
         // return INVALID_MOVE;
       } else {
         G.player.location = destination;
-        if (G.trail[destination].tile != null) G.movesRemaining--;
-
+        if (G.trail[destination].tile != null) {
+          G.movesRemaining--;
+        }
         pay_toll(G, ctx);
       }
     }
@@ -58,35 +53,6 @@ export function stop(G, ctx) {
       ctx.events.endPhase({ next: "PrivatePhase" });
     } else if (tile.name === "KansasCity") {
       ctx.events.endPhase({ next: "KansasCity" });
-    } else {
-      switch (G.trail[G.player.location].tile.name) {
-        case "KansasCity":
-          ctx.events.endPhase({ next: "KansasCity" });
-          break;
-        case "neutralA":
-          ctx.events.endPhase({ next: "neutralA" });
-          break;
-        case "neutralB":
-          ctx.events.endPhase({ next: "neutralB" });
-          break;
-        case "neutralC":
-          ctx.events.endPhase({ next: "neutralC" });
-          break;
-        case "neutralD":
-          ctx.events.endPhase({ next: "neutralD" });
-          break;
-        case "neutralE":
-          ctx.events.endPhase({ next: "neutralE" });
-          break;
-        case "neutralF":
-          ctx.events.endPhase({ next: "neutralF" });
-          break;
-        case "neutralG":
-          ctx.events.endPhase({ next: "neutralG" });
-          break;
-        default:
-          ctx.events.endPhase();
-      }
     }
   }
 }
@@ -111,6 +77,7 @@ export function buildingMove(G, ctx, index) {
   }
 }
 
+// TODO add discard any card
 export function risk(G, ctx) {
   // if haven't done a risk action yet
   if (!G.actionsPerformed.includes("risk")) {
@@ -122,8 +89,7 @@ export function risk(G, ctx) {
         G.player.location == "rockfallRisk2" ||
         G.player.location == "teepeeRisk2"
       ) {
-        if (handIncludes(G.player, "Jersey")) {
-          discard(G, "Jersey");
+        if (discard(G, "Jersey")) {
           gainCertificate(G.player);
           G.player.money += 2;
         }
@@ -156,40 +122,81 @@ export function hire(G, ctx, row, col) {
       if (worker.type == "cowboy") {
         G.player.cowboys += 1;
         if (G.player.cowboys == 4) {
+          G.hireBonus = "cowboy4";
           console.log("gain a hazard");
-          return;
         }
         if (G.player.cowboys == 6) {
+          G.hireBonus = "cowboy6";
           console.log("gain a teepee");
         }
       }
       if (worker.type == "craftsman") {
         G.player.craftsmen += 1;
         if (G.player.craftsmen == 4 || G.player.craftsmen == 6) {
+          G.hireBonus = "craftsman";
           console.log("build a building");
         }
       }
       if (worker.type == "engineer") {
         G.player.engineers += 1;
         if (G.player.engineers == 2) {
+          G.hireBonus = "engineer2";
           console.log("discard a jersey for a certificate");
         }
         if (G.player.engineers == 3) {
+          G.hireBonus = "engineer3";
           console.log("discards a jersey for 1 dollar");
         }
         if (G.player.engineers == 4) {
+          G.hireBonus = "engineer4";
           console.log("hire with a bonus of 2 dollars");
         }
         if (G.player.engineers == 5) {
+          G.hireBonus = "engineer5";
           console.log("discard a jersey for 2 certificates");
         }
         if (G.player.engineers == 6) {
+          G.hireBonus = "enginee6";
           console.log("discard a jersey for 4 dollars");
         }
       }
     }
   }
   ctx.events.endPhase();
+}
+
+export function hireBonus(G, ctx) {
+  if (G.hireBonus != null) {
+    if (G.hireBonus == "cowboy4") {
+      ctx.events.endPhase({ next: "HazardPhase" });
+    } else if (G.hireBonus == "cowboy6") {
+      ctx.events.endPhase({ next: "TeepeePhase" });
+    } else if (G.hireBonus == "craftsman") {
+      G.buildCost = 1;
+      ctx.events.endPhase({ next: "BuildPhase" });
+    } else if (G.hireBonus == "engineer2") {
+      if (discard(G, "Jersey")) {
+        gainCertificate(G.player);
+      }
+    } else if (G.hireBonus == "engineer3") {
+      if (discard(G, "Jersey")) {
+        G.player.money += 2;
+      }
+    } else if (G.hireBonus == "engineer4") {
+      G.hireCostModifier = 2;
+      ctx.events.endPhase({ next: "HirePhase" });
+    } else if (G.hireBonus == "engineer5") {
+      if (discard(G, "Jersey")) {
+        gainCertificate(G.player);
+        gainCertificate(G.player);
+      }
+    } else if (G.hireBonus == "engineer5") {
+      if (discard(G, "Jersey")) {
+        G.player.money += 4;
+      }
+    }
+    G.hireBonus = null;
+  }
 }
 
 export function build(G, ctx, location) {

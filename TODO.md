@@ -5,27 +5,15 @@
 # gameplay
 
 - player buildings
-
   - implement special delivery
+  - implement b set
 
-- train station
+- train stations
 - scoring
 - include station masters
 
-- hiring actions
-  - gain hazard at 4 cowboys
-  - gain teepee at 6 cowboys
-  - build for 1 at 4 craftsmen
-  - build for 1 at 6 craftsmen
-  - discard a jersey for a certificate at 1 engineer
-  - discard a jersey for 2\$ at 2 engineers
-  - hire +2 at 4 engineers
-  - discard a jersey for 2 certificates at 5 engineers
-  - discard a jersey for 4\$ at 6 engineers
-  - check for maximum number of workers when hiring
-  - check for minimum number of workers (stationmaster)
-
 - objective cards
+- risk action (discard any card)
 
 # view
 

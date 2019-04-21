@@ -1,5 +1,5 @@
 import { INVALID_MOVE } from "boardgame.io/core";
-import { handIncludes, discard, gainCertificate } from "./player";
+import { discard, gainCertificate } from "./player";
 
 // TODO:
 // gain an objective
@@ -58,12 +58,8 @@ export function neutralMove(G, ctx, action) {
 }
 
 function neutralA0(G, ctx) {
-  if (!handIncludes(G.player, "Guernsey")) {
-    console.log("no Guernsey in hand");
-    // return INVALID_MOVE
-  } else {
+  if (discard(G, "Guernsey")) {
     G.player.money += 2;
-    discard(G, "Guernsey");
   }
 }
 
@@ -78,12 +74,8 @@ function neutralA2(G, ctx) {
 }
 
 function neutralB0(G, ctx) {
-  if (!handIncludes(G.player, "Dutch Belt")) {
-    console.log("no Dutch Belt in hand");
-    // return INVALID_MOVE
-  } else {
+  if (discard(G, "Dutch Belt")) {
     G.player.money += 2;
-    discard(G, "Dutch Belt");
   }
 }
 
@@ -120,12 +112,8 @@ function neutralD1(G, ctx) {
 }
 
 function neutralE0(G, ctx) {
-  if (!handIncludes(G.player, "Black Angus")) {
-    console.log("no Black Angus in hand");
-    // return INVALID_MOVE
-  } else {
+  if (discard(G, "Black Angus")) {
     G.player.money += 2;
-    discard(G, "Black Angus");
   }
 }
 

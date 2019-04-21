@@ -83,6 +83,14 @@
   font-weight: bold;
 }
 
+.player .hire-bonus {
+  border: 3px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 75%;
+  background-color: rgb(42, 42, 77);
+  color: white;
+}
 .player-tokens {
   grid-column: 1;
   grid-row: 2;

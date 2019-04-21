@@ -1,4 +1,4 @@
-import { handIncludes, discard, gainCertificate } from "./player";
+import { discard, gainCertificate } from "./player";
 
 export function privateMove(G, ctx, action) {
   if (!G.actionsPerformed.includes(action)) {
@@ -62,9 +62,8 @@ function private1a0(G, ctx) {
 }
 
 function private2a0(G, ctx) {
-  if (handIncludes(G.player, "Guernsey")) {
+  if (discard(G, "Guernsey")) {
     G.player.money += 4;
-    discard(G, "Guernsey");
   }
 }
 
@@ -106,9 +105,8 @@ function private5a1(G, ctx) {
 }
 
 function private6a0(G, ctx) {
-  if (handIncludes(G.player, "Holstein")) {
+  if (discard(G, "Holstein")) {
     G.player.money += 10;
-    discard(G, "Holstein");
   }
 }
 
