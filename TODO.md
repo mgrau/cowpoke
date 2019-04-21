@@ -59,3 +59,7 @@
 - pair discard visual overflow
 - pair discard undo allows you to discard two pairs.
 - pair discard doesn't let you choose which 2 cards.
+- charges players a toll on their own buildings
+- bonus action button doesn't show
+- add button to upgrade train stations
+- teepee glitch (client gets out of sync)

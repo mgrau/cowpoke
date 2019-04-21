@@ -21,7 +21,7 @@ import {
   moveEngine,
   upgradeStation,
   chooseToken,
-  discardCycle,
+  discardCard,
   discardPair,
   trash,
   gainTeepee,
