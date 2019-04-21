@@ -118,6 +118,14 @@ function private6a1(G, ctx) {
 
 function private7a0(G, ctx) {
   // 2 certificates and 2 dollars per pair of (blue, green) teepees
+  const green = G.player.teepees.filter(teepee => teepee.color == "green")
+    .length;
+  const blue = G.player.teepees.filter(teepee => teepee.color == "blue").length;
+  for (var i = 0; i < Math.min(green, blue); i++) {
+    gainCertificate(G.player);
+    gainCertificate(G.player);
+    G.player.money += 2;
+  }
 }
 
 function private8a0a(G, ctx) {
