@@ -78,7 +78,7 @@ function auxCertificate(G, ctx, double = false) {
       gainCertificate(G.player);
       gainCertificate(G.player);
       G.engineSpaces = -2;
-      ctx.events.endPhase({ next: "ReverseEnginePhase" });
+      ctx.events.endPhase({ next: "EnginePhase" });
     }
   } else {
     if (
@@ -89,7 +89,7 @@ function auxCertificate(G, ctx, double = false) {
       G.player.money -= 1;
       gainCertificate(G.player);
       G.engineSpaces = -1;
-      ctx.events.endPhase({ next: "ReverseEnginePhase" });
+      ctx.events.endPhase({ next: "EnginePhase" });
     }
   }
 }
