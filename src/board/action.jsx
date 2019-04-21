@@ -57,7 +57,7 @@ export default class Action extends React.Component {
           (actionOr ? "actionOr " : " ")
         }
         onClick={() => {
-          if (active) {
+          if (active && !actionOr) {
             this.props.moves["buildingMove"](this.props.index);
           }
         }}
