@@ -112,6 +112,9 @@ export class Card extends React.Component {
       case "TexasLonghorn":
         value = "";
         break;
+      case "any":
+        value = "";
+        break;
     }
 
     return (

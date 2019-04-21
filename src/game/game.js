@@ -22,7 +22,7 @@ import {
   moveEngine,
   upgradeStation,
   chooseToken,
-  discardCycle,
+  discardCard,
   discardPair,
   trash,
   gainTeepee,
@@ -102,7 +102,7 @@ export const Cowpoke = Game({
     beginAuxMove,
     auxMove,
     auxDoubleMove,
-    discardCycle,
+    discardCard,
     discardPair,
     trash,
     kansasCity1,
@@ -149,7 +149,7 @@ export const Cowpoke = Game({
         endPhaseIf: G => G.availableCowboys <= 0
       },
       DiscardPhase: {
-        allowedMoves: ["discardCycle"],
+        allowedMoves: ["discardCard"],
         endPhaseIf: G => G.mustDiscard <= 0
       },
       DiscardPairPhase: {

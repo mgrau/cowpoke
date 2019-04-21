@@ -10,6 +10,9 @@
 
 - scoring
 - include station masters
+  - check for minimum number of workers (stationmaster)
+
+* hiring actions
 
 - objective cards
 - risk action (discard any card)
@@ -20,14 +23,13 @@
   - show all of discard contents on hover
 - better railroad view
   - include stations
+  - put point symbols between cities
+  - fix train overlap at zero
+  - tracks
 - add tooltip hover to action components
   - highlight available actions?
   - give any component that can be clicked a hover indicator
-- cities
-  - put point symbols between cities
-- train
-  - fix train overlap at zero
-  - tracks
+  -
 - cow market
 
   - make actions hoverable, and show which has been selected.
@@ -47,3 +49,7 @@
 - pair discard visual overflow
 - pair discard undo allows you to discard two pairs.
 - pair discard doesn't let you choose which 2 cards.
+- charges players a toll on their own buildings
+- bonus action button doesn't show
+- add button to upgrade train stations
+- teepee glitch (client gets out of sync)
