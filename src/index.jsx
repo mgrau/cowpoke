@@ -17,17 +17,17 @@ const CowpokeClient = Client({
 
 ReactDOM.render(
   <div>
-    <CowpokeClient />
+    {/* <CowpokeClient /> */}
     {/* <Lobby
       gameServer="http://localhost:5000"
       lobbyServer="http://localhost:5000"
       gameComponents={[{ game: Cowpoke, board: CowpokeBoard }]}
     /> */}
-    {/* <Lobby
+    <Lobby
       gameServer="https://mgrau.dev"
-      lobbyServer="https://mgrau.dev/cowpoke"
+      lobbyServer="https://mgrau.dev/cowpoke-lobby"
       gameComponents={[{ game: Cowpoke, board: CowpokeBoard }]}
-    /> */}
+    />
   </div>,
   document.getElementById("root")
 );
