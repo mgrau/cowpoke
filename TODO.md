@@ -9,6 +9,8 @@
   - implement special delivery
   - implement b set
 
+- charge for hand limit tokens
+
 - scoring
 - include station masters
 
