@@ -8,7 +8,6 @@
   - implement special delivery
   - implement b set
 
-- train stations
 - scoring
 - include station masters
 

@@ -55,6 +55,7 @@ export const Cowpoke = Game({
       objectiveDeck: ctx.random.Shuffle([]),
       objectives: [],
       movesRemaining: 0,
+      readyToken: null,
       actionsPerformed: []
     };
 
@@ -140,11 +141,7 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
-        allowedMoves: ["pass", "moveEngine", "upgradeStation"],
-        endPhaseIf: G => G.engineSpaces == 0
-      },
-      ReverseEnginePhase: {
-        allowedMoves: ["moveEngine"],
+        allowedMoves: ["pass", "moveEngine", "chooseToken", "upgradeStation"],
         endPhaseIf: G => G.engineSpaces == 0
       },
       CowPhase: {

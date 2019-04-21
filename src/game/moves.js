@@ -64,6 +64,11 @@ export function end(G, ctx) {
 }
 
 export function pass(G, ctx) {
+  if (ctx.phase == "EnginePhase") {
+    if (G.engineSpaces < -0.5) {
+      return;
+    }
+  }
   ctx.events.endPhase();
 }
 
@@ -263,9 +268,11 @@ export function moveEngine(G, ctx, destination) {
       !opponents.map(player => player.engine).includes(destination)
     ) {
       let distance = trainDistance(G, ctx, destination);
+      console.log({ diff: distance - G.engineSpaces });
       if (
         (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
-        (G.engineSpaces < 0 && distance == G.engineSpaces)
+        (G.engineSpaces < 0 &&
+          (distance - G.engineSpaces == 0 || distance - G.engineSpaces == 0.5))
       ) {
         G.player.engine = destination;
         G.engineSpaces -= distance;
@@ -276,36 +283,43 @@ export function moveEngine(G, ctx, destination) {
 
 export function upgradeStation(G, ctx) {
   if (G.readyToken == null) {
-    return false;
+    return;
   }
   const token = G.readyToken;
 
   // is player is on a train station
   if (!G.stations.map(station => station.distance).includes(G.player.engine)) {
-    return false;
+    return;
   }
-  const station = G.stations.find(
+  const stationIndex = G.stations.findIndex(
     station => station.distance == G.player.engine
   );
+  const station = G.stations[stationIndex];
 
   // has player hasn't upgraded this train station before
   if (station.players.includes(G.playerID)) {
-    return false;
+    return;
   }
 
   // does token color match station?
   if (["certificate2", "move1", "move2", "hand1", "hand2"].includes(token)) {
     if (!station.black) {
-      return false;
+      return;
     }
   }
 
   // if player can pay for upgrade
   if (G.player.money < station.cost) {
-    return false;
+    return;
   }
-
   G.player.money -= station.cost;
+
+  G.stations[stationIndex].players = [
+    G.player.playerID,
+    ...G.stations[stationIndex].players
+  ];
+  G.player.tokens[G.readyToken]--;
+
   console.log("upgrade");
   ctx.events.endPhase();
 }
