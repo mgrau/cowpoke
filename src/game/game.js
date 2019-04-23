@@ -21,7 +21,7 @@ import {
   selectBuilding,
   moveEngine,
   upgradeStation,
-  chooseToken,
+  selectToken,
   discardCard,
   discardPair,
   trash,
@@ -94,7 +94,7 @@ export const Cowpoke = Game({
     selectBuilding,
     moveEngine,
     upgradeStation,
-    chooseToken,
+    selectToken,
     gainTeepee,
     gainHazard,
     cowDraw,
@@ -141,7 +141,7 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
-        allowedMoves: ["pass", "moveEngine", "chooseToken", "upgradeStation"],
+        allowedMoves: ["pass", "moveEngine", "selectToken", "upgradeStation"],
         endPhaseIf: G => G.engineSpaces == 0
       },
       CowPhase: {
@@ -198,7 +198,7 @@ export const Cowpoke = Game({
           "kansasCity2",
           "kansasCity3",
           "kansasCitySell",
-          "chooseToken",
+          "selectToken",
           "kansasCityShip"
         ],
         next: "MovePhase",

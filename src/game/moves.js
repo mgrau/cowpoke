@@ -82,7 +82,6 @@ export function buildingMove(G, ctx, index) {
   }
 }
 
-// TODO add discard any card
 export function risk(G, ctx) {
   // if haven't done a risk action yet
   if (!G.actionsPerformed.includes("risk")) {
@@ -325,7 +324,7 @@ export function upgradeStation(G, ctx) {
   ctx.events.endPhase();
 }
 
-export function chooseToken(G, ctx, token) {
+export function selectToken(G, ctx, token) {
   console.log(token);
   console.log(G.player.tokens[token]);
   if (Object.keys(G.player.tokens).includes(token)) {
