@@ -7,7 +7,7 @@
 - player buildings
 
   - implement special delivery
-  - implement b set
+  - implement b set actions
 
 - delivery actions (gaining objectives)
 - include station masters
@@ -55,3 +55,5 @@
 - add button to upgrade train stations
 - prevent players from being able to click on other player boards for actions
 - players can undo a discard (prevent this)
+
+- currently passing G to every component. This causes every component to redraw each move.

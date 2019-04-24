@@ -1,11 +1,66 @@
 @import url("./colors.css");
 
-.train-space {
+#trains {
+  display: grid;
+  grid-template-rows: 2fr 1fr 2fr;
+  grid-template-columns: 5vw repeat(40, 2vw);
+  justify-items: center;
+}
+
+#trains .city {
+  width: 150%;
+  grid-row: 1;
   border: 1px solid black;
-  display: inline-block;
+  font-size: 1vh;
+  text-align: center;
+  border-radius: 0.5vh;
+}
+
+#trains .city.black {
+  background-color: rgb(73, 73, 73);
+  color: white;
+}
+
+#trains .station {
+  width: 90%;
+  grid-row: 3;
+  font-size: 90%;
+  /* font-size: 1vh; */
+  text-align: center;
+  background-color: var(--empty-space);
+  border-radius: 0.5vh;
+  padding: 0.3vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.1vh;
+  align-items: center;
+}
+
+#trains .station .station-master,
+#trains .station .station-tokens,
+#trains .station .station-points {
+  border: 1px solid black;
+  border-radius: 0.5vh;
+  height: 100%;
+  display: grid;
+  align-items: center;
+}
+
+#trains .city-KansasCity {
+  width: 75%;
+}
+
+#trains .station.black .station-tokens {
+  background-color: rgb(73, 73, 73);
+  color: white;
+}
+
+#trains .train-space {
+  width: 90%;
+  grid-row: 2;
+  border: 1px solid black;
   margin: 0.1vh;
-  width: 2vh;
-  height: 1.5vh;
+  /* height: 1.5vh; */
   text-align: center;
   border-radius: 0.25vh;
   font-size: 1vh;

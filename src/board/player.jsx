@@ -111,7 +111,6 @@ export default class Player extends React.Component {
       });
 
     const playerScore = score(this.props.G, this.props.playerID);
-    console.log(playerScore.total);
 
     return (
       <div className={"player " + ("player" + this.props.playerID)}>

@@ -2,7 +2,7 @@
 
 #board {
   display: grid;
-  grid-template-columns: 1fr 1fr 6fr 1fr 6fr;
+  grid-template-columns: 1fr 1fr 10fr 1fr;
   grid-gap: 1vh;
   font-family: arial;
   font-size: 1.75vh;
