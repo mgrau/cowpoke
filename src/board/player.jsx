@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./card";
 import { Money, Worker, Certificate } from "./symbols";
 import { AuxAction } from "../game/aux_actions";
+import { score } from "../game/score";
 
 import "./css/player.css";
 
@@ -109,6 +110,9 @@ export default class Player extends React.Component {
         } else return <div key={index} />;
       });
 
+    const playerScore = score(this.props.G, this.props.playerID);
+    console.log(playerScore.total);
+
     return (
       <div className={"player " + ("player" + this.props.playerID)}>
         <div className="player-header">
@@ -174,6 +178,7 @@ export default class Player extends React.Component {
           <span>
             <Money $={this.props.money} />
           </span>
+          <span>({playerScore.total})</span>
         </div>
         <AuxTokens
           playerID={this.props.playerID}

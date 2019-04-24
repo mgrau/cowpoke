@@ -9,7 +9,7 @@
   - implement special delivery
   - implement b set
 
-- scoring
+- delivery actions (gaining objectives)
 - include station masters
 
   - check for minimum number of workers (stationmaster)
@@ -35,12 +35,15 @@
   - make actions hoverable, and show which has been selected.
 
 - kansas city
+
   - make an active halo around foresight tiles
   - make an active halo around certificates
   - display value of herd where certificates were
   - make active halo around tokens
   - make active halo around cities
   - fix display of tokens in cities
+
+- end game view
 
 # bugs
 

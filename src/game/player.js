@@ -16,6 +16,7 @@ export default function Player(ctx, playerID) {
     teepees: [],
     hazards: [],
     objectives: [],
+    stationMasters: [],
     tokens: {
       auxMoney: 1,
       auxCycle: 1,
@@ -52,6 +53,31 @@ export function gainCertificate(player) {
   if (!player.certificateToken1 && player.certificates > 3) {
     player.certificates = 3;
   }
+}
+
+export function removeToken(G) {
+  if (G.readyToken == null) {
+    return false;
+  }
+
+  if (G.player.tokens[G.readyToken] <= 0) {
+    return false;
+  }
+
+  if (G.readyToken.includes("hand")) {
+    if (G.player.money < 5) {
+      return false;
+    } else {
+      G.player.money -= 5;
+    }
+  }
+
+  if (G.readyToken == "move1") {
+    G.player.money += 3;
+  }
+
+  G.player.tokens[G.readyToken]--;
+  return true;
 }
 
 export function stepLimit(player, ctx) {
