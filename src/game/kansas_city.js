@@ -71,16 +71,12 @@ export function kansasCityShip(G, ctx, destination) {
   if (G.actionsPerformed.includes("kansasCityShip")) {
     console.log("already did this move");
   } else {
-    if (G.actionsPerformed.includes("kansasCitySell") && G.readyToken != null) {
-      if (
-        ship(G, ctx, destination, G.readyToken) &&
-        G.player.tokens[G.readyToken] > 0
-      ) {
+    if (G.actionsPerformed.includes("kansasCitySell")) {
+      if (ship(G, destination)) {
         draw(G, ctx);
         refillForesight(G);
         G.player.location = "start";
         G.actionsPerformed = [...G.actionsPerformed, "kansasCityShip"];
-        G.player.tokens[G.readyToken]--;
         ctx.events.endPhase();
       }
     }

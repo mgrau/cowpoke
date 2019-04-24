@@ -1,3 +1,5 @@
+import { removeToken } from "./player";
+
 export default function Cities() {
   return {
     KansasCity: City(0, false, true),
@@ -22,7 +24,11 @@ function City(distance, black = false, multiple = false) {
   };
 }
 
-export function ship(G, ctx, destination, token) {
+export function ship(G, destination) {
+  if (G.readyToken == null) {
+    return false;
+  }
+  const token = G.readyToken;
   if (["certificate2", "move1", "move2", "hand1", "hand2"].includes(token)) {
     if (!G.cities[destination].black) {
       return false;
@@ -39,7 +45,18 @@ export function ship(G, ctx, destination, token) {
   if (G.deliveryValue < G.cities[destination].distance) {
     return false;
   }
+
   const cost = transportCost(G.player.engine, G.cities[destination].distance);
+  if (
+    G.player.money < cost ||
+    (G.readyToken.includes("hand") && G.player.money < cost + 5)
+  ) {
+    return false;
+  }
+
+  if (!removeToken(G)) {
+    return false;
+  }
   G.player.money -= cost;
   G.cities[destination].players = [
     G.player.playerID,

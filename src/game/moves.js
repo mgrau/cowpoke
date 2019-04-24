@@ -2,7 +2,13 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { getWorker, removeWorker } from "./job_market";
 import { trainDistance } from "./train";
-import { discard, stepLimit, handSize, gainCertificate } from "./player";
+import {
+  discard,
+  stepLimit,
+  handSize,
+  gainCertificate,
+  removeToken
+} from "./player";
 import { neutralMove } from "./neutral_moves";
 import { privateMove } from "./private_moves";
 
@@ -44,15 +50,14 @@ export function stop(G, ctx) {
     if (tile === null) {
       console.log("can not stop here");
       // return INVALID_MOVE;
-    } else if (tile.name.includes("neutral")) {
+    } else if (tile.tile == "neutral") {
       ctx.events.endPhase({ next: "NeutralPhase" });
-    } else if (
-      tile.name.includes("private") &&
-      tile.owner == ctx.currentPlayer
-    ) {
+    } else if (tile.tile == "private" && tile.owner == ctx.currentPlayer) {
       ctx.events.endPhase({ next: "PrivatePhase" });
     } else if (tile.name === "KansasCity") {
       ctx.events.endPhase({ next: "KansasCity" });
+    } else {
+      ctx.events.endPhase({ next: "ActionPhase" });
     }
   }
 }
@@ -268,7 +273,6 @@ export function moveEngine(G, ctx, destination) {
       !opponents.map(player => player.engine).includes(destination)
     ) {
       let distance = trainDistance(G, ctx, destination);
-      console.log({ diff: distance - G.engineSpaces });
       if (
         (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
         (G.engineSpaces < 0 &&
@@ -309,15 +313,21 @@ export function upgradeStation(G, ctx) {
   }
 
   // if player can pay for upgrade
-  if (G.player.money < station.cost) {
+  if (
+    G.player.money < station.cost ||
+    (G.readyToken.includes("hand") && G.player.money < station.cost + 5)
+  ) {
     return;
   }
-  G.player.money -= station.cost;
 
-  G.stations[stationIndex].players = [
-    G.player.playerID,
-    ...G.stations[stationIndex].players
-  ];
+  // if the token is legal to be played
+  if (removeToken(G)) {
+    G.player.money -= station.cost;
+    G.stations[stationIndex].players = [
+      G.player.playerID,
+      ...G.stations[stationIndex].players
+    ];
+  }
   G.player.tokens[G.readyToken]--;
 
   console.log("upgrade");
@@ -325,11 +335,11 @@ export function upgradeStation(G, ctx) {
 }
 
 export function selectToken(G, ctx, token) {
-  console.log(token);
-  console.log(G.player.tokens[token]);
   if (Object.keys(G.player.tokens).includes(token)) {
     if (G.player.tokens[token] > 0) {
-      G.readyToken = token;
+      if (!(token.includes("hand") && G.player.money < 5)) {
+        G.readyToken = token;
+      }
     }
   }
 }
