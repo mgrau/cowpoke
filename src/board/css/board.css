@@ -72,17 +72,17 @@
 }
 
 #board.player-0 .active {
-  box-shadow: 0px 0px 0px 5px var(--player0-color);
+  box-shadow: 0px 0px 5px 2px var(--player0-color);
 }
 
 #board.player-1 .active {
-  box-shadow: 0px 0px 0px 5px var(--player1-color);
+  box-shadow: 0px 0px 5px 2px var(--player1-color);
 }
 
 #board.player-2 .active {
-  box-shadow: 0px 0px 0px 5px var(--player2-color);
+  box-shadow: 0px 0px 5px 2px var(--player2-color);
 }
 
 #board.player-3 .active {
-  box-shadow: 0px 0px 0px 5px var(--player3-color);
+  box-shadow: 0px 0px 5px 2px var(--player3-color);
 }

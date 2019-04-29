@@ -6,7 +6,13 @@ import "./css/trains.css";
 export default class Trains extends React.PureComponent {
   render() {
     const cities = Object.entries(this.props.cities).map(([name, city]) => (
-      <City key={name} name={name} {...city} moves={this.props.moves} />
+      <City
+        key={name}
+        name={name}
+        {...city}
+        deliveryValue={this.props.deliveryValue}
+        moves={this.props.moves}
+      />
     ));
 
     const spaces = [...Array(41).keys()].map(index => {
@@ -37,11 +43,19 @@ export default class Trains extends React.PureComponent {
       />
     ));
 
+    const value =
+      this.props.deliveryValue != null ? (
+        <div id="delivery-value">Delivery Value: {this.props.deliveryValue}</div>
+      ) : (
+        ""
+      );
+
     return (
       <div id="trains">
         {cities}
         {spaces}
         {stations}
+        {value}
       </div>
     );
   }
@@ -61,7 +75,9 @@ class City extends React.PureComponent {
           "city city-" +
           this.props.name +
           " " +
-          (this.props.black ? "black" : "")
+          (this.props.black ? "black" : "") +
+          " " +
+          (this.props.distance <= this.props.deliveryValue ? "active" : "")
         }
         onClick={() => this.ship()}
         style={{ gridColumn: this.props.distance + 1 }}

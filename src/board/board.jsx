@@ -49,6 +49,7 @@ export default class CowpokeBoard extends React.Component {
           engines={Object.values(this.props.G.players).map(
             player => player.engine
           )}
+          deliveryValue={this.props.G.deliveryValue}
           moves={this.props.moves}
           active={this.props.ctx.phase == "EnginePhase"}
         />
@@ -56,6 +57,8 @@ export default class CowpokeBoard extends React.Component {
           jobMarket={this.props.G.jobMarket}
           foresight={this.props.G.foresight}
           moves={this.props.moves}
+          phase={this.props.ctx.phase}
+          actionsPerformed={this.props.G.actionsPerformed}
         />
         <Trail
           trail={this.props.G.trail}

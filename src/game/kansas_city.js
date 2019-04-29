@@ -77,6 +77,7 @@ export function kansasCityShip(G, ctx, destination) {
         refillForesight(G);
         G.player.location = "start";
         G.actionsPerformed = [...G.actionsPerformed, "kansasCityShip"];
+        G.deliveryValue = undefined;
         ctx.events.endPhase();
       }
     }

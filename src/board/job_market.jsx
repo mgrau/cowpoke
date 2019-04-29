@@ -99,6 +99,40 @@ export default class JobMarket extends React.PureComponent {
 
     return (
       <div id="foresight-market">
+        <div id="foresight-header">
+          <div
+            className={
+              this.props.phase == "KansasCity" &&
+              !this.props.actionsPerformed.includes("kansasCity1")
+                ? "active"
+                : ""
+            }
+          >
+            1
+          </div>
+          <div
+            className={
+              this.props.phase == "KansasCity" &&
+              this.props.actionsPerformed.includes("kansasCity1") &&
+              !this.props.actionsPerformed.includes("kansasCity2")
+                ? "active"
+                : ""
+            }
+          >
+            2
+          </div>
+          <div
+            className={
+              this.props.phase == "KansasCity" &&
+              this.props.actionsPerformed.includes("kansasCity2") &&
+              !this.props.actionsPerformed.includes("kansasCity3")
+                ? "active"
+                : ""
+            }
+          >
+            3
+          </div>
+        </div>
         <div id="foresight">{foresight}</div>
         <div
           id="job-market"

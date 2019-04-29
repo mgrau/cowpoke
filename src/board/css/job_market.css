@@ -75,6 +75,23 @@
   background-color: var(--engineer-color);
 }
 
+#foresight-header {
+  display: grid;
+  grid-template-columns: 4vh 4vh 4vh;
+  grid-template-rows: 2vh;
+  grid-gap: 0.5vh;
+  text-align: center;
+  padding-bottom: 0.5vh;
+}
+
+#foresight-header > div {
+  background-color: var(--empty-space);
+  border-radius: 50%;
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+
 #foresight {
   display: grid;
   grid-template-columns: 4vh 4vh 4vh;

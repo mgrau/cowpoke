@@ -20,6 +20,12 @@ export default class CowMarket extends React.PureComponent {
     this.setState({ buy: true, value, price, double });
   }
 
+  isActive(value, price) {
+    return this.state.value == value && this.state.price == price
+      ? " active"
+      : "";
+  }
+
   buy(index) {
     if (this.state.buy) {
       if (this.state.double) {
@@ -67,13 +73,21 @@ export default class CowMarket extends React.PureComponent {
             <span style={{ fontSize: "75%" }}>draw 2</span>
           </div>
 
-          <div key="3:6" onClick={() => this.preBuy(3, 6)} className="cow3">
+          <div
+            key="3:6"
+            onClick={() => this.preBuy(3, 6)}
+            className={"cow3" + this.isActive(3, 6)}
+          >
             <Worker type="cowboy" />
             <Separator />
             <Money $={6} />
           </div>
 
-          <div key="3:3" onClick={() => this.preBuy(3, 3)} className="cow3">
+          <div
+            key="3:3"
+            onClick={() => this.preBuy(3, 3)}
+            className={"cow3" + this.isActive(3, 3)}
+          >
             2<Worker type="cowboy" />
             <Separator />
             <Money $={3} />
@@ -82,7 +96,7 @@ export default class CowMarket extends React.PureComponent {
           <div
             key="3:5"
             onClick={() => this.preBuy(3, 5, true)}
-            className="cow3"
+            className={"cow3" + this.isActive(3, 5)}
           >
             3<Worker type="cowboy" />
             <Separator />
@@ -90,13 +104,21 @@ export default class CowMarket extends React.PureComponent {
             <span style={{ fontSize: "75%" }}>buy 2</span>
           </div>
 
-          <div key="4:12" onClick={() => this.preBuy(4, 12)} className="cow4">
+          <div
+            key="4:12"
+            onClick={() => this.preBuy(4, 12)}
+            className={"cow4" + this.isActive(4, 12)}
+          >
             <Worker type="cowboy" />
             <Separator />
             <Money $={12} />
           </div>
 
-          <div key="4:6" onClick={() => this.preBuy(4, 6)} className="cow4">
+          <div
+            key="4:6"
+            onClick={() => this.preBuy(4, 6)}
+            className={"cow4" + this.isActive(4, 6)}
+          >
             3<Worker type="cowboy" />
             <Separator />
             <Money $={6} />
@@ -105,7 +127,7 @@ export default class CowMarket extends React.PureComponent {
           <div
             key="4:8"
             onClick={() => this.preBuy(4, 8, true)}
-            className="cow4"
+            className={"cow4" + this.isActive(4, 8)}
           >
             5<Worker type="cowboy" />
             <Separator />
@@ -113,19 +135,32 @@ export default class CowMarket extends React.PureComponent {
             <span style={{ fontSize: "75%" }}>buy 2</span>
           </div>
 
-          <div key="5:12" onClick={() => this.preBuy(5, 12)} className="cow5">
+          <div
+            key="5:12"
+            onClick={() => this.preBuy(5, 12)}
+            className={"cow5" + this.isActive(5, 12)}
+          >
             2<Worker type="cowboy" />
             <Separator />
             <Money $={12} />
           </div>
 
-          <div key="5:6" onClick={() => this.preBuy(5, 6)} className="cow5">
+          <div
+            key="5:6"
+            onClick={() => this.preBuy(5, 6)}
+            className={"cow5" + this.isActive(5, 6)}
+          >
             4<Worker type="cowboy" />
             <Separator />
             <Money $={6} />
           </div>
         </div>
-        <div id="cow-market-cows">{market}</div>
+        <div
+          id="cow-market-cows"
+          onClick={() => this.setState({ buy: false, value: 0, price: 0 })}
+        >
+          {market}
+        </div>
         <div id="cow-market-cowboys">{cowboys}</div>
       </div>
     );
