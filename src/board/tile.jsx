@@ -119,10 +119,8 @@ export default class Tile extends React.PureComponent {
         }
         onClick={() => this.onClick()}
       >
-        <div>
           {tile}
           {risk}
-        </div>
       </div>
     );
   }

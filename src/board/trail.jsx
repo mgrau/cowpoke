@@ -63,7 +63,7 @@ class Token extends React.Component {
     return (
       <div
         id={"token" + this.props.playerID}
-        className={"token " + this.state.location}
+        className={"token " + this.props.location}
         style={{
           left: 10 + this.props.playerID * 15 + "%"
         }}
