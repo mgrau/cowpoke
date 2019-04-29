@@ -2,7 +2,7 @@ import React from "react";
 import { Points } from "./symbols";
 import "./css/card.css";
 
-export default class Card extends React.Component {
+export default class Card extends React.PureComponent {
   render() {
     const points =
       this.props.points > 0 ? <Points vp={this.props.points} /> : "";

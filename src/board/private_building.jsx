@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 import "./css/private_building.css";
 
-export default class PrivateBuilding extends React.Component {
+export default class PrivateBuilding extends React.PureComponent {
   render() {
     const actions = [...Array(this.props.actions).keys()].map(index => (
       <Action
@@ -14,8 +14,8 @@ export default class PrivateBuilding extends React.Component {
         building={this.props.name}
         index={index}
         moves={this.props.moves}
-        G={this.props.G}
-        ctx={this.props.ctx}
+        active={this.props.active}
+        actionsPerformed={this.props.actionsPerformed}
       />
     ));
     const greenHand = this.props.hand.includes("green") ? (

@@ -4,8 +4,6 @@
   border-radius: 0.75vh;
   height: calc(100% - 0.8vh);
   padding: 0.4vh;
-  position: relative;
-  top: -100%;
 }
 
 .hazard.flood {

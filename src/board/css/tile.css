@@ -63,15 +63,11 @@
   justify-items: center;
 }
 
-.risk > div {
-  /* border: 1px solid red; */
-}
-
 .floodRisk1 > .risk,
 .floodRisk2 > .risk {
   position: relative;
   left: 10%;
-  top: 0%;
+  top: 100%;
   width: 80%;
   width: 80%;
   height: 25%;
@@ -83,7 +79,7 @@
 .droughtRisk1 > .risk {
   position: relative;
   left: -25%;
-  top: -90%;
+  top: 10%;
   float: left;
   width: 25%;
   height: 80%;
@@ -95,7 +91,7 @@
 .teepeeRisk2 > .risk {
   position: relative;
   left: 100%;
-  top: -90%;
+  top: 10%;
   width: 25%;
   height: 80%;
   border-top-right-radius: 0.5vh;
@@ -106,7 +102,7 @@
 .rockfallRisk2 > .risk {
   position: relative;
   left: 10%;
-  top: -125%;
+  top: -25%;
   width: 80%;
   width: 80%;
   height: 25%;

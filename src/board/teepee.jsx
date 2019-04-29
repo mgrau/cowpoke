@@ -4,14 +4,14 @@ import { faCampground, faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
 import "./css/teepee.css";
 
-export default class Teepee extends React.Component {
+export default class Teepee extends React.PureComponent {
   render() {
     return (
       <div
         className={"teepee " + this.props.color}
         onClick={() => {
           if (this.props.name != undefined) {
-            if (this.props.ctx.phase == "TeepeePhase") {
+            if (this.props.active) {
               this.props.moves.gainTeepee(this.props.name);
             }
           }

@@ -44,20 +44,25 @@ export default class CowpokeBoard extends React.Component {
       <div id="board" className={"player-" + this.props.ctx.currentPlayer}>
         <div id="board-spacer" />
         <Trains
-          G={this.props.G}
-          ctx={this.props.ctx}
+          cities={this.props.G.cities}
+          stations={this.props.G.stations}
+          engines={Object.values(this.props.G.players).map(
+            player => player.engine
+          )}
           moves={this.props.moves}
+          active={this.props.ctx.phase == "EnginePhase"}
         />
         <JobMarket
-          G={this.props.G}
-          ctx={this.props.ctx}
+          jobMarket={this.props.G.jobMarket}
+          foresight={this.props.G.foresight}
           moves={this.props.moves}
         />
         <Trail
+          trail={this.props.G.trail}
           G={this.props.G}
           ctx={this.props.ctx}
           moves={this.props.moves}
-          id="board-trail"
+          active={this.props.ctx.phase == "MovePhase"}
         />
         <div id="board-players">{players}</div>
         <BuildingSelection
@@ -65,7 +70,12 @@ export default class CowpokeBoard extends React.Component {
           ctx={this.props.ctx}
           moves={this.props.moves}
         />
-        <CowMarket {...this.props} />
+        <CowMarket
+          market={this.props.G.cowMarket}
+          moves={this.props.moves}
+          cowboys={this.props.G.availableCowboys}
+          active={this.props.ctx.phase == "CowPhase"}
+        />
         <div id="board-info">
           <div className={"current-player-" + player.playerID}>
             Current Player: {player.name}

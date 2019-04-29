@@ -9,185 +9,194 @@
   padding: 2vh;
 }
 
-.start {
+#trail .token {
+  z-index: 1;
+  background: none;
+  position: relative;
+  top: 10%;
+  width: 0;
+  height: 0;
+}
+
+#trail .start {
   grid-column: 11;
   grid-row: 13;
 }
 
-.A {
+#trail .A {
   grid-column: 10 / 12;
   grid-row: 11 /13;
 }
 
-.A1 {
+#trail .A1 {
   grid-column: 8 / 10;
   grid-row: 11 / 13;
 }
 
-.A2 {
+#trail .A2 {
   grid-column: 6 / 8;
   grid-row: 11 / 13;
 }
 
-.A3 {
+#trail .A3 {
   grid-column: 4 / 6;
   grid-row: 11 / 13;
 }
 
-.flood1 {
+#trail .flood1 {
   grid-column: 10;
   grid-row: 13;
 }
 
-.flood2 {
+#trail .flood2 {
   grid-column: 9;
   grid-row: 13;
 }
 
-.flood3 {
+#trail .flood3 {
   grid-column: 8;
   grid-row: 13;
 }
 
-.flood4 {
+#trail .flood4 {
   grid-column: 8;
   grid-row: 14;
 }
 
-.floodRisk1 {
+#trail .floodRisk1 {
   grid-column: 6 / 8;
   grid-row: 13 /15;
 }
 
-.floodRisk2 {
+#trail .floodRisk2 {
   grid-column: 4 / 6;
   grid-row: 13 /15;
 }
 
-.B {
+#trail .B {
   grid-column: 2 / 4;
   grid-row: 13 / 15;
 }
 
-.B1 {
+#trail .B1 {
   grid-column: 2 / 4;
   grid-row: 11 / 13;
 }
 
-.B2 {
+#trail .B2 {
   grid-column: 2 / 4;
   grid-row: 9 / 11;
 }
 
-.B3 {
+#trail .B3 {
   grid-column: 3 / 5;
   grid-row: 7 / 9;
 }
 
-.drought1 {
+#trail .drought1 {
   grid-column: 1;
   grid-row: 12;
 }
 
-.drought2 {
+#trail .drought2 {
   grid-column: 1;
   grid-row: 11;
 }
 
-.drought3 {
+#trail .drought3 {
   grid-column: 1;
   grid-row: 10;
 }
 
-.drought4 {
+#trail .drought4 {
   grid-column: 1;
   grid-row: 9;
 }
 
-.droughtRisk1 {
+#trail .droughtRisk1 {
   grid-column: 1 / 3;
   grid-row: 7 / 9;
 }
 
-.C {
+#trail .C {
   grid-column: 4 / 6;
   grid-row: 5 / 7;
 }
 
-.C1 {
+#trail .C1 {
   grid-column: 6 / 8;
   grid-row: 5 / 7;
 }
 
-.C2 {
+#trail .C2 {
   grid-column: 8 / 10;
   grid-row: 5 / 7;
 }
 
-.C3 {
+#trail .C3 {
   grid-column: 6 / 8;
   grid-row: 7 / 9;
 }
 
-.D {
+#trail .D {
   grid-column: 8 / 10;
   grid-row: 7 / 9;
 }
 
-.teepee-1 {
+#trail .teepee-1 {
   grid-column: 6;
   grid-row: 9;
 }
 
-.teepee-2 {
+#trail .teepee-2 {
   grid-column: 7;
   grid-row: 9;
 }
 
-.teepee-3 {
+#trail .teepee-3 {
   grid-column: 8;
   grid-row: 9;
 }
 
-.teepee1 {
+#trail .teepee1 {
   grid-column: 5;
   grid-row: 9;
 }
 
-.teepee2 {
+#trail .teepee2 {
   grid-column: 5;
   grid-row: 10;
 }
 
-.teepee4 {
+#trail .teepee4 {
   grid-column: 6;
   grid-row: 10;
 }
 
-.teepee6 {
+#trail .teepee6 {
   grid-column: 7;
   grid-row: 10;
 }
 
-.teepee8 {
+#trail .teepee8 {
   grid-column: 8;
   grid-row: 10;
 }
 
-.teepee10 {
+#trail .teepee10 {
   grid-column: 9;
   grid-row: 10;
 }
 
-.teepee-1:before,
-.teepee-2:before,
-.teepee-3:before,
-.teepee1:before,
-.teepee2:before,
-.teepee4:before,
-.teepee6:before,
-.teepee8:before,
-.teepee10:before {
+#trail .teepee-1:before,
+#trail .teepee-2:before,
+#trail .teepee-3:before,
+#trail .teepee1:before,
+#trail .teepee2:before,
+#trail .teepee4:before,
+#trail .teepee6:before,
+#trail .teepee8:before,
+#trail .teepee10:before {
   float: left;
   content: "-3";
   font-size: 1vh;
@@ -202,136 +211,136 @@
   z-index: 1;
 }
 
-.teepee-1:before {
+#trail .teepee-1:before {
   content: "-1";
   color: var(--money-color-negative);
 }
 
-.teepee-2:before {
+#trail .teepee-2:before {
   content: "-2";
   color: var(--money-color-negative);
 }
 
-.teepee-3:before {
+#trail .teepee-3:before {
   content: "-3";
   color: var(--money-color-negative);
 }
 
-.teepee1:before {
+#trail .teepee1:before {
   content: "1";
 }
 
-.teepee2:before {
+#trail .teepee2:before {
   content: "2";
 }
 
-.teepee4:before {
+#trail .teepee4:before {
   content: "4";
 }
 
-.teepee6:before {
+#trail .teepee6:before {
   content: "6";
 }
 
-.teepee8:before {
+#trail .teepee8:before {
   content: "8";
 }
 
-.teepee10:before {
+#trail .teepee10:before {
   content: "10";
 }
-.teepeeRisk1 {
+#trail .teepeeRisk1 {
   grid-column: 10 / 12;
   grid-row: 9 / 11;
 }
 
-.teepeeRisk2 {
+#trail .teepeeRisk2 {
   grid-column: 10 / 12;
   grid-row: 7 / 9;
 }
 
-.E {
+#trail .E {
   grid-column: 10 / 12;
   grid-row: 5 / 7;
 }
 
-.E1 {
+#trail .E1 {
   grid-column: 9 / 11;
   grid-row: 3 / 5;
 }
 
-.E2 {
+#trail .E2 {
   grid-column: 7 / 9;
   grid-row: 3 / 5;
 }
 
-.rockfall1 {
+#trail .rockfall1 {
   grid-column: 11;
   grid-row: 4;
 }
 
-.rockfall2 {
+#trail .rockfall2 {
   grid-column: 11;
   grid-row: 3;
 }
 
-.rockfall3 {
+#trail .rockfall3 {
   grid-column: 11;
   grid-row: 2;
 }
 
-.rockfall4 {
+#trail .rockfall4 {
   grid-column: 11;
   grid-row: 1;
 }
 
-.rockfallRisk1 {
+#trail .rockfallRisk1 {
   grid-column: 9 / 11;
   grid-row: 1 / 3;
 }
 
-.rockfallRisk2 {
+#trail .rockfallRisk2 {
   grid-column: 7 / 9;
   grid-row: 1 / 3;
 }
 
-.F {
+#trail .F {
   grid-column: 5 / 7;
   grid-row: 1 / 3;
 }
 
-.F1 {
+#trail .F1 {
   grid-column: 3 / 5;
   grid-row: 1 / 3;
 }
 
-.F2 {
+#trail .F2 {
   grid-column: 5 / 7;
   grid-row: 3 / 5;
 }
 
-.G {
+#trail .G {
   grid-column: 3 / 5;
   grid-row: 3 / 5;
 }
 
-.G1 {
+#trail .G1 {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
 }
 
-.G2 {
+#trail .G2 {
   grid-column: 1 / 3;
   grid-row: 3 / 5;
 }
 
-.KansasCity {
+#trail .KansasCity {
   grid-column: 1 / 3;
   grid-row: 5 / 6;
   border: 1px maroon solid;
 }
 
-.KansasCity:after {
+#trail .KansasCity:after {
   content: "Kansas City";
   color: black;
   font-weight: bold;

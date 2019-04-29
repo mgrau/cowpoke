@@ -3,19 +3,18 @@ import Hazard from "./hazard";
 import Teepee from "./teepee";
 import NeutralBuilding from "./neutral_building";
 import PrivateBuilding from "./private_building";
-import Tokens from "./tokens";
 import { Card, Certificate, Money } from "./symbols";
 
 import "./css/tile.css";
-export default class Tile extends React.Component {
+export default class Tile extends React.PureComponent {
   onClick() {
-    if (this.props.ctx.phase == "MovePhase") {
+    if (this.props.phase == "MovePhase") {
       this.props.moves.move(this.props.name);
-    } else if (this.props.ctx.phase == "BuildPhase") {
+    } else if (this.props.phase == "BuildPhase") {
       if (this.props.build) {
         if (
           this.props.tile == null ||
-          this.props.tile.owner == this.props.ctx.currentPlayer
+          this.props.tile.owner == this.props.currentPlayer
         ) {
           this.props.moves.build(this.props.name);
         }
@@ -29,7 +28,7 @@ export default class Tile extends React.Component {
         tile = (
           <Hazard
             {...this.props.tile}
-            ctx={this.props.ctx}
+            active={this.props.phase == "HazardPhase"}
             moves={this.props.moves}
             name={this.props.name}
           />
@@ -38,7 +37,7 @@ export default class Tile extends React.Component {
         tile = (
           <Teepee
             {...this.props.tile}
-            ctx={this.props.ctx}
+            active={this.props.phase == "TeepeePhase"}
             moves={this.props.moves}
             name={this.props.name}
           />
@@ -48,8 +47,8 @@ export default class Tile extends React.Component {
           <NeutralBuilding
             {...this.props.tile}
             moves={this.props.moves}
-            G={this.props.G}
-            ctx={this.props.ctx}
+            actionsPerformed={this.props.actionsPerformed}
+            active={this.props.active && this.props.phase == "NeutralPhase"}
           />
         );
       } else if (this.props.tile.tile === "private") {
@@ -57,8 +56,8 @@ export default class Tile extends React.Component {
           <PrivateBuilding
             {...this.props.tile}
             moves={this.props.moves}
-            G={this.props.G}
-            ctx={this.props.ctx}
+            actionsPerformed={this.props.actionsPerformed}
+            active={this.props.active && this.props.phase == "PrivatePhase"}
           />
         );
       }
@@ -97,7 +96,7 @@ export default class Tile extends React.Component {
           <div
             className={"risk " + (tile == "" ? "" : "displaced")}
             onClick={() => {
-              if (this.props.ctx.phase == "PrivatePhase") {
+              if (this.props.phase == "PrivatePhase") {
                 this.props.moves.risk();
               }
             }}
@@ -120,9 +119,10 @@ export default class Tile extends React.Component {
         }
         onClick={() => this.onClick()}
       >
-        <Tokens players={this.props.G.players} location={this.props.name} />
-        {tile}
-        {risk}
+        <div>
+          {tile}
+          {risk}
+        </div>
       </div>
     );
   }

@@ -3,15 +3,11 @@ import { Money, Points } from "./symbols";
 
 import "./css/trains.css";
 
-export default class Trains extends React.Component {
+export default class Trains extends React.PureComponent {
   render() {
-    const cities = Object.entries(this.props.G.cities).map(([name, city]) => (
+    const cities = Object.entries(this.props.cities).map(([name, city]) => (
       <City key={name} name={name} {...city} moves={this.props.moves} />
     ));
-
-    const playerLocations = Object.keys(this.props.G.players).map(
-      index => this.props.G.players[index].engine
-    );
 
     const spaces = [...Array(41).keys()].map(index => {
       return (
@@ -20,8 +16,8 @@ export default class Trains extends React.Component {
           id={"train-" + index}
           className={
             "train-space " +
-            (playerLocations.includes(index)
-              ? "train-player-" + playerLocations.indexOf(index)
+            (this.props.engines.includes(index)
+              ? "train-player-" + this.props.engines.indexOf(index)
               : "")
           }
           onClick={() => this.props.moves.moveEngine(index)}
@@ -31,13 +27,13 @@ export default class Trains extends React.Component {
       );
     });
 
-    const stations = this.props.G.stations.map((station, index) => (
+    const stations = this.props.stations.map((station, index) => (
       <Station
         key={index}
         {...station}
-        G={this.props.G}
-        ctx={this.props.ctx}
+        engines={this.props.engines}
         moves={this.props.moves}
+        active={this.props.active}
       />
     ));
 
@@ -51,7 +47,7 @@ export default class Trains extends React.Component {
   }
 }
 
-class City extends React.Component {
+class City extends React.PureComponent {
   ship() {
     this.props.moves.kansasCityShip(this.props.name);
   }
@@ -79,11 +75,8 @@ class City extends React.Component {
     );
   }
 }
-class Station extends React.Component {
+class Station extends React.PureComponent {
   render() {
-    const playerLocations = Object.keys(this.props.G.players).map(
-      index => this.props.G.players[index].engine
-    );
     const players = this.props.players.map((player, index) => (
       <span className={"cattleman cattleman-player-" + player} key={index} />
     ));
@@ -98,17 +91,15 @@ class Station extends React.Component {
       <div
         className={
           "station " +
-          (playerLocations.includes(this.props.distance)
-            ? "train-player-" + playerLocations.indexOf(this.props.distance)
+          (this.props.engines.includes(this.props.distance)
+            ? "train-player-" + this.props.engines.indexOf(this.props.distance)
             : this.props.black
             ? "black"
             : "")
         }
         onClick={() => {
-          if (this.props.ctx.phase == "EnginePhase") {
+          if (this.props.active) {
             this.props.moves.moveEngine(this.props.distance);
-          } else if (this.props.ctx.phase == "StationPhase") {
-            this.props.moves.upgradeStation(this.props.distance);
           }
         }}
         style={{
@@ -120,7 +111,11 @@ class Station extends React.Component {
         <div className="station-tokens">{players}</div>
         <div
           className="station-points"
-          onClick={() => this.props.moves.upgradeStation()}
+          onClick={() => {
+            if (this.props.active) {
+              this.props.moves.upgradeStation();
+            }
+          }}
         >
           <Money $={-this.props.cost} />
           <Points vp={this.props.points} />

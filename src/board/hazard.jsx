@@ -4,13 +4,13 @@ import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
 import "./css/hazard.css";
 
-export default class Hazard extends React.Component {
+export default class Hazard extends React.PureComponent {
   render() {
     return (
       <div
         className={"hazard " + this.props.type}
         onClick={() => {
-          if (this.props.ctx.phase == "HazardPhase") {
+          if (this.props.active) {
             this.props.moves.gainHazard(this.props.name);
           }
         }}

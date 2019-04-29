@@ -5,8 +5,6 @@
   border-radius: 0.75vh;
   height: calc(100% - 1vh);
   padding: 0.5vh;
-  position: relative;
-  top: -100%;
 }
 
 .private > div {

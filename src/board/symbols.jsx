@@ -20,25 +20,25 @@ import {
 
 import "./css/symbols.css";
 
-export class Separator extends React.Component {
+export class Separator extends React.PureComponent {
   render() {
     return <div className="separator">:</div>;
   }
 }
 
-export class Or extends React.Component {
+export class Or extends React.PureComponent {
   render() {
     return <div className="or">or</div>;
   }
 }
 
-export class And extends React.Component {
+export class And extends React.PureComponent {
   render() {
     return <div className="and">+</div>;
   }
 }
 
-export class Money extends React.Component {
+export class Money extends React.PureComponent {
   render() {
     return (
       <div className="money">
@@ -58,7 +58,7 @@ export class Money extends React.Component {
   }
 }
 
-export class Points extends React.Component {
+export class Points extends React.PureComponent {
   render() {
     return (
       <div className="points">
@@ -71,7 +71,7 @@ export class Points extends React.Component {
   }
 }
 
-export class Cattleman extends React.Component {
+export class Cattleman extends React.PureComponent {
   render() {
     return (
       <span className={"cattleman cattleman-player-" + this.props.player}>
@@ -81,7 +81,7 @@ export class Cattleman extends React.Component {
   }
 }
 
-export class Card extends React.Component {
+export class Card extends React.PureComponent {
   render() {
     let value = 0;
     switch (this.props.cow) {
@@ -136,7 +136,7 @@ export class Card extends React.Component {
   }
 }
 
-export class Worker extends React.Component {
+export class Worker extends React.PureComponent {
   render() {
     return (
       <div className={"worker " + this.props.type}>
@@ -146,7 +146,7 @@ export class Worker extends React.Component {
   }
 }
 
-export class Building extends React.Component {
+export class Building extends React.PureComponent {
   render() {
     return (
       <div className={"building " + (this.props.woods ? "woods" : "")}>
@@ -156,7 +156,7 @@ export class Building extends React.Component {
   }
 }
 
-export class Train extends React.Component {
+export class Train extends React.PureComponent {
   render() {
     const train = (
       <span className="fa-layers fa-fw">
@@ -186,7 +186,7 @@ export class Train extends React.Component {
   }
 }
 
-export class Certificate extends React.Component {
+export class Certificate extends React.PureComponent {
   render() {
     return (
       <div className="certificate">
@@ -201,7 +201,7 @@ export class Certificate extends React.Component {
   }
 }
 
-export class Objective extends React.Component {
+export class Objective extends React.PureComponent {
   render() {
     return (
       <div className="objective">
@@ -211,7 +211,7 @@ export class Objective extends React.Component {
   }
 }
 
-export class Auxillary extends React.Component {
+export class Auxillary extends React.PureComponent {
   render() {
     return (
       <div className="auxillary">
@@ -221,7 +221,7 @@ export class Auxillary extends React.Component {
   }
 }
 
-export class Teepee extends React.Component {
+export class Teepee extends React.PureComponent {
   render() {
     return (
       <div className={"symbol-teepee " + this.props.color}>
@@ -231,19 +231,19 @@ export class Teepee extends React.Component {
   }
 }
 
-export class Cow extends React.Component {
+export class Cow extends React.PureComponent {
   render() {
     return <FontAwesomeIcon icon={faHippo} className="cow" />;
   }
 }
 
-export class Hazard extends React.Component {
+export class Hazard extends React.PureComponent {
   render() {
     return <FontAwesomeIcon icon={faHandPaper} className="symbol-hazard" />;
   }
 }
 
-export class Pair extends React.Component {
+export class Pair extends React.PureComponent {
   render() {
     return (
       <div className="pair">

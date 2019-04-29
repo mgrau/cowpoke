@@ -2,8 +2,10 @@
   border-radius: 0.75vh;
   height: calc(100% - 0.6vh);
   padding: 0.3vh;
-  position: relative;
-  top: -100%;
+  /* display: grid;
+  width: 100%;
+  align-items: center;
+  justify-items: center; */
 }
 
 .teepee.green {

@@ -1,18 +1,25 @@
 import React from "react";
 import LineTo from "react-lineto";
 import Tile from "./tile";
+import { Cattleman } from "./symbols";
+import { wrapGrid, forceGridAnimation } from "animate-css-grid";
 
 import "./css/trail.css";
 
 export default class Trail extends React.Component {
   render() {
-    const trail = this.props.G.trail;
+    const currentLocation = this.props.G.players[this.props.ctx.currentPlayer]
+      .location;
+    const trail = this.props.trail;
     const spaces = Object.keys(trail).map((space, index) => (
       <Tile
         key={index}
         {...trail[space]}
-        G={this.props.G}
-        ctx={this.props.ctx}
+        // G={this.props.G}
+        phase={this.props.ctx.phase}
+        currentPlayer={this.props.ctx.currentPlayer}
+        actionsPerformed={this.props.G.actionsPerformed}
+        active={space == currentLocation}
         moves={this.props.moves}
       />
     ));
@@ -33,11 +40,35 @@ export default class Trail extends React.Component {
       )
       .flat();
 
-    const active = this.props.ctx.phase == "MovePhase" ? "active" : "";
+    const tokens = Object.values(this.props.G.players).map((player, index) => (
+      <Token
+        key={index}
+        location={player.location}
+        playerID={player.playerID}
+      />
+    ));
     return (
-      <div className={active}>
+      <div className={this.props.active ? "active" : ""}>
         <div>{lines}</div>
-        <div id="trail">{spaces}</div>
+        <div id="trail">
+          {spaces}
+          {tokens}
+        </div>
+      </div>
+    );
+  }
+}
+class Token extends React.Component {
+  render() {
+    return (
+      <div
+        id={"token" + this.props.playerID}
+        className={"token " + this.state.location}
+        style={{
+          left: 10 + this.props.playerID * 15 + "%"
+        }}
+      >
+        <Cattleman player={this.props.playerID} />
       </div>
     );
   }

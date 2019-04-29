@@ -4,7 +4,7 @@ import { Worker, Separator, Money } from "./symbols";
 
 import "./css/cow_market.css";
 
-export default class CowMarket extends React.Component {
+export default class CowMarket extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,13 +41,7 @@ export default class CowMarket extends React.Component {
   }
 
   render() {
-    const pass =
-      this.props.ctx.phase === "CowPhase" ? (
-        <div onClick={() => this.props.moves.cowPass()}>Done</div>
-      ) : (
-        ""
-      );
-    const market = this.props.G.cowMarket
+    const market = this.props.market
       .map((card, index) => ({ ...card, index }))
       .sort(cowCompare)
       .map(card => (
@@ -56,14 +50,13 @@ export default class CowMarket extends React.Component {
         </span>
       ));
 
-    const cowboys =
-      this.props.ctx.phase === "CowPhase"
-        ? Array(this.props.G.availableCowboys)
-            .fill()
-            .map((cowboy, index) => <Worker key={index} type="cowboy" />)
-        : "";
+    const cowboys = this.props.active
+      ? Array(this.props.cowboys)
+          .fill()
+          .map((cowboy, index) => <Worker key={index} type="cowboy" />)
+      : "";
 
-    const active = this.props.ctx.phase == "CowPhase" ? "active" : "";
+    const active = this.props.active ? "active" : "";
 
     return (
       <div id="cow-market" className={active}>
@@ -131,7 +124,6 @@ export default class CowMarket extends React.Component {
             <Separator />
             <Money $={6} />
           </div>
-          {pass}
         </div>
         <div id="cow-market-cows">{market}</div>
         <div id="cow-market-cowboys">{cowboys}</div>

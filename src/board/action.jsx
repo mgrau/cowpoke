@@ -21,26 +21,16 @@ import {
 
 import "./css/action.css";
 
-export default class Action extends React.Component {
+export default class Action extends React.PureComponent {
   render() {
     const action = this.props.building + this.props.index;
     let active = false;
     let actionOr = false;
-    if (
-      this.props.ctx.phase == "NeutralPhase" ||
-      this.props.ctx.phase == "PrivatePhase"
-    ) {
-      if (
-        this.props.building ==
-        this.props.G.trail[
-          this.props.G.players[this.props.ctx.currentPlayer].location
-        ].tile.name
-      ) {
-        if (!this.props.G.actionsPerformed.includes(action)) {
-          active = true;
-        }
-      }
+
+    if (this.props.active && !this.props.actionsPerformed.includes(action)) {
+      active = true;
     }
+
     if (
       action == "neutralC0" ||
       action == "neutralD0" ||
@@ -58,7 +48,7 @@ export default class Action extends React.Component {
         }
         onClick={() => {
           if (active && !actionOr) {
-            this.props.moves["buildingMove"](this.props.index);
+            this.props.moves.buildingMove(this.props.index);
           }
         }}
       >

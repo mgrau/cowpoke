@@ -4,7 +4,7 @@ import Action from "./action";
 
 import "./css/neutral_building.css";
 
-export default class NeutralBuilding extends React.Component {
+export default class NeutralBuilding extends React.PureComponent {
   render() {
     const actions = [...Array(this.props.actions).keys()].map(index => (
       <Action
@@ -12,8 +12,8 @@ export default class NeutralBuilding extends React.Component {
         building={this.props.name}
         index={index}
         moves={this.props.moves}
-        G={this.props.G}
-        ctx={this.props.ctx}
+        active={this.props.active}
+        actionsPerformed={this.props.actionsPerformed}
       />
     ));
     return (

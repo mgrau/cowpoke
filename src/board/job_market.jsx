@@ -6,7 +6,7 @@ import Hazard from "./hazard";
 import { Money, Points, Cow } from "./symbols";
 import "./css/job_market.css";
 
-export default class JobMarket extends React.Component {
+export default class JobMarket extends React.PureComponent {
   foresight(foresight, index) {
     if (foresight == 1) {
       this.props.moves.kansasCity1(index);
@@ -20,7 +20,7 @@ export default class JobMarket extends React.Component {
   }
 
   hire(index) {
-    const numPlayers = this.props.G.jobMarket.numPlayers;
+    const numPlayers = this.props.jobMarket.numPlayers;
     const row = Math.floor(index / numPlayers);
     const col = index - row * numPlayers;
 
@@ -38,35 +38,35 @@ export default class JobMarket extends React.Component {
         </div>
       );
     } else if (tile.tile == "teepee") {
-      return <Teepee {...tile} ctx={this.props.ctx} />;
+      return <Teepee {...tile} />;
     } else if (tile.tile == "hazard") {
-      return <Hazard {...tile} ctx={this.props.ctx} />;
+      return <Hazard {...tile} />;
     }
   }
 
   render() {
     const foresight = [
       <div key={0} onClick={() => this.foresight(1, 0)}>
-        {this.makeTile(this.props.G.foresight.foresight1[0])}
+        {this.makeTile(this.props.foresight.foresight1[0])}
       </div>,
       <div key={1} onClick={() => this.foresight(1, 1)}>
-        {this.makeTile(this.props.G.foresight.foresight1[1])}
+        {this.makeTile(this.props.foresight.foresight1[1])}
       </div>,
       <div key={2} onClick={() => this.foresight(2, 0)}>
-        {this.makeTile(this.props.G.foresight.foresight2[0])}
+        {this.makeTile(this.props.foresight.foresight2[0])}
       </div>,
       <div key={3} onClick={() => this.foresight(2, 1)}>
-        {this.makeTile(this.props.G.foresight.foresight2[1])}
+        {this.makeTile(this.props.foresight.foresight2[1])}
       </div>,
       <div key={4} onClick={() => this.foresight(3, 0)}>
-        {this.makeTile(this.props.G.foresight.foresight3[0])}
+        {this.makeTile(this.props.foresight.foresight3[0])}
       </div>,
       <div key={5} onClick={() => this.foresight(3, 1)}>
-        {this.makeTile(this.props.G.foresight.foresight3[1])}
+        {this.makeTile(this.props.foresight.foresight3[1])}
       </div>
     ];
-    const market = this.props.G.jobMarket.market.map((worker, index) =>
-      index < 12 * this.props.G.jobMarket.numPlayers ? (
+    const market = this.props.jobMarket.market.map((worker, index) =>
+      index < 12 * this.props.jobMarket.numPlayers ? (
         <div key={index} onClick={() => this.hire(index)}>
           {this.makeTile(worker)}
         </div>
@@ -74,20 +74,20 @@ export default class JobMarket extends React.Component {
         ""
       )
     );
-    const prices = this.props.G.jobMarket.cost.map((cost, index) => (
+    const prices = this.props.jobMarket.cost.map((cost, index) => (
       <div key={index} style={{ gridRow: index + 1 }}>
         <Money $={cost} />
       </div>
     ));
 
     const token =
-      this.props.G.jobMarket.row >= 12 ? (
+      this.props.jobMarket.row >= 12 ? (
         ""
       ) : (
         <div
           style={{
-            gridColumn: this.props.G.jobMarket.numPlayers,
-            gridRow: this.props.G.jobMarket.row + 1
+            gridColumn: this.props.jobMarket.numPlayers,
+            gridRow: this.props.jobMarket.row + 1
           }}
           id="job-market-token"
         >
@@ -104,14 +104,14 @@ export default class JobMarket extends React.Component {
           id="job-market"
           style={{
             gridTemplateColumns:
-              4.5 * this.props.ctx.numPlayers + -0.5 + "vh 2vh"
+              4.5 * this.props.jobMarket.numPlayers + -0.5 + "vh 2vh"
           }}
         >
           <div
             id="job-market-labor"
             style={{
               gridTemplateColumns:
-                "repeat(" + this.props.ctx.numPlayers + ", 4vh)"
+                "repeat(" + this.props.jobMarket.numPlayers + ", 4vh)"
             }}
           >
             {token}
