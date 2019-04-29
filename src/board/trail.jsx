@@ -24,22 +24,6 @@ export default class Trail extends React.Component {
       />
     ));
 
-    const lines = Object.keys(trail)
-      .map(space =>
-        trail[space].prev.map(prevSpace => (
-          <LineTo
-            from={trail[space].name}
-            to={prevSpace}
-            borderColor="#999"
-            borderWidth={5}
-            key={"line" + trail[space].name + prevSpace}
-            delay={1}
-            zIndex={-10}
-          />
-        ))
-      )
-      .flat();
-
     const tokens = Object.values(this.props.G.players).map((player, index) => (
       <Token
         key={index}
@@ -49,11 +33,11 @@ export default class Trail extends React.Component {
     ));
     return (
       <div className={this.props.active ? "active" : ""}>
-        <div>{lines}</div>
         <div id="trail">
           {spaces}
           {tokens}
         </div>
+        <Lines trail={this.props.trail} />
       </div>
     );
   }
@@ -71,5 +55,37 @@ class Token extends React.Component {
         <Cattleman player={this.props.playerID} />
       </div>
     );
+  }
+}
+
+class Lines extends React.Component {
+  resize() {
+    console.log("resize");
+    this.forceUpdate();
+  }
+  componentDidMount() {
+    window.addEventListener("resize", () => this.resize());
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", () => this.resize());
+  }
+  render() {
+    const lines = Object.values(this.props.trail)
+      .map(space =>
+        space.prev.map(prevSpace => (
+          <LineTo
+            from={space.name}
+            to={prevSpace}
+            borderColor="#999"
+            borderWidth={4}
+            key={"line" + space.name + prevSpace}
+            delay={1}
+            zIndex={-10}
+          />
+        ))
+      )
+      .flat();
+    return <div>{lines}</div>;
   }
 }
