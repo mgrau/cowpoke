@@ -188,67 +188,16 @@
   grid-row: 10;
 }
 
-#trail .teepee-1:before,
-#trail .teepee-2:before,
-#trail .teepee-3:before,
-#trail .teepee1:before,
-#trail .teepee2:before,
-#trail .teepee4:before,
-#trail .teepee6:before,
-#trail .teepee8:before,
-#trail .teepee10:before {
-  float: left;
-  content: "-3";
-  font-size: 1vh;
-  width: 1.25vh;
-  font-weight: bold;
-  color: white;
-  border-radius: 50%;
-  background-color: var(--money-color);
+#trail .price {
+  font-size: 100%;
   position: relative;
-  top: 3.5vh;
-  left: 1.375vh;
-  z-index: 1;
+  top: 75%;
 }
 
-#trail .teepee-1:before {
-  content: "-1";
-  color: var(--money-color-negative);
+#trail .price.displaced {
+  top: -25%;
 }
 
-#trail .teepee-2:before {
-  content: "-2";
-  color: var(--money-color-negative);
-}
-
-#trail .teepee-3:before {
-  content: "-3";
-  color: var(--money-color-negative);
-}
-
-#trail .teepee1:before {
-  content: "1";
-}
-
-#trail .teepee2:before {
-  content: "2";
-}
-
-#trail .teepee4:before {
-  content: "4";
-}
-
-#trail .teepee6:before {
-  content: "6";
-}
-
-#trail .teepee8:before {
-  content: "8";
-}
-
-#trail .teepee10:before {
-  content: "10";
-}
 #trail .teepeeRisk1 {
   grid-column: 10 / 12;
   grid-row: 9 / 11;

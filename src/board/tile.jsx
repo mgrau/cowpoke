@@ -109,6 +109,16 @@ export default class Tile extends React.PureComponent {
         );
       }
     }
+
+    const price =
+      this.props.name.includes("teepee") &&
+      !this.props.name.includes("Risk") ? (
+        <div className={"price " + (tile == "" ? "" : "displaced")}>
+          <Money $={parseInt(this.props.name.substring(6))} />
+        </div>
+      ) : (
+        ""
+      );
     return (
       <div
         className={
@@ -119,8 +129,9 @@ export default class Tile extends React.PureComponent {
         }
         onClick={() => this.onClick()}
       >
-          {tile}
-          {risk}
+        {tile}
+        {risk}
+        {price}
       </div>
     );
   }
