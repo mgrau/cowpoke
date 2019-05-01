@@ -30,11 +30,21 @@ export function privateMove(G, ctx, action) {
       return;
     } else if (action == "private8a0a") {
       private8a0a(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "private8a0a"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "private8a0",
+        "private8a0a",
+        "private8a0b"
+      ];
       return;
     } else if (action == "private8a0b") {
       private8a0b(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "private8a0b"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "private8a0",
+        "private8a0a",
+        "private8a0b"
+      ];
       return;
     } else if (action == "private8a1") {
       private8a1(G, ctx);

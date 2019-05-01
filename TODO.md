@@ -51,5 +51,3 @@
 - players can undo a discard (prevent this)
 - buy 2 cows doesn't work
 - trashing cards never ends phase
-- private tile OR actions allows both actions
-- private tile max certificates only gives 1 certificate

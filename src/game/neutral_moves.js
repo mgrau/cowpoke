@@ -20,11 +20,21 @@ export function neutralMove(G, ctx, action) {
       return;
     } else if (action == "neutralC0a") {
       neutralC0a(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "neutralC0"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "neutralC0",
+        "neutralC0a",
+        "neutralC0b"
+      ];
       return;
     } else if (action == "neutralC0b") {
       neutralC0b(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "neutralC0"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "neutralC0",
+        "neutralC0a",
+        "neutralC0b"
+      ];
       return;
     } else if (action == "neutralC1") {
       neutralC1(G, ctx);
@@ -32,11 +42,21 @@ export function neutralMove(G, ctx, action) {
       return;
     } else if (action == "neutralD0a") {
       neutralD0a(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "neutralD0"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "neutralD0",
+        "neutralD0a",
+        "neutralD0b"
+      ];
       return;
     } else if (action == "neutralD0b") {
       neutralD0b(G, ctx);
-      G.actionsPerformed = [...G.actionsPerformed, "neutralD0"];
+      G.actionsPerformed = [
+        ...G.actionsPerformed,
+        "neutralD0",
+        "neutralD0a",
+        "neutralD0b"
+      ];
       return;
     } else if (action == "neutralD1") {
       neutralD1(G, ctx);
