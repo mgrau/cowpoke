@@ -113,16 +113,16 @@
 
 .floodRisk1 > .risk.displaced,
 .floodRisk2 > .risk.displaced {
-  top: -100%;
+  top: 0%;
 }
 
 .rockfallRisk1 > .risk.displaced,
 .rockfallRisk2 > .risk.displaced {
-  top: -225%;
+  top: -125%;
 }
 
 .droughtRisk1 > .risk.displaced,
 .teepeeRisk1 > .risk.displaced,
 .teepeeRisk2 > .risk.displaced {
-  top: -190%;
+  top: -90%;
 }
