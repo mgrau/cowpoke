@@ -130,11 +130,6 @@ class Station extends React.PureComponent {
     return (
       <div
         className={"station " + (this.props.black ? "black" : "")}
-        onClick={() => {
-          if (this.props.active) {
-            this.props.moves.moveEngine(this.props.distance);
-          }
-        }}
         style={{
           gridColumnStart: this.props.distance - 0.5,
           gridColumnEnd: this.props.distance + 2.5
@@ -149,16 +144,23 @@ class Station extends React.PureComponent {
                 this.props.engines.indexOf(this.props.distance)
               : "")
           }
+          onClick={() => {
+            if (this.props.active) {
+              this.props.moves.moveEngine(this.props.distance);
+            }
+          }}
         />
-        <div className="station-tokens">{players}</div>
         <div
-          className="station-points"
+          className="station-tokens"
           onClick={() => {
             if (this.props.active) {
               this.props.moves.upgradeStation();
             }
           }}
         >
+          {players}
+        </div>
+        <div className="station-points">
           <Money $={-this.props.cost} />
           <Points vp={this.props.points} />
         </div>

@@ -334,7 +334,6 @@ export function upgradeStation(G, ctx) {
       ...G.stations[stationIndex].players
     ];
   }
-  G.player.tokens[G.readyToken]--;
 
   ctx.events.endPhase();
 }
