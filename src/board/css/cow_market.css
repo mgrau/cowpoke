@@ -17,6 +17,15 @@
   border: 0.25vh solid black;
 }
 
+#cow-market-cows {
+  display: flex;
+}
+
+#cow-market-cows > div {
+  padding: 0;
+  border-radius: 0.5vh;
+}
+
 #cow-market-cowboys {
   display: flex;
 }

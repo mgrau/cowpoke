@@ -135,9 +135,12 @@
 .worker {
   color: rgb(73, 73, 73);
   font-size: 80%;
-  padding: 0.3vh;
   border-radius: 0.25vh;
-  width: 1vh;
+  width: 2vh;
+  height: 2vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .worker.cowboy {

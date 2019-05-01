@@ -17,7 +17,9 @@ export default class CowMarket extends React.PureComponent {
   }
 
   preBuy(value, price, double = false) {
-    this.setState({ buy: true, value, price, double });
+    if (this.props.active) {
+      this.setState({ buy: true, value, price, double });
+    }
   }
 
   isActive(value, price) {
@@ -33,15 +35,13 @@ export default class CowMarket extends React.PureComponent {
       } else {
         if (this.state.secondCow == null) {
           this.props.moves.cowBuy(this.state.value, this.state.price, index);
-          this.setState({ buy: false });
         } else {
           this.props.moves.cowBuy(this.state.value, this.state.price, [
             index,
             this.state.secondCow
           ]);
-          this.setState({ secondCow: null });
-          this.setState({ buy: false });
         }
+        this.setState({ buy: false, secondCow: null, price: 0, value: 0 });
       }
     }
   }
@@ -51,9 +51,13 @@ export default class CowMarket extends React.PureComponent {
       .map((card, index) => ({ ...card, index }))
       .sort(cowCompare)
       .map(card => (
-        <span key={card.index} onClick={() => this.buy(card.index)}>
+        <div
+          key={card.index}
+          onClick={() => this.buy(card.index)}
+          className={card.index == this.state.secondCow ? "active" : ""}
+        >
           <Card {...card} />
-        </span>
+        </div>
       ));
 
     const cowboys = this.props.active
@@ -155,12 +159,7 @@ export default class CowMarket extends React.PureComponent {
             <Money $={6} />
           </div>
         </div>
-        <div
-          id="cow-market-cows"
-          onClick={() => this.setState({ buy: false, value: 0, price: 0 })}
-        >
-          {market}
-        </div>
+        <div id="cow-market-cows">{market}</div>
         <div id="cow-market-cowboys">{cowboys}</div>
       </div>
     );
