@@ -60,7 +60,6 @@ class Token extends React.Component {
 
 class Lines extends React.Component {
   resize() {
-    console.log("resize");
     this.forceUpdate();
   }
   componentDidMount() {
