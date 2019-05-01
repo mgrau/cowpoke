@@ -194,6 +194,7 @@ export const Cowpoke = Game({
           G.readyToken = null;
         },
         allowedMoves: [
+          "end",
           "kansasCity1",
           "kansasCity2",
           "kansasCity3",
@@ -201,11 +202,7 @@ export const Cowpoke = Game({
           "selectToken",
           "kansasCityShip"
         ],
-        next: "MovePhase",
-        onPhaseEnd: (G, ctx) => {
-          ctx.events.endTurn();
-          return G;
-        }
+        next: "MovePhase"
       }
     }
   },

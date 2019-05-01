@@ -16,8 +16,6 @@
 
 - objective cards
 
-- don't force end turn after kansas city shipping (allow player to undo)
-
 # view
 - player
   - show all of discard contents on hover

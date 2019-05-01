@@ -18,8 +18,14 @@ export default class CowpokeBoard extends React.Component {
     if (this.props.ctx.allowedMoves.includes("pass")) {
       buttons.push(<Pass key="pass" onClick={() => this.props.moves.pass()} />);
     }
-    if (this.props.ctx.allowedMoves.includes("end")) {
-      buttons.push(<End key="end" onClick={() => this.props.moves.end()} />);
+    if (
+      this.props.ctx.allowedMoves.includes("end") &&
+      (this.props.ctx.phase != "KansasCity" ||
+        this.props.G.actionsPerformed.includes("kansasCityShip"))
+    ) {
+      buttons.push(
+        <End key="end turn" onClick={() => this.props.moves.end()} />
+      );
     }
     if (
       this.props.playerID == null ||

@@ -78,7 +78,6 @@ export function kansasCityShip(G, ctx, destination) {
         G.player.location = "start";
         G.actionsPerformed = [...G.actionsPerformed, "kansasCityShip"];
         G.deliveryValue = undefined;
-        ctx.events.endPhase();
       }
     }
   }

@@ -1,4 +1,4 @@
-import { INVALID_MOVE } from "boardgame.io/core";
+// import { INVALID_MOVE } from "boardgame.io/core";
 import { isAdjacent } from "./trail";
 import { getWorker, removeWorker } from "./job_market";
 import { trainDistance } from "./train";
@@ -63,6 +63,12 @@ export function stop(G, ctx) {
 }
 
 export function end(G, ctx) {
+  if (
+    ctx.phase == "KansasCity" &&
+    !G.actionsPerformed.includes("kansasCityShip")
+  ) {
+    return;
+  }
   draw(G, ctx);
   ctx.events.endPhase({ next: "MovePhase" });
   ctx.events.endTurn();
