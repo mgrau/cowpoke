@@ -45,9 +45,6 @@
 
 - undo of actions doesn't quite work
 - pair discard doesn't let you choose which 2 cards.
-- add button to upgrade train stations
 - prevent players from being able to click on other player boards for actions
 - pair discard undo allows you to discard two pairs.
 - players can undo a discard (prevent this)
-- buy 2 cows doesn't work
-- trashing cards never ends phase

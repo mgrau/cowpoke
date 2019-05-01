@@ -419,9 +419,11 @@ export function discardPair(G, ctx, name) {
 }
 
 export function trash(G, ctx, index) {
-  if (G.player.cards.hand[index] !== undefined) {
-    G.player.cards.hand.splice(index, 1);
-    G.mustTrash--;
+  if (G.mustTrash > 0) {
+    if (G.player.cards.hand[index] !== undefined) {
+      G.player.cards.hand.splice(index, 1);
+      G.mustTrash--;
+    }
   }
 }
 
