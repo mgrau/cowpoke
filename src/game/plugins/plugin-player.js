@@ -20,15 +20,6 @@ export default {
       const player = G.players[current];
 
       G = { ...G, player };
-
-      let other = null;
-      let opponent = null;
-      if (ctx.numPlayers == 2) {
-        other = current == "0" ? "1" : "0";
-        opponent = G.players[other];
-        G.opponent = opponent;
-      }
-
       G = moveFn(G, ctx, ...args);
 
       const players = {
@@ -36,13 +27,9 @@ export default {
         [current]: G.player
       };
 
-      if (other !== null) {
-        players[other] = G.opponent;
-      }
-
       {
         /* eslint-disable-next-line no-unused-vars */
-        const { player, opponent, ...rest } = G;
+        const { player, ...rest } = G;
         return { ...rest, players };
       }
     };

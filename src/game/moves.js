@@ -31,8 +31,8 @@ export function move(G, ctx, destination) {
         G.player.location = destination;
         if (G.trail[destination].tile != null) {
           G.movesRemaining--;
+          pay_toll(G, ctx);
         }
-        pay_toll(G, ctx);
       }
     }
   }
@@ -336,7 +336,6 @@ export function upgradeStation(G, ctx) {
   }
   G.player.tokens[G.readyToken]--;
 
-  console.log("upgrade");
   ctx.events.endPhase();
 }
 
@@ -360,7 +359,6 @@ function pay_toll(G, ctx) {
     return;
   }
 
-  console.log(tile.owner);
   let toll = 0;
   if (hand.includes("black")) {
     if (ctx.numPlayers == 3) {
@@ -381,7 +379,6 @@ function pay_toll(G, ctx) {
   if (tile.owner != ctx.currentPlayer) {
     toll = toll > G.player.money ? G.player.money : toll;
     G.player.money -= toll;
-    console.log(tile.owner);
     if (tile.owner != undefined) {
       G.players[tile.owner].money += toll;
     }
