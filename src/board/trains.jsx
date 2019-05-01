@@ -1,5 +1,5 @@
 import React from "react";
-import { Money, Points } from "./symbols";
+import { Money, Points, Cattleman } from "./symbols";
 
 import "./css/trains.css";
 
@@ -45,7 +45,9 @@ export default class Trains extends React.PureComponent {
 
     const value =
       this.props.deliveryValue != null ? (
-        <div id="delivery-value">Delivery Value: {this.props.deliveryValue}</div>
+        <div id="delivery-value">
+          Delivery Value: {this.props.deliveryValue}
+        </div>
       ) : (
         ""
       );
@@ -66,8 +68,18 @@ class City extends React.PureComponent {
     this.props.moves.kansasCityShip(this.props.name);
   }
   render() {
-    const players = this.props.players.map((player, index) => (
-      <span className={"cattleman cattleman-player-" + player} key={index} />
+    const players = (this.props.players.length == 0
+      ? [null]
+      : this.props.players
+    ).map((player, index) => (
+      <div
+        className="player"
+        style={{
+          left: index * 5 + "%"
+        }}
+      >
+        <Cattleman key={index} player={player} />
+      </div>
     ));
     return (
       <div
@@ -93,8 +105,18 @@ class City extends React.PureComponent {
 }
 class Station extends React.PureComponent {
   render() {
-    const players = this.props.players.map((player, index) => (
-      <span className={"cattleman cattleman-player-" + player} key={index} />
+    const players = (this.props.players.length == 0
+      ? [null]
+      : this.props.players
+    ).map((player, index) => (
+      <div
+        className="player"
+        style={{
+          top: index * 7.5 + "%"
+        }}
+      >
+        <Cattleman key={index} player={player} />
+      </div>
     ));
 
     const stationMaster =
@@ -105,14 +127,7 @@ class Station extends React.PureComponent {
       );
     return (
       <div
-        className={
-          "station " +
-          (this.props.engines.includes(this.props.distance)
-            ? "train-player-" + this.props.engines.indexOf(this.props.distance)
-            : this.props.black
-            ? "black"
-            : "")
-        }
+        className={"station " + (this.props.black ? "black" : "")}
         onClick={() => {
           if (this.props.active) {
             this.props.moves.moveEngine(this.props.distance);
@@ -124,6 +139,15 @@ class Station extends React.PureComponent {
         }}
       >
         {stationMaster}
+        <div
+          className={
+            "station-engine " +
+            (+this.props.engines.includes(this.props.distance)
+              ? "train-player-" +
+                this.props.engines.indexOf(this.props.distance)
+              : "")
+          }
+        />
         <div className="station-tokens">{players}</div>
         <div
           className="station-points"
