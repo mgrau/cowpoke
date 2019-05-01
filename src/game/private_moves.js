@@ -186,7 +186,7 @@ function private9a1(G, ctx) {
 }
 
 function private10a0(G, ctx) {
-  G.player.certificate = 6;
+  G.player.certificates = 6;
   gainCertificate(G.player);
 }
 
