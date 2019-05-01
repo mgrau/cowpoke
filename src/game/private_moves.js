@@ -217,7 +217,7 @@ function private2b0(G, ctx) {
   }
 }
 
-function private2b0(G, ctx) {
+function private2b1(G, ctx) {
   if (discard(G, "DutchBelt")) {
     G.player.money += 3;
   }
