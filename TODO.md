@@ -48,7 +48,6 @@
 - prevent players from being able to click on other player boards for actions
 - pair discard undo allows you to discard two pairs.
 - players can undo a discard (prevent this)
-- give building owner money from tolls
 - risk bonus action is displaced by player buildings
 - risk bonus actions can't be clicked
 - buy 2 cows doesn't work
