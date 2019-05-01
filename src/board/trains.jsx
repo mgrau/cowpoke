@@ -77,8 +77,9 @@ class City extends React.PureComponent {
         style={{
           left: index * 5 + "%"
         }}
+        key={index}
       >
-        <Cattleman key={index} player={player} />
+        <Cattleman player={player} />
       </div>
     ));
     return (
@@ -114,8 +115,9 @@ class Station extends React.PureComponent {
         style={{
           top: index * 7.5 + "%"
         }}
+        key={index}
       >
-        <Cattleman key={index} player={player} />
+        <Cattleman player={player} />
       </div>
     ));
 
