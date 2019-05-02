@@ -15,6 +15,7 @@ import {
   end,
   buildingMove,
   risk,
+  specialDelivery,
   hire,
   hireBonus,
   build,
@@ -111,7 +112,8 @@ export const Cowpoke = Game({
     kansasCitySell,
     kansasCityShip,
     buildingMove,
-    risk
+    risk,
+    specialDelivery
   },
   flow: {
     endTurn: false,
@@ -188,6 +190,10 @@ export const Cowpoke = Game({
         endPhaseIf: G =>
           G.actionsPerformed.includes("auxMove") ||
           G.actionsPerformed.includes("auxDoubleMove")
+      },
+      SpecialDeliveryPhase: {
+        allowedMoves: ["moveEngine", "selectToken", "specialDelivery"],
+        endPhaseIf: G => G.engineSpaces != undefined && G.engineSpaces == 0
       },
       KansasCity: {
         onPhaseBegin: (G, ctx) => {

@@ -12,6 +12,7 @@ export default class Trains extends React.PureComponent {
         {...city}
         deliveryValue={this.props.deliveryValue}
         moves={this.props.moves}
+        phase={this.props.phase}
       />
     ));
 
@@ -65,7 +66,11 @@ export default class Trains extends React.PureComponent {
 
 class City extends React.PureComponent {
   ship() {
-    this.props.moves.kansasCityShip(this.props.name);
+    if (this.props.phase == "KansasCity") {
+      this.props.moves.kansasCityShip(this.props.name);
+    } else if (this.props.phase == "SpecialDeliveryPhase") {
+      this.props.moves.specialDelivery(this.props.name);
+    }
   }
   render() {
     const players = (this.props.players.length == 0

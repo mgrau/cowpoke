@@ -191,8 +191,9 @@ function private9a1(G, ctx) {
   //extraordinary delivery
   // first make a delivery to a city whose value is greater than or equal to the train position
   // then move the train back that many spaces
-  // G.engineSpaces = -X;
-  // ctx.events.endPhase({ next: "EnginePhase" });
+  G.deliveryValue = G.player.engine;
+  G.engineSpaces = undefined;
+  ctx.events.endPhase({ next: "SpecialDeliveryPhase" });
 }
 
 function private10a0(G, ctx) {

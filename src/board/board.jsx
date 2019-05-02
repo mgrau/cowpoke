@@ -57,6 +57,7 @@ export default class CowpokeBoard extends React.Component {
           )}
           deliveryValue={this.props.G.deliveryValue}
           moves={this.props.moves}
+          phase={this.props.ctx.phase}
           active={this.props.ctx.phase == "EnginePhase"}
         />
         <JobMarket

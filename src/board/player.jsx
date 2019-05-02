@@ -254,7 +254,8 @@ class Token extends React.Component {
             } else {
               if (
                 this.props.ctx.phase == "KansasCity" ||
-                this.props.ctx.phase == "EnginePhase"
+                this.props.ctx.phase == "EnginePhase" ||
+                this.props.ctx.phase == "SpecialDeliveryPhase"
               ) {
                 this.props.moves.selectToken(this.props.name);
               }

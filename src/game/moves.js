@@ -11,6 +11,7 @@ import {
 } from "./player";
 import { neutralMove } from "./neutral_moves";
 import { privateMove } from "./private_moves";
+import { ship } from "./cities";
 
 export function move(G, ctx, destination) {
   if (
@@ -447,6 +448,18 @@ export function gainHazard(G, ctx, name) {
       G.player.hazards = [G.trail[name].tile, ...G.player.hazards];
       G.trail[name].tile = null;
       ctx.events.endPhase();
+    }
+  }
+}
+
+export function specialDelivery(G, ctx, destination) {
+  if (G.actionsPerformed.includes("specialDelivery")) {
+    console.log("already did this move");
+  } else {
+    if (ship(G, destination)) {
+      G.actionsPerformed = [...G.actionsPerformed, "specialDelivery"];
+      G.deliveryValue = undefined;
+      G.engineSpaces = -G.cities[destination].distance;
     }
   }
 }
