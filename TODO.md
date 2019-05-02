@@ -6,8 +6,9 @@
 
 - player buildings
 
-  - implement special delivery
-  - implement b set actions
+  - action 6b
+  - action 8b (adjacent tile action)
+  - action 9b (upgrade any train station behind engine)
 
 - delivery actions (gaining objectives)
 - include station masters
