@@ -14,7 +14,7 @@ export default class Tile extends React.PureComponent {
       if (this.props.build) {
         if (
           (this.props.tile == null ||
-            this.props.tile.owner == this.props.currentPlayer) && 
+            this.props.tile.owner == this.props.currentPlayer) &&
           this.props.selectedBuilding != null
         ) {
           this.props.moves.build(this.props.name, this.props.selectedBuilding);
@@ -77,7 +77,7 @@ export default class Tile extends React.PureComponent {
           <div
             className={"risk " + (tile == "" ? "" : "displaced")}
             onClick={() => {
-              if (this.props.ctx.phase == "PrivatePhase") {
+              if (this.props.phase == "PrivatePhase") {
                 this.props.moves.risk();
               }
             }}
