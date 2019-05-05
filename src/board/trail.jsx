@@ -15,10 +15,11 @@ export default class Trail extends React.Component {
       <Tile
         key={index}
         {...trail[space]}
-        // G={this.props.G}
         phase={this.props.ctx.phase}
         currentPlayer={this.props.ctx.currentPlayer}
         actionsPerformed={this.props.G.actionsPerformed}
+        selectedBuilding={this.props.selectedBuilding}
+        clearBuilding={this.props.clearBuilding}
         active={space == currentLocation}
         moves={this.props.moves}
       />

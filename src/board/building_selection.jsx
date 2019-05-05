@@ -5,37 +5,25 @@ import "./css/building_selection.css";
 
 export default class BuildingSelection extends React.Component {
   render() {
-    const buildings = this.props.G.buildings
-      .filter(
-        building =>
-          !this.props.G.players[this.props.ctx.currentPlayer].built.includes(
-            building.name
-          )
-      )
+    const buildings = this.props.buildings
+      .filter(building => !this.props.built.includes(building.name))
       .map((building, index) => (
         <div
           key={index}
           className={
             "space " +
-            (this.props.G.selectedBuilding == building.name ? "active" : "")
+            (this.props.selectedBuilding == building.name ? "active" : "")
           }
-          onClick={() => this.props.moves["selectBuilding"](building.name)}
+          onClick={() => this.props.selectBuilding(building.name)}
         >
-          <PrivateBuilding
-            {...building}
-            owner={this.props.ctx.currentPlayer}
-            G={this.props.G}
-            ctx={this.props.ctx}
-          />
+          <PrivateBuilding {...building} owner={this.props.playerID} />
         </div>
       ));
-
-    const active = this.props.ctx.phase == "BuildPhase" ? "active" : "";
 
     return (
       <div
         id="building-selection"
-        className={this.props.ctx.phase == "BuildPhase" ? "visible active" : ""}
+        className={this.props.active ? "visible active" : ""}
       >
         {buildings}
       </div>

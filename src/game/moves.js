@@ -216,23 +216,21 @@ export function hireBonus(G, ctx) {
   }
 }
 
-export function build(G, ctx, location) {
-  if (G.selectedBuilding != null) {
+export function build(G, ctx, location, buildingName) {
+  if (buildingName != null) {
     // has the player selected a building by using the selectBuilding action?
     if (G.trail[location].build) {
       // is the location tile a buildable location?
       if (
-        G.buildings
-          .map(building => building.name)
-          .includes(G.selectedBuilding) && // has the player selected a building that is in this game?
-        !G.player.built.includes(G.selectedBuilding) // and the player hasn't built it yet?
+        G.buildings.map(building => building.name).includes(buildingName) && // has the player selected a building that is in this game?
+        !G.player.built.includes(buildingName) // and the player hasn't built it yet?
       ) {
         if (
           G.trail[location].tile == null || // is the location empty?
           G.trail[location].tile.owner == ctx.currentPlayer // or contain one of the player's own buildings?
         ) {
           const building = G.buildings.find(
-            building => building.name == G.selectedBuilding
+            building => building.name == buildingName
           );
           const craftsmen =
             building.craftsmen -
@@ -244,25 +242,15 @@ export function build(G, ctx, location) {
             G.player.money >= G.buildCost * building.craftsmen &&
             G.player.craftsmen >= craftsmen
           ) {
-            G.player.built = [...G.player.built, G.selectedBuilding];
+            G.player.built = [...G.player.built, buildingName];
             G.player.money -= G.buildCost * craftsmen;
             G.trail[location].tile = building;
             G.trail[location].tile.owner = ctx.currentPlayer;
-            G.selectedBuilding = null;
             ctx.events.endPhase();
           }
         }
       }
     }
-  }
-}
-
-export function selectBuilding(G, ctx, buildingName) {
-  if (
-    G.buildings.map(building => building.name).includes(buildingName) &&
-    !G.player.built.includes(buildingName)
-  ) {
-    G.selectedBuilding = buildingName;
   }
 }
 

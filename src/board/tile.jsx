@@ -13,10 +13,12 @@ export default class Tile extends React.PureComponent {
     } else if (this.props.phase == "BuildPhase") {
       if (this.props.build) {
         if (
-          this.props.tile == null ||
-          this.props.tile.owner == this.props.currentPlayer
+          (this.props.tile == null ||
+            this.props.tile.owner == this.props.currentPlayer) && 
+          this.props.selectedBuilding != null
         ) {
-          this.props.moves.build(this.props.name);
+          this.props.moves.build(this.props.name, this.props.selectedBuilding);
+          this.props.clearBuilding();
         }
       }
     }

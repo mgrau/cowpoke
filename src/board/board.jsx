@@ -98,13 +98,18 @@ export default class CowpokeBoard extends React.Component {
           G={this.props.G}
           ctx={this.props.ctx}
           moves={this.props.moves}
+          selectedBuilding={this.state.selectedBuilding}
+          clearBuilding={() => this.selectBuilding(null)}
           active={this.props.ctx.phase == "MovePhase"}
         />
         <div id="board-players">{players}</div>
         <BuildingSelection
-          G={this.props.G}
-          ctx={this.props.ctx}
-          moves={this.props.moves}
+          buildings={this.props.G.buildings}
+          built={this.props.G.players[this.props.ctx.currentPlayer].built}
+          playerID={this.props.ctx.currentPlayer}
+          selectBuilding={building => this.selectBuilding(building)}
+          selectedBuilding={this.state.selectedBuilding}
+          active={this.props.ctx.phase == "BuildPhase"}
         />
         <CowMarket
           market={this.props.G.cowMarket}
