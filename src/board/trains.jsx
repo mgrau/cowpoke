@@ -1,5 +1,6 @@
 import React from "react";
-import { Money, Points, Cattleman } from "./symbols";
+import { Money, Points, Cattleman, Worker } from "./symbols";
+import StationMaster from "./station_master";
 
 import "./css/trains.css";
 
@@ -41,6 +42,8 @@ export default class Trains extends React.PureComponent {
         engines={this.props.engines}
         moves={this.props.moves}
         active={this.props.active}
+        selectedWorker={this.props.selectedWorker}
+        clearWorker={this.props.clearWorker}
       />
     ));
 
@@ -126,12 +129,23 @@ class Station extends React.PureComponent {
       </div>
     ));
 
-    const stationMaster =
-      this.props.stationMaster == null ? (
-        <div className="space" />
-      ) : (
-        <div className="station-master" />
-      );
+    let stationMaster = <div className="space" />;
+    if (this.props.stationMaster != null) {
+      if (this.props.stationMaster.tile == "stationmaster") {
+        stationMaster = (
+          <StationMaster
+            {...this.props.stationMaster}
+            moves={this.props.moves}
+            active={this.props.active}
+            selectedWorker={this.props.selectedWorker}
+            clearWorker={this.props.clearWorker}
+          />
+        );
+      } else if (this.props.stationMaster.tile == "worker") {
+        stationMaster = <Worker type={this.props.stationMaster.type} />;
+      }
+    }
+
     return (
       <div
         className={"station " + (this.props.black ? "black" : "")}
@@ -154,7 +168,9 @@ class Station extends React.PureComponent {
               this.props.moves.moveEngine(this.props.distance);
             }
           }}
-        />
+        >
+          {this.props.distance - 0.5}
+        </div>
         <div
           className="station-tokens"
           onClick={() => {

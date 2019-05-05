@@ -28,7 +28,7 @@ export default class Tile extends React.PureComponent {
         tile = (
           <Hazard
             {...this.props.tile}
-            active={this.props.phase == "HazardPhase"}
+            active={this.props.phase.includes("Hazard")}
             moves={this.props.moves}
             name={this.props.name}
           />
@@ -37,7 +37,7 @@ export default class Tile extends React.PureComponent {
         tile = (
           <Teepee
             {...this.props.tile}
-            active={this.props.phase == "TeepeePhase"}
+            active={this.props.phase.includes("Teepee")}
             moves={this.props.moves}
             name={this.props.name}
           />

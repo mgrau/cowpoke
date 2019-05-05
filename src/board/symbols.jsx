@@ -139,7 +139,14 @@ export class Card extends React.PureComponent {
 export class Worker extends React.PureComponent {
   render() {
     return (
-      <div className={"worker " + this.props.type}>
+      <div
+        className={"worker " + this.props.type}
+        onClick={() => {
+          if (this.props.selectWorker != undefined) {
+            this.props.selectWorker(this.props.type);
+          }
+        }}
+      >
         <FontAwesomeIcon icon={faUser} />
       </div>
     );

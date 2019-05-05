@@ -267,6 +267,9 @@ export function selectBuilding(G, ctx, buildingName) {
 }
 
 export function moveEngine(G, ctx, destination) {
+  if (G.actionsPerformed.includes("upgradeStation")) {
+    return;
+  }
   const stations = G.stations.map(station => station.distance);
   if (
     [...Array(41).keys()].includes(destination) ||
@@ -335,8 +338,7 @@ export function upgradeStation(G, ctx) {
       ...G.stations[stationIndex].players
     ];
   }
-
-  ctx.events.endPhase();
+  G.actionsPerformed = [...G.actionsPerformed, "upgradeStation"];
 }
 
 export function selectToken(G, ctx, token) {

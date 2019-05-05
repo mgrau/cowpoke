@@ -55,6 +55,11 @@ export function gainCertificate(player) {
   }
 }
 
+export function stationMasterCertificates(player) {
+  return player.stationMasters.filter(tile => tile.benefit == "certificate")
+    .length;
+}
+
 export function removeToken(G) {
   if (G.readyToken == null) {
     return false;

@@ -2,6 +2,7 @@ import { addSmallTile } from "./trail";
 import { addWorker } from "./job_market";
 import { draw } from "./moves";
 import { ship } from "./cities";
+import { stationMasterCertificates } from "./player";
 
 export function kansasCity1(G, ctx, index) {
   if (G.actionsPerformed.includes("kansasCity1")) {
@@ -59,8 +60,7 @@ export function kansasCitySell(G, ctx, certificates = 0) {
     console.log("already did this move");
   } else {
     if (G.actionsPerformed.includes("kansasCity3")) {
-      if (G.player.certificates >= certificates && certificates >= 0) {
-        sellHerd(G, certificates);
+      if (sellHerd(G, certificates)) {
         G.actionsPerformed = [...G.actionsPerformed, "kansasCitySell"];
       }
     }
@@ -99,6 +99,16 @@ function refillForesight(G) {
 }
 
 function sellHerd(G, certificates) {
+  if (certificates < 0) {
+    return false;
+  }
+  if (
+    G.player.certificates + stationMasterCertificates(G.player) <
+    certificates
+  ) {
+    return false;
+  }
+
   const hand = G.player.cards.hand;
   const handValue =
     certificates +
@@ -109,9 +119,13 @@ function sellHerd(G, certificates) {
       )
       .map(card => card.value)
       .reduce((a, b) => a + b);
-  G.player.certificates -= certificates;
+  G.player.certificates -= Math.max(
+    0,
+    certificates - stationMasterCertificates(G.player)
+  );
   G.player.money += handValue;
   G.player.cards.discard = [...G.player.cards.discard, ...hand];
   G.player.cards.hand = [];
   G.deliveryValue = handValue;
+  return true;
 }

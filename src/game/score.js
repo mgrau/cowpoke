@@ -1,5 +1,6 @@
 // TODO: objective score
-// TODO: station master score
+import { stationMasterScore } from "./station_masters";
+
 export function score(G, playerID) {
   const player = G.players[playerID];
   const score = {
@@ -33,7 +34,7 @@ export function score(G, playerID) {
     // objectives
     objectives: 0,
     // station masters
-    stationMasters: 0,
+    stationMasters: stationMasterScore(player),
     // workers
     workers:
       4 *

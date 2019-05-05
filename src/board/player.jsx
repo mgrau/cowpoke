@@ -3,6 +3,7 @@ import Card from "./card";
 import { Money, Worker, Certificate } from "./symbols";
 import { AuxAction } from "../game/aux_actions";
 import { score } from "../game/score";
+import { stationMasterCertificates } from "../game/player";
 
 import "./css/player.css";
 
@@ -14,6 +15,7 @@ export default class Player extends React.Component {
       !this.props.G.actionsPerformed.includes("kansasCitySell") &&
       this.props.ctx.currentPlayer == this.props.playerID
     ) {
+      const permanentCertificates = stationMasterCertificates(this.props);
       return (
         <div className="player-spend-certificates">
           Spend:
@@ -23,10 +25,14 @@ export default class Player extends React.Component {
               <div
                 key={n}
                 onClick={() =>
-                  this.props.moves.kansasCitySell(this.props.certificates - n)
+                  this.props.moves.kansasCitySell(
+                    permanentCertificates + this.props.certificates - n
+                  )
                 }
               >
-                <Certificate spaces={this.props.certificates - n} />
+                <Certificate
+                  spaces={permanentCertificates + this.props.certificates - n}
+                />
               </div>
             ))}
         </div>
@@ -92,21 +98,39 @@ export default class Player extends React.Component {
       .fill()
       .map((cowboy, index) => {
         if (index < this.props.cowboys) {
-          return <Worker key={index} type="cowboy" />;
+          return (
+            <Worker
+              key={index}
+              type="cowboy"
+              selectWorker={this.props.selectWorker}
+            />
+          );
         } else return <div key={index} />;
       });
     const craftsmen = Array(6)
       .fill()
       .map((cowboy, index) => {
         if (index < this.props.craftsmen) {
-          return <Worker key={index} type="craftsman" />;
+          return (
+            <Worker
+              key={index}
+              type="craftsman"
+              selectWorker={this.props.selectWorker}
+            />
+          );
         } else return <div key={index} />;
       });
     const engineers = Array(6)
       .fill()
       .map((cowboy, index) => {
         if (index < this.props.engineers) {
-          return <Worker key={index} type="engineer" />;
+          return (
+            <Worker
+              key={index}
+              type="engineer"
+              selectWorker={this.props.selectWorker}
+            />
+          );
         } else return <div key={index} />;
       });
 
@@ -124,6 +148,7 @@ export default class Player extends React.Component {
             ctx={this.props.ctx}
             moves={this.props.moves}
             black={true}
+            selectToken={this.props.selectToken}
           />
           <Token
             key={"move2"}
@@ -133,6 +158,7 @@ export default class Player extends React.Component {
             ctx={this.props.ctx}
             moves={this.props.moves}
             black={true}
+            selectToken={this.props.selectToken}
           />
           Hand:
           <Token
@@ -143,6 +169,7 @@ export default class Player extends React.Component {
             ctx={this.props.ctx}
             moves={this.props.moves}
             black={true}
+            selectToken={this.props.selectToken}
           />
           <Token
             key={"hand2"}
@@ -152,6 +179,7 @@ export default class Player extends React.Component {
             ctx={this.props.ctx}
             moves={this.props.moves}
             black={true}
+            selectToken={this.props.selectToken}
           />
           <span>
             <Certificate spaces={this.props.certificates} />
@@ -164,6 +192,7 @@ export default class Player extends React.Component {
             playerID={this.props.playerID}
             ctx={this.props.ctx}
             moves={this.props.moves}
+            selectToken={this.props.selectToken}
           />
           <Token
             key={"certificate2"}
@@ -173,6 +202,7 @@ export default class Player extends React.Component {
             ctx={this.props.ctx}
             moves={this.props.moves}
             black={true}
+            selectToken={this.props.selectToken}
           />
           <span>
             <Money $={this.props.money} />
@@ -184,6 +214,7 @@ export default class Player extends React.Component {
           tokens={this.props.tokens}
           ctx={this.props.ctx}
           moves={this.props.moves}
+          selectToken={this.props.selectToken}
         />
         <div className="player-workers">
           <div className="player-cowboys">{cowboys}</div>
@@ -216,6 +247,7 @@ class AuxTokens extends React.Component {
             playerID={this.props.playerID}
             ctx={this.props.ctx}
             moves={this.props.moves}
+            selectToken={this.props.selectToken}
             onClick={() => {
               this.props.moves.beginAuxMove();
               this.props.moves.auxMove(AuxAction[token.replace("aux", "")]);
@@ -230,6 +262,7 @@ class AuxTokens extends React.Component {
             playerID={this.props.playerID}
             ctx={this.props.ctx}
             moves={this.props.moves}
+            selectToken={this.props.selectToken}
             onClick={() =>
               this.props.moves.auxDoubleMove(
                 AuxAction[token.replace("aux", "")]
@@ -249,6 +282,8 @@ class Token extends React.Component {
       >
         <div
           onClick={() => {
+            this.props.selectToken(this.props.name);
+
             if (this.props.empty) {
               this.props.onClick();
             } else {

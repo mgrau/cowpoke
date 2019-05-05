@@ -133,7 +133,8 @@
 }
 
 .worker {
-  color: rgb(73, 73, 73);
+  background-color: rgb(73, 73, 73);
+  color: white;
   font-size: 60%;
   border-radius: 0.25vh;
   width: 1.5vh;
@@ -141,19 +142,17 @@
   display: grid;
   align-items: center;
   justify-items: center;
+  margin: 0.2vh;
 }
 
 .worker.cowboy {
-  color: white;
   background-color: var(--cowboy-color);
 }
 
 .worker.craftsman {
-  color: white;
   background-color: var(--craftsman-color);
 }
 .worker.engineer {
-  color: white;
   background-color: var(--engineer-color);
 }
 
@@ -222,6 +221,7 @@
   font-size: 75%;
   border-radius: 0.25vh;
   padding: 0.25vh;
+  color: white;
 }
 
 .symbol-teepee.green {
@@ -230,6 +230,7 @@
     rgb(31, 187, 39),
     rgb(31, 187, 39)
   );
+  color: white;
 }
 
 .symbol-teepee.blue {
@@ -238,6 +239,7 @@
     rgb(60, 77, 235),
     rgb(60, 77, 235)
   );
+  color: white;
 }
 
 .cow {

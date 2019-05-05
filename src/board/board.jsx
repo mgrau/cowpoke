@@ -10,6 +10,27 @@ import { Stop, Pass, End, Undo } from "./buttons";
 import "./css/board.css";
 
 export default class CowpokeBoard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedToken: null,
+      selectedBuilding: null,
+      selectedWorker: null
+    };
+  }
+
+  selectToken(token) {
+    this.setState({ selectedToken: token });
+  }
+
+  selectBuilding(building) {
+    this.setState({ selectedBuilding: building });
+  }
+
+  selectWorker(worker) {
+    this.setState({ selectedWorker: worker });
+  }
+
   render() {
     let buttons = [];
     if (this.props.ctx.allowedMoves.includes("stop")) {
@@ -41,6 +62,8 @@ export default class CowpokeBoard extends React.Component {
         G={this.props.G}
         ctx={this.props.ctx}
         moves={this.props.moves}
+        selectToken={token => this.selectToken(token)}
+        selectWorker={worker => this.selectWorker(worker)}
       />
     ));
 
@@ -56,6 +79,9 @@ export default class CowpokeBoard extends React.Component {
             player => player.engine
           )}
           deliveryValue={this.props.G.deliveryValue}
+          selectedToken={this.state.selectedToken}
+          selectedWorker={this.state.selectedWorker}
+          clearWorker={() => this.selectWorker(null)}
           moves={this.props.moves}
           phase={this.props.ctx.phase}
           active={this.props.ctx.phase == "EnginePhase"}

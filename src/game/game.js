@@ -4,6 +4,7 @@ import Player, { stepLimit } from "./player";
 import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
 import Stations from "./stations";
+import StationMasters, { acquireStationMaster } from "./station_masters";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
@@ -70,6 +71,10 @@ export const Cowpoke = Game({
 
     G.buildings = privateA;
 
+    ctx.random.Shuffle(StationMasters()).forEach((tile, index) => {
+      G.stations[index].stationMaster = tile;
+    });
+
     for (var i = 0; i < 7; i++) {
       addSmallTile(G.trail, G.foresight.pile1.pop());
     }
@@ -95,6 +100,7 @@ export const Cowpoke = Game({
     selectBuilding,
     moveEngine,
     upgradeStation,
+    acquireStationMaster,
     selectToken,
     gainTeepee,
     gainHazard,
@@ -143,7 +149,13 @@ export const Cowpoke = Game({
         allowedMoves: ["pass", "build", "selectBuilding"]
       },
       EnginePhase: {
-        allowedMoves: ["pass", "moveEngine", "selectToken", "upgradeStation"],
+        allowedMoves: [
+          "pass",
+          "moveEngine",
+          "selectToken",
+          "upgradeStation",
+          "acquireStationMaster"
+        ],
         endPhaseIf: G => G.engineSpaces == 0
       },
       CowPhase: {
@@ -166,6 +178,9 @@ export const Cowpoke = Game({
       },
       HazardPhase: {
         allowedMoves: ["pass", "gainHazard"]
+      },
+      HazardTeepeePhase: {
+        allowedMoves: ["pass", "gainHazard", "gainTeepee"]
       },
       ActionPhase: {
         allowedMoves: ["end", "beginAuxMove"]

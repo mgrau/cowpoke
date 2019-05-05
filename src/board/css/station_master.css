@@ -1,0 +1,41 @@
+.station-master {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 0;
+  justify-items: center;
+  background: rgb(156, 160, 180);
+  font-size: 75%;
+}
+
+.station-master > div {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.station-master > div:nth-child(2) {
+  font-size: 60%;
+}
+
+.station-master .points {
+  font-size: 150%;
+}
+
+.station-master .worker {
+  font-size: 75%;
+}
+
+.station-master > div:nth-child(1) .symbol-hazard {
+  font-size: 60%;
+  padding: 5%;
+}
+
+.station-master > div:nth-child(2) .symbol-hazard {
+  font-size: 100%;
+  padding: 5%;
+}
+
+.station-master .symbol-teepee {
+  font-size: 40%;
+}
