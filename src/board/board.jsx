@@ -17,6 +17,10 @@ export default class CowpokeBoard extends React.Component {
       selectedBuilding: null,
       selectedWorker: null
     };
+
+    this.selectToken = this.selectToken.bind(this);
+    this.selectBuilding = this.selectBuilding.bind(this);
+    this.selectWorker = this.selectWorker.bind(this);
   }
 
   selectToken(token) {
@@ -95,11 +99,13 @@ export default class CowpokeBoard extends React.Component {
         />
         <Trail
           trail={this.props.G.trail}
-          G={this.props.G}
-          ctx={this.props.ctx}
+          players={this.props.G.players}
+          phase={this.props.ctx.phase}
+          currentPlayer={this.props.ctx.currentPlayer}
           moves={this.props.moves}
+          actionsPerformed={this.props.G.actionsPerformed}
           selectedBuilding={this.state.selectedBuilding}
-          clearBuilding={() => this.selectBuilding(null)}
+          selectBuilding={this.selectBuilding}
           active={this.props.ctx.phase == "MovePhase"}
         />
         <div id="board-players">{players}</div>
@@ -107,7 +113,7 @@ export default class CowpokeBoard extends React.Component {
           buildings={this.props.G.buildings}
           built={this.props.G.players[this.props.ctx.currentPlayer].built}
           playerID={this.props.ctx.currentPlayer}
-          selectBuilding={building => this.selectBuilding(building)}
+          selectBuilding={this.selectBuilding}
           selectedBuilding={this.state.selectedBuilding}
           active={this.props.ctx.phase == "BuildPhase"}
         />

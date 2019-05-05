@@ -6,26 +6,26 @@ import { wrapGrid, forceGridAnimation } from "animate-css-grid";
 
 import "./css/trail.css";
 
-export default class Trail extends React.Component {
+export default class Trail extends React.PureComponent {
   render() {
-    const currentLocation = this.props.G.players[this.props.ctx.currentPlayer]
+    const currentLocation = this.props.players[this.props.currentPlayer]
       .location;
     const trail = this.props.trail;
     const spaces = Object.keys(trail).map((space, index) => (
       <Tile
         key={index}
         {...trail[space]}
-        phase={this.props.ctx.phase}
-        currentPlayer={this.props.ctx.currentPlayer}
-        actionsPerformed={this.props.G.actionsPerformed}
+        phase={this.props.phase}
+        currentPlayer={this.props.currentPlayer}
+        actionsPerformed={this.props.actionsPerformed}
         selectedBuilding={this.props.selectedBuilding}
-        clearBuilding={this.props.clearBuilding}
+        selectBuilding={this.props.selectBuilding}
         active={space == currentLocation}
         moves={this.props.moves}
       />
     ));
 
-    const tokens = Object.values(this.props.G.players).map((player, index) => (
+    const tokens = Object.values(this.props.players).map((player, index) => (
       <Token
         key={index}
         location={player.location}

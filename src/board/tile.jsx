@@ -18,7 +18,7 @@ export default class Tile extends React.PureComponent {
           this.props.selectedBuilding != null
         ) {
           this.props.moves.build(this.props.name, this.props.selectedBuilding);
-          this.props.clearBuilding();
+          this.props.selectedBuilding(null);
         }
       }
     }
