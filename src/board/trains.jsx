@@ -28,7 +28,10 @@ export default class Trains extends React.PureComponent {
               ? "train-player-" + this.props.engines.indexOf(index)
               : "")
           }
-          onClick={() => this.props.moves.moveEngine(index)}
+          onClick={() => {
+            console.log({ destination: index });
+            this.props.moves.moveEngine(index);
+          }}
         >
           {index}
         </div>

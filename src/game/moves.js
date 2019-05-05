@@ -255,6 +255,7 @@ export function build(G, ctx, location, buildingName) {
 }
 
 export function moveEngine(G, ctx, destination) {
+  console.log({ destination: destination });
   if (G.actionsPerformed.includes("upgradeStation")) {
     return;
   }
@@ -273,13 +274,21 @@ export function moveEngine(G, ctx, destination) {
       let distance = trainDistance(G, ctx, destination);
       if (
         (G.engineSpaces > 0 && distance >= 0 && distance <= G.engineSpaces) ||
-        (G.engineSpaces < 0 &&
-          (distance - G.engineSpaces == 0 || distance - G.engineSpaces == 0.5))
+        (G.engineSpaces < 0 && Math.floor(distance - G.engineSpaces) == 0)
       ) {
         G.player.engine = destination;
         G.engineSpaces -= distance;
+      } else {
+        console.log("not valid move");
+        console.log({ distance: distance });
       }
+    } else {
+      console.log("destination is zero, or opponent in way");
+      console.log({ opponents: opponents.map(player => player.engine) });
     }
+  } else {
+    console.log("this is not a destination");
+    console.log({ stations: stations });
   }
 }
 
