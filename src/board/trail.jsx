@@ -2,7 +2,6 @@ import React from "react";
 import LineTo from "react-lineto";
 import Tile from "./tile";
 import { Cattleman } from "./symbols";
-import { wrapGrid, forceGridAnimation } from "animate-css-grid";
 
 import "./css/trail.css";
 
@@ -34,7 +33,7 @@ export default class Trail extends React.PureComponent {
     ));
     return (
       <div className={this.props.active ? "active" : ""}>
-        <div id="trail">
+        <div id="trail" ref={element => (this.grid = element)}>
           {spaces}
           {tokens}
         </div>

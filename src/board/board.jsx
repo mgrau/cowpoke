@@ -1,4 +1,5 @@
 import React from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Trains from "./trains";
 import JobMarket from "./job_market";
 import Trail from "./trail";
@@ -75,7 +76,6 @@ export default class CowpokeBoard extends React.Component {
 
     return (
       <div id="board" className={"player-" + this.props.ctx.currentPlayer}>
-        <div id="board-spacer" />
         <Trains
           cities={this.props.G.cities}
           stations={this.props.G.stations}
@@ -109,20 +109,33 @@ export default class CowpokeBoard extends React.Component {
           active={this.props.ctx.phase == "MovePhase"}
         />
         <div id="board-players">{players}</div>
-        <BuildingSelection
-          buildings={this.props.G.buildings}
-          built={this.props.G.players[this.props.ctx.currentPlayer].built}
-          playerID={this.props.ctx.currentPlayer}
-          selectBuilding={this.selectBuilding}
-          selectedBuilding={this.state.selectedBuilding}
-          active={this.props.ctx.phase == "BuildPhase"}
-        />
-        <CowMarket
-          market={this.props.G.cowMarket}
-          moves={this.props.moves}
-          cowboys={this.props.G.availableCowboys}
-          active={this.props.ctx.phase == "CowPhase"}
-        />
+
+        <Tabs id="board-select">
+          <TabList>
+            <Tab>Cow Market</Tab>
+            <Tab>Buildings</Tab>
+          </TabList>
+
+          <TabPanel>
+            <CowMarket
+              market={this.props.G.cowMarket}
+              moves={this.props.moves}
+              cowboys={this.props.G.availableCowboys}
+              active={this.props.ctx.phase == "CowPhase"}
+            />
+          </TabPanel>
+          <TabPanel>
+            <BuildingSelection
+              buildings={this.props.G.buildings}
+              built={this.props.G.players[this.props.ctx.currentPlayer].built}
+              playerID={this.props.ctx.currentPlayer}
+              selectBuilding={this.selectBuilding}
+              selectedBuilding={this.state.selectedBuilding}
+              active={this.props.ctx.phase == "BuildPhase"}
+            />
+          </TabPanel>
+        </Tabs>
+
         <div id="board-info">
           <div className={"current-player-" + player.playerID}>
             Current Player: {player.name}
