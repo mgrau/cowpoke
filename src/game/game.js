@@ -5,6 +5,7 @@ import Trail, { addSmallTile } from "./trail";
 import Cities from "./cities";
 import Stations from "./stations";
 import StationMasters, { acquireStationMaster } from "./station_masters";
+import { BasicObjectives, Objectives, refillObjectives } from "./objectives";
 import Foresight from "./foresight";
 import JobMarket, { addWorker } from "./job_market";
 import MarketCattle, { refillCowMarket } from "./cows";
@@ -27,7 +28,8 @@ import {
   discardPair,
   trash,
   gainTeepee,
-  gainHazard
+  gainHazard,
+  gainObjective
 } from "./moves";
 import { cowDraw, cowBuy } from "./cow_moves";
 import { beginAuxMove, auxMove, auxDoubleMove } from "./aux_actions";
@@ -53,7 +55,8 @@ export const Cowpoke = Game({
       buildings: [],
       cowDeck: MarketCattle(ctx),
       cowMarket: [],
-      objectiveDeck: ctx.random.Shuffle([]),
+      basicObjectives: BasicObjectives(ctx),
+      objectiveDeck: Objectives(ctx),
       objectives: [],
       movesRemaining: 0,
       readyToken: null,
@@ -83,10 +86,12 @@ export const Cowpoke = Game({
     }
 
     refillCowMarket(G, ctx);
+    refillObjectives(G);
 
     return G;
   },
-  playerSetup: (ctx, playerID) => new Player(ctx, playerID),
+  playerSetup: (ctx, playerID, basicObjective) =>
+    new Player(ctx, playerID, basicObjective),
   moves: {
     start: function(G, ctx) {},
     move,
@@ -102,6 +107,7 @@ export const Cowpoke = Game({
     selectToken,
     gainTeepee,
     gainHazard,
+    gainObjective,
     cowDraw,
     cowBuy,
     beginAuxMove,
@@ -170,6 +176,9 @@ export const Cowpoke = Game({
       TrashPhase: {
         allowedMoves: ["trash", "moveEngine"],
         endPhaseIf: G => G.engineSpaces == 0 && G.mustTrash == 0
+      },
+      ObjectivePhase: {
+        allowedMoves: ["gainObjective"]
       },
       TeepeePhase: {
         allowedMoves: ["pass", "gainTeepee"]

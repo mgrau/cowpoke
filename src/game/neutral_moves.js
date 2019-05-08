@@ -1,9 +1,6 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import { discard, gainCertificate } from "./player";
 
-// TODO:
-// gain an objective
-
 export function neutralMove(G, ctx, action) {
   if (!G.actionsPerformed.includes(action)) {
     if (action == "neutralA0") {
@@ -109,7 +106,7 @@ function neutralC0a(G, ctx) {
 }
 
 function neutralC0b(G, ctx) {
-  // gainObjective
+  ctx.events.endPhase({ next: "ObjectivePhase" });
 }
 
 function neutralC1(G, ctx) {

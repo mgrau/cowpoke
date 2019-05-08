@@ -12,6 +12,7 @@ import {
 import { neutralMove } from "./neutral_moves";
 import { privateMove } from "./private_moves";
 import { ship } from "./cities";
+import { refillObjectives } from "./objectives";
 
 export function move(G, ctx, destination) {
   if (
@@ -448,6 +449,22 @@ export function gainHazard(G, ctx, name) {
       G.trail[name].tile = null;
       ctx.events.endPhase();
     }
+  }
+}
+
+export function gainObjective(G, ctx, index) {
+  if (index == undefined) {
+    if (G.objectiveDeck.length > 0) {
+      G.player.objectives = [...G.player.objectives, G.objectiveDeck.pop()];
+      ctx.events.endPhase();
+    }
+  } else if (G.objectives[index] != undefined) {
+    G.player.objectives = [
+      ...G.player.objectives,
+      G.objectives.splice(index, 1)
+    ];
+    refillObjectives(G);
+    ctx.events.endPhase();
   }
 }
 

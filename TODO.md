@@ -13,6 +13,8 @@
   - action 9b (upgrade any train station behind engine)
 
 - objective cards
+  - should go into discard
+  - actions
   - delivery actions (gaining objectives)
   - scoring
   

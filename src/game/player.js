@@ -1,6 +1,6 @@
 import { StartingDeck } from "./cows";
 
-export default function Player(ctx, playerID) {
+export default function Player(ctx, playerID, basicObjective) {
   return {
     playerID: playerID,
     name: "",
@@ -15,7 +15,7 @@ export default function Player(ctx, playerID) {
     built: [],
     teepees: [],
     hazards: [],
-    objectives: [],
+    objectives: [basicObjective],
     stationMasters: [],
     tokens: {
       auxMoney: 1,

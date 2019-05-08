@@ -9,7 +9,6 @@
 /**
  * Plugin that maintains state for each player in G.players.
  * During a turn, G.player will contain the object for the current player.
- * In two player games, G.opponent will contain the object for the other player.
  *
  * @param {function} initPlayerState - Function of type (playerID) => playerState.
  */
@@ -41,7 +40,7 @@ export default {
       for (let i = 0; i < ctx.numPlayers; i++) {
         let playerState = {};
         if (game.playerSetup !== undefined) {
-          playerState = game.playerSetup(ctx, i + "");
+          playerState = game.playerSetup(ctx, i + "", G.basicObjectives[i]);
         }
         players[i + ""] = playerState;
       }
