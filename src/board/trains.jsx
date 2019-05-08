@@ -24,6 +24,7 @@ export default class Trains extends React.PureComponent {
           id={"train-" + index}
           className={
             "train-space " +
+            (index > 18 ? "small " : "") +
             (this.props.engines.includes(index)
               ? "train-player-" + this.props.engines.indexOf(index)
               : "")

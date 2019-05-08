@@ -3,7 +3,7 @@
 #trains {
   display: grid;
   grid-template-rows: 6vh 2vh 4vh;
-  grid-template-columns: 5vw repeat(40, 2vw);
+  grid-template-columns: 5vw repeat(18, 2vw) repeat(22, 1vw);
   justify-items: center;
 }
 

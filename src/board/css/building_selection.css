@@ -1,5 +1,4 @@
 #building-selection {
-  visibility: hidden;
   display: grid;
   grid-template-columns: 9vh 9vh;
   grid-template-rows: repeat(5, 9vh);

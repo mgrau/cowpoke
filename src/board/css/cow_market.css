@@ -1,5 +1,6 @@
 #cow-market-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 #cow-market-actions > div {
@@ -19,6 +20,7 @@
 
 #cow-market-cows {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #cow-market-cows > div {

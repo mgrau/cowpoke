@@ -71,12 +71,6 @@ export default class CowMarket extends React.PureComponent {
     return (
       <div id="cow-market" className={active}>
         <div id="cow-market-actions">
-          <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
-            <Worker type="cowboy" />
-            <Separator />
-            <span style={{ fontSize: "75%" }}>draw 2</span>
-          </div>
-
           <div
             key="3:6"
             onClick={() => this.preBuy(3, 6)}
@@ -157,6 +151,11 @@ export default class CowMarket extends React.PureComponent {
             4<Worker type="cowboy" />
             <Separator />
             <Money $={6} />
+          </div>
+          <div key="cowDraw" onClick={() => this.props.moves.cowDraw()}>
+            <Worker type="cowboy" />
+            <Separator />
+            <span style={{ fontSize: "75%" }}>draw 2</span>
           </div>
         </div>
         <div id="cow-market-cows">{market}</div>
