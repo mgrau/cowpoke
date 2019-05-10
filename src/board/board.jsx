@@ -6,6 +6,7 @@ import Trail from "./trail";
 import Player from "./player";
 import BuildingSelection from "./building_selection";
 import CowMarket from "./cow_market";
+import Objectives from "./objectives";
 import { Stop, Pass, End, Undo } from "./buttons";
 
 import "./css/board.css";
@@ -16,7 +17,8 @@ export default class CowpokeBoard extends React.Component {
     this.state = {
       selectedToken: null,
       selectedBuilding: null,
-      selectedWorker: null
+      selectedWorker: null,
+      tabIndex: 0
     };
 
     this.selectToken = this.selectToken.bind(this);
@@ -34,6 +36,21 @@ export default class CowpokeBoard extends React.Component {
 
   selectWorker(worker) {
     this.setState({ selectedWorker: worker });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ctx.phase == "CowPhase") {
+      console.log("got props");
+      this.setState({ tabIndex: 0 });
+    }
+    if (nextProps.ctx.phase == "BuildPhase") {
+      console.log("got props");
+      this.setState({ tabIndex: 1 });
+    }
+    if (nextProps.ctx.phase == "ObjectivePhase") {
+      console.log("got props");
+      this.setState({ tabIndex: 2 });
+    }
   }
 
   render() {
@@ -110,10 +127,16 @@ export default class CowpokeBoard extends React.Component {
         />
         <div id="board-players">{players}</div>
 
-        <Tabs id="board-select">
-          <TabList>
+        <Tabs
+          id="board-select"
+          selectedIndex={this.state.tabIndex}
+          onSelect={tabIndex => this.setState({ tabIndex })}
+          selectedTabClassName={"activeTab"}
+        >
+          <TabList className="tabList">
             <Tab>Cow Market</Tab>
             <Tab>Buildings</Tab>
+            <Tab>Objectives</Tab>
           </TabList>
 
           <TabPanel>
@@ -132,6 +155,12 @@ export default class CowpokeBoard extends React.Component {
               selectBuilding={this.selectBuilding}
               selectedBuilding={this.state.selectedBuilding}
               active={this.props.ctx.phase == "BuildPhase"}
+            />
+          </TabPanel>
+          <TabPanel>
+            <Objectives
+              objectives={this.props.G.objectives}
+              moves={this.props.moves}
             />
           </TabPanel>
         </Tabs>

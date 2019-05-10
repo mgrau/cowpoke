@@ -1,0 +1,13 @@
+#objectives .objective {
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 50%;
+  height: 100%;
+  font-size: 50%;
+}
+
+#objectives .objective .requirements {
+  grid-column: 1 /3;
+}
